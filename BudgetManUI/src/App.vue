@@ -4,8 +4,7 @@ import LayoutElement from './Layouts/LayoutElement.vue'
 </script>
 
 <template>
-  
-<LayoutElement></LayoutElement>
+<RouterView></RouterView>
 </template>
 
 <style scoped>
