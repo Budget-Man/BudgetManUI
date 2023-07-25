@@ -1,16 +1,18 @@
+
+
 <template>
   <el-row class="login-container">
     <el-col :span="24" class="login-col" >
       <div class="grid-content ep-bg-purple">
         <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
           <el-form-item label="" prop="username">
-            <el-input v-model="state.username" placeholder="User name"  :prefix-icon="User"/>
+            <el-input v-model="state.userName" placeholder="User name"  :prefix-icon="User"/>
           </el-form-item>
           <el-form-item label="" prop="pass">
             <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="password"  :prefix-icon="Key"/>
           </el-form-item>
 
-          <el-text v-if="state.errorMessage" class="mx-1" type="danger">{{ state.errorMessage }}</el-text>
+          
           <el-form-item>
             <el-button type="primary" @click="login()">Submit</el-button>
           </el-form-item>
@@ -24,14 +26,19 @@
 <script setup lang="ts">
 import { Calendar, Search,User,Key } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue';
+import {LoginViewModel} from '../../Models/LoginViewModel.ts'
 
-const state = reactive({
-  username: '',
+// @ts-ignore
+import {Login} from "../../Services/LoginService.ts"
+const state = reactive<LoginViewModel>({
+  userName: '',
   password: '',
-  errorMessage: ''
+  email:''
 });
-const login = () => {
-  state.errorMessage = 'test'
+const login = async () => {
+  console.log(state);
+  const loginfunc= await Login(state);
+  console.log(loginfunc);
 }
 </script>
   
