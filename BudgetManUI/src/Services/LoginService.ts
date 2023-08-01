@@ -11,7 +11,7 @@ const loginUrl = "account/login";
 
 export const handleLogin = async (model: LoginViewModel): Promise<AppResponse<string>> => {
 
-    var resust: AppResponse<string>=({
+    let resust: AppResponse<string>=({
         isSuccess: false,
         message: '',
         data: ''

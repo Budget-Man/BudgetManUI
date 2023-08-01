@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BudgetManUI"
+    "\\BudgetManUI",
+    "\\BudgetManUI\\src",
+    "\\BudgetManUI\\src\\Layouts",
+    "\\BudgetManUI\\src\\Services"
   ],
-  "SelectedNode": "\\BudgetManUI\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
