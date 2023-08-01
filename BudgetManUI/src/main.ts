@@ -15,6 +15,10 @@ import HomeView from './views/HomeView.vue'
 import LoginView from './views/Auth/LoginView.vue'
 
 
+//add toast
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+
 // import './styles/dark/css-vars.css'
 const app = createApp(App)
 
@@ -49,4 +53,5 @@ const router = createRouter({
   
 app.use(router)
 app.use(ElementPlus)
+app.use(Toast)
 app.mount('#app')

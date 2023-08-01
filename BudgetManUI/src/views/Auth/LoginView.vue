@@ -32,6 +32,9 @@ import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 
 // @ts-ignore
 import { handleLogin } from "../../Services/LoginService.ts"
+import { useToast } from "vue-toastification";
+
+const _toast = useToast();
 const state = reactive<LoginViewModel>({
   userName: '',
   password: '',
@@ -40,9 +43,11 @@ const state = reactive<LoginViewModel>({
 const login = async () => {
   console.log(state);
   const loginResult = await handleLogin(state);
-  console.log("logresult:"+loginResult);
-  if (loginResult)
+  console.log("logresult:" + loginResult);
+  if (loginResult.isSuccess)
     window.location.href = '/';
+  else
+    _toast.success(loginResult.message);
 }
 </script>
   
