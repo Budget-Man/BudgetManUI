@@ -23,7 +23,10 @@ export const handleLogin = async (model: LoginViewModel): Promise<AppResponse<st
         const responseObject = postResult.data
         resust = responseObject;
         if (resust.isSuccess) {
-            Cookies.set('accessToken', resust.data, { expires: undefined });
+            if(resust.data!=undefined){
+                Cookies.set('accessToken', resust.data, { expires: undefined });
+            }
+            
         }
         else {
             console.log(resust.message);
