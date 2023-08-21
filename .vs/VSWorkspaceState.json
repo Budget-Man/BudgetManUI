@@ -4,6 +4,7 @@
     "\\BudgetManUI",
     "\\BudgetManUI\\src",
     "\\BudgetManUI\\src\\Layouts",
+    "\\BudgetManUI\\src\\Models",
     "\\BudgetManUI\\src\\Services"
   ],
   "PreviewInSolutionExplorer": false
