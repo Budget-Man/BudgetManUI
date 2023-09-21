@@ -1,3 +1,5 @@
-interface SearchDTOItem {
+class SearchDTOItem {
     [key: string]: any;
+
+    
 }

@@ -38,6 +38,9 @@ const Search = async () => {
 const props = defineProps<{
   tableColumns: TableColumn[];
   apiName: string;
+  allowAdd:boolean;
+  allowEdit:boolean;
+  allowDelete:boolean;
 }>();
 let datas: SearchDTOItem[] | undefined;
 let searchRequest: SearchRequest = {
