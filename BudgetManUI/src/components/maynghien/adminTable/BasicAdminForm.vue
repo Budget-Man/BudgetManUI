@@ -22,6 +22,18 @@ import { SearchResponse } from '../BaseModels/SearchResponse';
 import { SearchRequest } from '../BaseModels/SearchRequest';
 import type { AppResponse } from '@/models/AppResponse';
 
+//#region Method
+
+const Search = async () => {
+  var searchApiResponse = await handleSearch(searchRequest, props.apiName);
+  if (searchApiResponse.isSuccess) {
+    let dataresponse: AppResponse<SearchResponse<SearchDTOItem[]>> = searchApiResponse.data;
+    datas = dataresponse.data?.Data;
+  }
+
+}
+//#endregion
+//#region main
 
 const props = defineProps<{
   tableColumns: TableColumn[];
@@ -29,14 +41,11 @@ const props = defineProps<{
 }>();
 let datas: SearchDTOItem[] | undefined;
 let searchRequest: SearchRequest = {
-PageIndex: 1,
-PageSize: 10,
-filters: undefined,
-SortByInfo: undefined
+  PageIndex: 1,
+  PageSize: 10,
+  filters: undefined,
+  SortByInfo: undefined
 }
-var searchApiResponse = await handleSearch(searchRequest, props.apiName);
-if (searchApiResponse.isSuccess) {
-  let dataresponse: AppResponse<SearchResponse<SearchDTOItem[]>> = searchApiResponse.data;
-  datas = dataresponse.data?.Data;
-}
+await Search();
+//#endregion
 </script>
