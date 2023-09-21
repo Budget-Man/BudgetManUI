@@ -1,3 +1,6 @@
+
+
+
 <template>
     <div>
         <el-table class="admin-table" data="columns"  @sort-change="handleSortChange">
@@ -9,21 +12,16 @@
 </template>
   
 <script setup lang="ts">
+// @ts-ignore
+import { TableColumn } from '../Models/TableColumn.ts'
+// @ts-ignore
+import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
+
 const props = defineProps<{
     columns: TableColumn[];
-    datas: DTOItem[];
+    datas: SearchDTOItem[];
 }>();
 
-interface TableColumn {
-    key: string;
-    label: string;
-    width: number | undefined;
-    sortable:boolean|undefined;
-}
-
-interface DTOItem {
-    [key: string]: any;
-}
 
   // column: The column component
   // prop: The property associated with the column
@@ -43,7 +41,7 @@ const getWidth = (column: TableColumn): string => {
     return result;
 
 }
-const getValue = (item: DTOItem, key: string): string | number => {
+const getValue = (item: SearchDTOItem, key: string): string | number => {
     return item[key];
 };
 </script>

@@ -12,7 +12,7 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css';
 
 // @ts-ignore
-import {router} from './router/index.ts'
+import router from './router/index.ts'
 // import './styles/dark/css-vars.css'
 const app = createApp(App)
 
