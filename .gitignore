@@ -16,3 +16,7 @@
 *.suo
 /.vs/*
 /.vs/slnx.sqlite
+\.vs\**
+/.vs**
+\.vs**
+/.vs/VSWorkspaceState.json
