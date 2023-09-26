@@ -20,3 +20,5 @@
 /.vs**
 \.vs**
 /.vs/VSWorkspaceState.json
+*/.vs/*
+*\.vs\*

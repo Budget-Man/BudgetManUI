@@ -17,9 +17,10 @@ import { TableColumn } from '../Models/TableColumn.ts'
 // @ts-ignore
 import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
 
-const props = defineProps<{
+const props = defineProps<{ 
     columns: TableColumn[];
     datas: SearchDTOItem[];
+      
 }>();
 
 

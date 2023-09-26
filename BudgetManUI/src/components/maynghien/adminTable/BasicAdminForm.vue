@@ -1,5 +1,6 @@
 
 <template>
+  <MnActionPane  :allowAdd="true"></MnActionPane>
   <MnTable :columns="tableColumns" :dtoData="datas" />
 </template>
   
