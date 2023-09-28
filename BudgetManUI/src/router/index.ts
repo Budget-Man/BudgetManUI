@@ -9,6 +9,7 @@ import HomeView from '../views/HomeView.vue'
 
 import LoginView from '../views/Auth/LoginView.vue'
 
+import UserView from '../views/User/Index.vue'
 // Create the router instance
 const router = createRouter({
   history: createWebHistory(),
@@ -22,6 +23,10 @@ const router = createRouter({
           path: '',
           component: HomeView,
         },
+        {
+          path: '/user',
+          component: UserView,
+        },
         // Other routes using default layout...
       ],
     },
@@ -30,7 +35,7 @@ const router = createRouter({
       component: LayoutBlank,
       children: [
         {
-          path: '',
+          path: '/login',
           component: LoginView,
         },
         // Other routes using alternative layout...
@@ -42,7 +47,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = !!Cookies.get('accessToken');
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login'); // Redirect to the login page
+    next('/auth/login'); // Redirect to the login page
   } else {
     next(); // Continue to the requested route
   }

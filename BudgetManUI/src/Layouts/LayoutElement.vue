@@ -30,7 +30,7 @@
   border-right: none;
 }
  .el-main {
-  padding: 0;
+  padding: 10px;
 }
 .toolbar {
   display: inline-flex;

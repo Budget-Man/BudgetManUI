@@ -25,11 +25,12 @@
 </template>
   
 <script setup lang="ts">
-import { defineProps, ref, type Ref, computed } from 'vue';
+import {  ref, type Ref, computed } from 'vue';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
 // @ts-ignore
 import { handleCreate, handleUpdate } from './Service/BasicAdminService.ts'
+import type { TableColumn } from './Models/TableColumn';
 const emit = defineEmits<{
     (e: 'saved'): void
 

@@ -1,7 +1,7 @@
 export class SearchResponse<T>{
-    Data:T|undefined;
-    CurrentPage:number|undefined;
-    TotalPages:number|undefined;
-    RowsPerPage:number|undefined;
-    TotalRows:number|undefined;
+    data:T|undefined;
+    currentPage:number|undefined;
+    totalPages:number|undefined;
+    rowsPerPage:number|undefined;
+    totalRows:number|undefined;
 }

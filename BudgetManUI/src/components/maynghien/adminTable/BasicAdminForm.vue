@@ -1,13 +1,18 @@
 
 <template>
-  <MnActionPane  :allowAdd="true"></MnActionPane>
-  <MnTable :columns="tableColumns" :dtoData="datas" />
+  
+  <MnActionPane  :allowAdd="true" :tableColumns="tableColumns"></MnActionPane>
+  <MnTable :columns="tableColumns" :datas="datas" />
+  
 </template>
   
 <script setup lang="ts">
 
 // @ts-ignore
-import { MnTable } from './MnTable.ts'
+import MnTable  from './MnTable.vue'
+
+// @ts-ignore
+import MnActionPane from './MnActionPane.vue'
 
 import { ref } from 'vue';
 // @ts-ignore
@@ -28,8 +33,15 @@ import type { AppResponse } from '@/models/AppResponse';
 const Search = async () => {
   var searchApiResponse = await handleSearch(searchRequest, props.apiName);
   if (searchApiResponse.isSuccess) {
-    let dataresponse: AppResponse<SearchResponse<SearchDTOItem[]>> = searchApiResponse.data;
-    datas = dataresponse.data?.Data;
+    let dataresponse: SearchResponse<SearchDTOItem[]> = searchApiResponse.data;
+      
+    if(dataresponse!=undefined && dataresponse.data!=undefined &&dataresponse.data.length>0){
+      datas = dataresponse.data;
+     
+    }
+    else{
+      datas= [] ;
+    }
   }
 
 }
@@ -43,7 +55,7 @@ const props = defineProps<{
   allowEdit:boolean;
   allowDelete:boolean;
 }>();
-let datas: SearchDTOItem[] | undefined;
+let datas: SearchDTOItem[] ;
 let searchRequest: SearchRequest = {
   PageIndex: 1,
   PageSize: 10,

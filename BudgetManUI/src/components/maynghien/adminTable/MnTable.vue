@@ -3,12 +3,18 @@
 
 <template>
     <div>
-        <el-table class="admin-table" data="columns"  @sort-change="handleSortChange">
-            <el-table-column v-for="column in columns" :key="column.key" prop="{{column.key}}" label="{{column.label}}" 
-            sortable="{{ column.sorable }}" width="{{getWidth(column) }}" />
+        <el-table class="admin-table" :data="datas"  @sort-change="handleSortChange" border 
+         row-key="id" 
+         table-layout="auto"
+          @row-click="handleRowClick" >
+            <el-table-column v-for="column in columns" :key="column.key" :prop="column.key" :label="column.label"
+            :sortable="column.sorable" :visible="column.hidden==false" />
            
         </el-table>
+
+       
     </div>
+  
 </template>
   
 <script setup lang="ts">
@@ -16,6 +22,7 @@
 import { TableColumn } from '../Models/TableColumn.ts'
 // @ts-ignore
 import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
+import { ref } from 'vue';
 
 const props = defineProps<{ 
     columns: TableColumn[];
@@ -23,7 +30,7 @@ const props = defineProps<{
       
 }>();
 
-
+const selectedId=ref("");
   // column: The column component
   // prop: The property associated with the column
   // order: 'ascending' or 'descending'
@@ -45,6 +52,12 @@ const getWidth = (column: TableColumn): string => {
 const getValue = (item: SearchDTOItem, key: string): string | number => {
     return item[key];
 };
+
+const handleRowClick=(row:any,column:any,event:any) =>{
+    
+       selectedId.value = row.id;
+     
+    }
 </script>
   
 <style scoped>
