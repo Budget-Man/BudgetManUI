@@ -5,13 +5,13 @@
                 <el-col :span="12">
                     <el-row>
                         <div v-for="filter in filters">
-                        <el-input v-model="filter.Value"></el-input>
+                            <el-input v-model="filter.Value"></el-input>
 
-                    </div>
-                    <el-button :icon="Search" circle @click="handlebtnSearchClicked"> search</el-button>
+                        </div>
+                        <el-button :icon="Search" circle @click="handlebtnSearchClicked"> search</el-button>
 
                     </el-row>
-                   
+
                 </el-col>
 
                 <el-col :span="12" class="buttons">
@@ -50,7 +50,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     (e: 'onBtnAddClicked'): void;
-    (e: 'onBtnSearchClicked'): void;
+    (e: 'onBtnSearchClicked', filters: Filter[]): void;
 }>();
 const filters = ref<Filter[]>([]);
 
@@ -68,7 +68,11 @@ const handlebtnAddClicked = () => {
     emit("onBtnAddClicked");
 }
 const handlebtnSearchClicked = () => {
-    emit("onBtnSearchClicked");
+    const filtersRequest = filters.value.filter(filter => filter.Value !== null && filter.Value !== undefined && filter.Value!="");
+    console.log(filters.value);
+    console.log(filtersRequest);
+    
+    emit("onBtnSearchClicked", filtersRequest);
 }
 </script>
 <style >
@@ -81,7 +85,8 @@ const handlebtnSearchClicked = () => {
     float: right;
     text-align: right;
 }
-button{
+
+button {
     margin-left: 5px;
 }
 </style>

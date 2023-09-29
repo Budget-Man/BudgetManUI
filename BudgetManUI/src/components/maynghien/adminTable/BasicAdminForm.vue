@@ -1,15 +1,13 @@
 
 <template>
-  
-  <MnActionPane  :allowAdd="true" :tableColumns="tableColumns"></MnActionPane>
+  <MnActionPane :allowAdd="true" :tableColumns="tableColumns" :onOnBtnSearchClicked="handleBtnSearchClicked"></MnActionPane>
   <MnTable :columns="tableColumns" :datas="datas" />
-  
 </template>
   
 <script setup lang="ts">
 
 // @ts-ignore
-import MnTable  from './MnTable.vue'
+import MnTable from './MnTable.vue'
 
 // @ts-ignore
 import MnActionPane from './MnActionPane.vue'
@@ -24,6 +22,8 @@ import { SearchDTOItem } from './Models/SearchDTOItem.ts'
 import { handleSearch } from './Service/BasicAdminService.ts'
 
 // @ts-ignore
+import { Filter } from '../BaseModels/Filter';
+// @ts-ignore
 import { SearchResponse } from '../BaseModels/SearchResponse';
 import { SearchRequest } from '../BaseModels/SearchRequest';
 import type { AppResponse } from '@/models/AppResponse';
@@ -34,13 +34,13 @@ const Search = async () => {
   var searchApiResponse = await handleSearch(searchRequest, props.apiName);
   if (searchApiResponse.isSuccess) {
     let dataresponse: SearchResponse<SearchDTOItem[]> = searchApiResponse.data;
-      
-    if(dataresponse!=undefined && dataresponse.data!=undefined &&dataresponse.data.length>0){
-      datas = dataresponse.data;
-     
+
+    if (dataresponse != undefined && dataresponse.data != undefined && dataresponse.data.length > 0) {
+      datas.value = dataresponse.data;
+
     }
-    else{
-      datas= [] ;
+    else {
+      datas.value = [];
     }
   }
 
@@ -51,11 +51,11 @@ const Search = async () => {
 const props = defineProps<{
   tableColumns: TableColumn[];
   apiName: string;
-  allowAdd:boolean;
-  allowEdit:boolean;
-  allowDelete:boolean;
+  allowAdd: boolean;
+  allowEdit: boolean;
+  allowDelete: boolean;
 }>();
-let datas: SearchDTOItem[] ;
+let datas= ref<SearchDTOItem[]>([]);
 let searchRequest: SearchRequest = {
   PageIndex: 1,
   PageSize: 10,
@@ -63,5 +63,18 @@ let searchRequest: SearchRequest = {
   SortByInfo: undefined
 }
 await Search();
+//#endregion
+//#region variable
+const SelectedRowId = ref<string | null>(null);
+//#endregion
+
+//#region event funcs
+const handleBtnSearchClicked = (filters: Filter[]) => {
+  
+    searchRequest.filters = filters;
+    searchRequest.PageIndex=1;
+    Search();
+  
+}
 //#endregion
 </script>
