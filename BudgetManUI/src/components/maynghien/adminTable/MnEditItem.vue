@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="Warning" width="30%" :visible.sync="dialogVisible" :draggable="false">
+    <el-dialog title="Warning" width="30%" :visible="openDialog" :draggable="false">
 
         <div class="editform">
             <div v-for="column in columns" :key="column.key">
@@ -15,7 +15,7 @@
 
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">Cancel</el-button>
+                <el-button @click="emit('onCloseClicked')">Cancel</el-button>
                 <el-button type="primary" @click="Save">
                     Confirm
                 </el-button>
@@ -32,16 +32,17 @@ import { ElMessage } from 'element-plus';
 import { handleCreate, handleUpdate } from './Service/BasicAdminService.ts'
 import type { TableColumn } from './Models/TableColumn';
 const emit = defineEmits<{
-    (e: 'saved'): void
+    (e: 'onSaved'): void;
+    (e: 'onCloseClicked'): void;
 
 }>()
-const { columns, editItem, apiName, isEdit } = defineProps<{
+const { columns, editItem, apiName, isEdit,openDialog } = defineProps<{
     columns: TableColumn[];
     editItem: SearchDTOItem | undefined;
     apiName: string;
     isEdit: boolean;
+    openDialog:boolean;
 }>();
-const dialogVisible = ref(true);
 // Use computed to create a filtered model
 const model = computed(() => {
     const filteredModel: SearchDTOItem = {};
@@ -102,8 +103,7 @@ const Save = async () => {
             }  
         }
     }
-    dialogVisible.value = false;
-    emit("saved");
+    emit("onSaved");
 }
 
 </script>

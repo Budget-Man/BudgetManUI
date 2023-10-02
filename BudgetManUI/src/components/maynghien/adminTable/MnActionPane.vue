@@ -63,14 +63,13 @@ props.tableColumns.forEach(colum => {
         filters.value?.push(newFilter);
     }
 });
-console.log(filters.value);
 const handlebtnAddClicked = () => {
+    console.log("btn add click");
     emit("onBtnAddClicked");
+    console.log("not err");
 }
 const handlebtnSearchClicked = () => {
     const filtersRequest = filters.value.filter(filter => filter.Value !== null && filter.Value !== undefined && filter.Value!="");
-    console.log(filters.value);
-    console.log(filtersRequest);
     
     emit("onBtnSearchClicked", filtersRequest);
 }

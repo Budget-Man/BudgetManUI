@@ -1,7 +1,10 @@
 
 <template>
-  <MnActionPane :allowAdd="true" :tableColumns="tableColumns" :onOnBtnSearchClicked="handleBtnSearchClicked"></MnActionPane>
-  <MnTable :columns="tableColumns" :datas="datas" />
+  <MnActionPane :allowAdd="true" :tableColumns="tableColumns"  :isEdit="isEditting"
+  @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate">
+  </MnActionPane>
+  <MnTable :columns="tableColumns" :datas="datas" :openDialog="openDialogCreate" :onSaved="handleSaved" 
+    :onCloseClicked="handleOnEditCloseClicked"/>
 </template>
   
 <script setup lang="ts">
@@ -43,8 +46,8 @@ const Search = async () => {
       datas.value = [];
     }
   }
-
 }
+
 //#endregion
 //#region main
 
@@ -55,7 +58,7 @@ const props = defineProps<{
   allowEdit: boolean;
   allowDelete: boolean;
 }>();
-let datas= ref<SearchDTOItem[]>([]);
+let datas = ref<SearchDTOItem[]>([]);
 let searchRequest: SearchRequest = {
   PageIndex: 1,
   PageSize: 10,
@@ -66,14 +69,31 @@ await Search();
 //#endregion
 //#region variable
 const SelectedRowId = ref<string | null>(null);
+const openDialogCreate = ref<boolean>(false);
+const isEditting=ref(false);
 //#endregion
 
 //#region event funcs
 const handleBtnSearchClicked = (filters: Filter[]) => {
+
+  searchRequest.filters = filters;
+  searchRequest.PageIndex = 1;
+  Search();
+
+}
+const handleSaved = async () => {
+  openDialogCreate.value = false;
+  searchRequest.PageIndex = 1;
+  Search();
+}
+const handleOnEditCloseClicked = async () => {
+  openDialogCreate.value = false;
   
-    searchRequest.filters = filters;
-    searchRequest.PageIndex=1;
-    Search();
+}
+const handleOpenCreate = async () => {
+  //console.log("open create");
+  isEditting.value=true;
+  openDialogCreate.value = true;
   
 }
 //#endregion
