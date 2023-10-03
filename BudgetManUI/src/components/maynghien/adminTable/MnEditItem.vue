@@ -1,6 +1,9 @@
 <template>
-    <el-dialog title="Warning" width="30%" :visible="openDialog" :draggable="false">
-
+    open: {{ openDialog }}
+    <el-button text @click="dialogVisible = true">
+        click to open the Dialog
+    </el-button>
+    <el-dialog v-model="dialogVisible" title="Tips" width="30%">
         <div class="editform">
             <div v-for="column in columns" :key="column.key">
                 <div v-if="column.enableEdit == true">
@@ -12,7 +15,6 @@
             </div>
 
         </div>
-
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="emit('onCloseClicked')">Cancel</el-button>
@@ -25,7 +27,7 @@
 </template>
   
 <script setup lang="ts">
-import {  ref, type Ref, computed } from 'vue';
+import { ref, type Ref, computed, watch } from 'vue';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
 // @ts-ignore
@@ -36,12 +38,12 @@ const emit = defineEmits<{
     (e: 'onCloseClicked'): void;
 
 }>()
-const { columns, editItem, apiName, isEdit,openDialog } = defineProps<{
+const { columns, editItem, apiName, isEdit, openDialog } = defineProps<{
     columns: TableColumn[];
     editItem: SearchDTOItem | undefined;
     apiName: string;
     isEdit: boolean;
-    openDialog:boolean;
+    openDialog: boolean;
 }>();
 // Use computed to create a filtered model
 const model = computed(() => {
@@ -55,6 +57,7 @@ const model = computed(() => {
 
     return filteredModel;
 });
+const dialogVisible = ref(openDialog);
 const Validate = (): boolean => {
 
     columns.forEach(column => {
@@ -84,12 +87,12 @@ const Save = async () => {
                     type: 'success',
                 });
             }
-            else  {
+            else {
                 ElMessage.error('Update failed.');
                 return;
-            }  
+            }
         }
-        else{
+        else {
             var createresult = await handleCreate(model.value, apiName);
             if (createresult.isSuccess) {
                 ElMessage({
@@ -97,10 +100,10 @@ const Save = async () => {
                     type: 'success',
                 });
             }
-            else  {
+            else {
                 ElMessage.error('Create failed.');
                 return;
-            }  
+            }
         }
     }
     emit("onSaved");

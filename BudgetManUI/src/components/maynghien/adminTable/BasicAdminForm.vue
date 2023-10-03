@@ -1,10 +1,18 @@
 
 <template>
   <MnActionPane :allowAdd="true" :tableColumns="tableColumns"  :isEdit="isEditting"
-  @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate">
+  @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate"  :openDialog="openDialogCreate" >
   </MnActionPane>
-  <MnTable :columns="tableColumns" :datas="datas" :openDialog="openDialogCreate" :onSaved="handleSaved" 
+  <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" 
     :onCloseClicked="handleOnEditCloseClicked"/>
+    <MnEditItem 
+      :columns="tableColumns" 
+      :apiName="apiName"
+      :openDialog="openDialogCreate"
+      :editItem="EdittingItem"
+      :isEdit="isEditting"
+      @onSaved="handleSaved"
+      @onCloseClicked="handleOnEditCloseClicked"/>
 </template>
   
 <script setup lang="ts">
@@ -14,6 +22,8 @@ import MnTable from './MnTable.vue'
 
 // @ts-ignore
 import MnActionPane from './MnActionPane.vue'
+// @ts-ignore
+import MnEditItem from './MnEditItem.vue'
 
 import { ref } from 'vue';
 // @ts-ignore
@@ -69,6 +79,7 @@ await Search();
 //#endregion
 //#region variable
 const SelectedRowId = ref<string | null>(null);
+const EdittingItem=ref<SearchDTOItem|null>(null);
 const openDialogCreate = ref<boolean>(false);
 const isEditting=ref(false);
 //#endregion
@@ -91,7 +102,7 @@ const handleOnEditCloseClicked = async () => {
   
 }
 const handleOpenCreate = async () => {
-  //console.log("open create");
+  console.log("open create");
   isEditting.value=true;
   openDialogCreate.value = true;
   

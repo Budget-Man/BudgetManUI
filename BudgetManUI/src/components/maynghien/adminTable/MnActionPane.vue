@@ -23,6 +23,7 @@
             </el-row>
         </el-col>
     </el-row>
+    
 </template>
 
 <script setup lang="ts">
@@ -64,9 +65,9 @@ props.tableColumns.forEach(colum => {
     }
 });
 const handlebtnAddClicked = () => {
-    console.log("btn add click");
+    //console.log("btn add click");
     emit("onBtnAddClicked");
-    console.log("not err");
+    //console.log("not err");
 }
 const handlebtnSearchClicked = () => {
     const filtersRequest = filters.value.filter(filter => filter.Value !== null && filter.Value !== undefined && filter.Value!="");
