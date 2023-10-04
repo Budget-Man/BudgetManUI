@@ -5,7 +5,7 @@
   </MnActionPane>
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" 
     :onCloseClicked="handleOnEditCloseClicked"/>
-    <MnEditItem 
+    <MnEditItem ref="MnEdit"
       :columns="tableColumns" 
       :apiName="apiName"
       :openDialog="openDialogCreate"
@@ -25,7 +25,7 @@ import MnActionPane from './MnActionPane.vue'
 // @ts-ignore
 import MnEditItem from './MnEditItem.vue'
 
-import { ref } from 'vue';
+import { ref,inject  } from 'vue';
 // @ts-ignore
 import { TableColumn } from './Models/TableColumn.ts'
 // @ts-ignore
@@ -101,10 +101,23 @@ const handleOnEditCloseClicked = async () => {
   openDialogCreate.value = false;
   
 }
+type OpenCreateDialogType = () => void;
+type ChildMethodType = () => void;
+
+// // Explicitly specify the type of the injected value with a default value
+// const childMethod: ChildMethodType|undefined = inject('childMethod', undefined);
+
+// const OpenCreateDialog: OpenCreateDialogType = inject('OpenDialogEditItem', undefined);
+
 const handleOpenCreate = async () => {
   console.log("open create");
   isEditting.value=true;
-  openDialogCreate.value = true;
+  // if (OpenCreateDialog!=undefined) {
+  //   OpenCreateDialog();
+  // } else {
+  //   console.error('childMethod is not defined');
+  // }
+  
   
 }
 //#endregion

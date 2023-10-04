@@ -27,7 +27,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref, type Ref, computed, watch } from 'vue';
+import { ref, type Ref, computed, watch,provide  } from 'vue';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
 // @ts-ignore
@@ -109,5 +109,9 @@ const Save = async () => {
     emit("onSaved");
 }
 
+const OpenDialog=()=>{
+    dialogVisible.value=true;
+}
+provide('OpenDialogEditItem', OpenDialog);
 </script>
   
