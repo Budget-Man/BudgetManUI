@@ -25,7 +25,7 @@ import MnActionPane from './MnActionPane.vue'
 // @ts-ignore
 import MnEditItem from './MnEditItem.vue'
 
-import { ref,inject  } from 'vue';
+import { ref,provide  } from 'vue';
 // @ts-ignore
 import { TableColumn } from './Models/TableColumn.ts'
 // @ts-ignore
@@ -111,14 +111,9 @@ type ChildMethodType = () => void;
 
 const handleOpenCreate = async () => {
   console.log("open create");
-  isEditting.value=true;
-  // if (OpenCreateDialog!=undefined) {
-  //   OpenCreateDialog();
-  // } else {
-  //   console.error('childMethod is not defined');
-  // }
-  
-  
+  openDialogCreate.value=true;
 }
+provide('OpenDialogCreateItem', openDialogCreate);
+  
 //#endregion
 </script>

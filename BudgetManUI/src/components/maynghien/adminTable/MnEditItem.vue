@@ -1,9 +1,7 @@
 <template>
-    open: {{ openDialog }}
-    <el-button text @click="dialogVisible = true">
-        click to open the Dialog
-    </el-button>
-    <el-dialog v-model="dialogVisible" title="Tips" width="30%">
+   
+    <el-dialog :model-value="openDialog" title="Tips" width="30%" @close="emit('onCloseClicked')">
+        
         <div class="editform">
             <div v-for="column in columns" :key="column.key">
                 <div v-if="column.enableEdit == true">
@@ -27,7 +25,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref, type Ref, computed, watch,provide  } from 'vue';
+import { ref, type Ref, computed, watch,inject  } from 'vue';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
 // @ts-ignore
@@ -57,7 +55,6 @@ const model = computed(() => {
 
     return filteredModel;
 });
-const dialogVisible = ref(openDialog);
 const Validate = (): boolean => {
 
     columns.forEach(column => {
@@ -109,9 +106,5 @@ const Save = async () => {
     emit("onSaved");
 }
 
-const OpenDialog=()=>{
-    dialogVisible.value=true;
-}
-provide('OpenDialogEditItem', OpenDialog);
 </script>
   

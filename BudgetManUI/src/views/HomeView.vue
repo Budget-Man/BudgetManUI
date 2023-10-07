@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+import OpenDialog from '@/components/test/OpenDiaolog.vue';
 </script>
 
 <template>
   <main>
-   Hello all
+   <OpenDialog></OpenDialog>
   </main>
 </template>
