@@ -8,6 +8,9 @@ export class TableColumn {
     required: boolean = false;
     hidden:boolean=false;
     showSearch:boolean=false;
+    inputType:string="text";
+    dropdownData:any|null;
+    
     constructor(){
        
     };

@@ -79,7 +79,7 @@ await Search();
 //#endregion
 //#region variable
 const SelectedRowId = ref<string | null>(null);
-const EdittingItem=ref<SearchDTOItem|null>(null);
+const EdittingItem=ref<SearchDTOItem>({});
 const openDialogCreate = ref<boolean>(false);
 const isEditting=ref(false);
 //#endregion
@@ -95,11 +95,12 @@ const handleBtnSearchClicked = (filters: Filter[]) => {
 const handleSaved = async () => {
   openDialogCreate.value = false;
   searchRequest.PageIndex = 1;
+  EdittingItem.value =new SearchDTOItem(props.tableColumns);
   Search();
 }
 const handleOnEditCloseClicked = async () => {
   openDialogCreate.value = false;
-  
+  EdittingItem.value =new SearchDTOItem(props.tableColumns);
 }
 type OpenCreateDialogType = () => void;
 type ChildMethodType = () => void;
@@ -111,9 +112,12 @@ type ChildMethodType = () => void;
 
 const handleOpenCreate = async () => {
   console.log("open create");
+  
+  EdittingItem.value =new SearchDTOItem(props.tableColumns);
+  console.log(EdittingItem.value);
   openDialogCreate.value=true;
 }
-provide('OpenDialogCreateItem', openDialogCreate);
+//provide('OpenDialogCreateItem', openDialogCreate);
   
 //#endregion
 </script>
