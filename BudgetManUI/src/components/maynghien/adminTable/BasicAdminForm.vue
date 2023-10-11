@@ -117,7 +117,12 @@ const handleOpenCreate = async () => {
   console.log(EdittingItem.value);
   openDialogCreate.value=true;
 }
+const SelectedId=ref("");
 //provide('OpenDialogCreateItem', openDialogCreate);
+const handleEdit = async (id:string) => {
   
+  SelectedId.value=id;
+  openDialogCreate.value=true;
+}
 //#endregion
 </script>

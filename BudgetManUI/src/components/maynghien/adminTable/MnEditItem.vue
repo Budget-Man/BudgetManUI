@@ -9,8 +9,8 @@
 
                     <el-input v-model="model[column.key]" :placeholder="column.label"
                         v-if="column.inputType == undefined || column.inputType == 'text'" />
-                    <!-- <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" :colValue="model[column.key]">
-                    </MnDropdown> -->
+                    <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" :colValue="model[column.key]">
+                    </MnDropdown>
                 </div>
 
             </div>
@@ -37,13 +37,13 @@ import { handleCreate, handleUpdate } from './Service/BasicAdminService.ts'
 import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
-import { SearchDTOItem } from './Models/SearchDTOItem.ts'
+import { SearchDTOItem } from './Models/SearchDTOItem.ts';
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;
 
 }>()
-const { columns, editItem, apiName, isEdit, openDialog } = defineProps<{
+const  props  = defineProps<{
     columns: TableColumn[];
     editItem: SearchDTOItem ;
     apiName: string;
@@ -51,13 +51,13 @@ const { columns, editItem, apiName, isEdit, openDialog } = defineProps<{
     openDialog: boolean;
 }>();
 // Use computed to create a filtered model
-const model = ref(editItem);
+const model = ref<SearchDTOItem>(props.editItem);
 const Validate = (): boolean => {
-    if (editItem != undefined)
-        columns.forEach(column => {
+    if (model != undefined)
+        props.columns.forEach(column => {
             if (column.enableEdit) {
-                const value = editItem[column.key];
-                if (column.key == "id" && isEdit) {
+                const value = model.value[column.key];
+                if (column.key == "id" && props.isEdit) {
                     if (value == undefined)
                         return false;
                 }
@@ -73,8 +73,8 @@ const Validate = (): boolean => {
 const Save = async () => {
     const valid = Validate();
     if (valid) {
-        if (isEdit == true && editItem != undefined) {
-            var editresult = await handleUpdate(editItem, apiName);
+        if (props.isEdit == true && props.editItem != undefined) {
+            var editresult = await handleUpdate(props.editItem, props.apiName);
             if (editresult.isSuccess) {
                 ElMessage({
                     message: 'data Updated.',
@@ -86,8 +86,8 @@ const Save = async () => {
                 return;
             }
         }
-        else if(editItem!=undefined) {
-            var createresult = await handleCreate(editItem, apiName);
+        else if(props.editItem!=undefined) {
+            var createresult = await handleCreate(props.editItem, props.apiName);
             if (createresult.isSuccess) {
                 ElMessage({
                     message: 'data Created.',
@@ -109,6 +109,9 @@ const updateColValue=(colName:string,value:string):void=>{
     //model.value[colName]=value;
     console.log(model.value);
 }
+watch(()=>props.editItem,()=>{
+    model.value=props.editItem;
+},{immediate:true})
 </script>
 
 <style>
