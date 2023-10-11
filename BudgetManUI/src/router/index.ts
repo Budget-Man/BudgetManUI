@@ -47,7 +47,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = !!Cookies.get('accessToken');
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/auth/login'); // Redirect to the login page
+    next('/login'); // Redirect to the login page
   } else {
     next(); // Continue to the requested route
   }

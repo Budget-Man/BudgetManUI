@@ -1,5 +1,5 @@
 <template>
-<el-select v-bind="colValue" class="m-2" placeholder="Select" size="large" @change="dropdownChange"
+<el-select v-bind="modelValue" class="m-2" placeholder="Select" size="large" @change="dropdownChange"
   >
     <el-option
       v-for="item in column.dropdownData.data"
@@ -8,6 +8,7 @@
       :value="item[column.dropdownData.keyMember]"
     />
   </el-select>
+ {{column.dropdownData.keyMember}}
 </template>
 
 <script setup lang="ts">
@@ -18,17 +19,18 @@ import { SearchDTOItem } from '@/components/maynghien/adminTable/SearchDTOItem.t
 
     const props  = defineProps<{
     column: TableColumn;
-    colValue: string;
+    modelValue: string;
     
 }>();
 const emit = defineEmits<{
-    (e: 'update:colValue',value:string): void;
+    (e: 'update:modelValue',value:string): void;
 
 }>();
 const dropdownChange=(value:any):void=>{
   console.log("changed")
   console.log(value);
-  emit('update:colValue', value);
+  console.log(props.modelValue);
+  emit('update:modelValue', value);
 }
 
 </script>

@@ -9,8 +9,11 @@
 
                     <el-input v-model="model[column.key]" :placeholder="column.label"
                         v-if="column.inputType == undefined || column.inputType == 'text'" />
-                    <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" :colValue="model[column.key]">
+
+
+                    <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" v-model="model[column.key]">
                     </MnDropdown>
+                    {{ model[column.key]}}
                 </div>
 
             </div>
@@ -29,9 +32,9 @@
 </template>
   
 <script setup lang="ts">
-import { ref, toRefs , computed, watch, inject } from 'vue';
+import { ref, toRefs, computed, watch, inject } from 'vue';
 // @ts-ignore
-import { ElMessage,ElInput } from 'element-plus';
+import { ElMessage, ElInput } from 'element-plus';
 // @ts-ignore
 import { handleCreate, handleUpdate } from './Service/BasicAdminService.ts'
 import type { TableColumn } from './Models/TableColumn';
@@ -43,9 +46,9 @@ const emit = defineEmits<{
     (e: 'onCloseClicked'): void;
 
 }>()
-const  props  = defineProps<{
+const props = defineProps<{
     columns: TableColumn[];
-    editItem: SearchDTOItem ;
+    editItem: SearchDTOItem;
     apiName: string;
     isEdit: boolean;
     openDialog: boolean;
@@ -67,7 +70,7 @@ const Validate = (): boolean => {
             }
 
         });
-        else return false;
+    else return false;
     return true;
 }
 const Save = async () => {
@@ -86,7 +89,7 @@ const Save = async () => {
                 return;
             }
         }
-        else if(props.editItem!=undefined) {
+        else if (props.editItem != undefined) {
             var createresult = await handleCreate(props.editItem, props.apiName);
             if (createresult.isSuccess) {
                 ElMessage({
@@ -101,17 +104,19 @@ const Save = async () => {
         }
         emit("onSaved");
     }
-   else{
-    ElMessage.error('valid failed.');
-   }
+    else {
+        ElMessage.error('valid failed.');
+    }
 }
-const updateColValue=(colName:string,value:string):void=>{
-    //model.value[colName]=value;
+const handleUpdateValue = (key: string, value: string): void => {
+    console.log("update");
+    model.value[key] = value;
     console.log(model.value);
 }
-watch(()=>props.editItem,()=>{
-    model.value=props.editItem;
-},{immediate:true})
+
+watch(() => props.editItem, () => {
+    model.value = props.editItem;
+}, { immediate: true })
 </script>
 
 <style>

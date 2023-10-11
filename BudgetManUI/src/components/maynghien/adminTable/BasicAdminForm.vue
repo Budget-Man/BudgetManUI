@@ -115,6 +115,7 @@ const handleOpenCreate = async () => {
   
   EdittingItem.value =new SearchDTOItem(props.tableColumns);
   console.log(EdittingItem.value);
+  isEditting.value=false;
   openDialogCreate.value=true;
 }
 const SelectedId=ref("");
