@@ -3,23 +3,24 @@
     <el-row class="login-container">
         <el-col :span="24" class="login-col">
             <div class="grid-content ep-bg-purple">
+                <p class="helloRegister">Hello, Friend!</p>
                 <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
                     <el-form-item label="" prop="username">
                         <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
                     </el-form-item>
                     <el-form-item label="" prop="pass">
                         <el-input v-model="state.password" type="password" width="300px" autocomplete="off"
-                            placeholder="password" :prefix-icon="Key" />
+                            placeholder="Password" :prefix-icon="Key" />
                     </el-form-item>
 
                     <el-form-item label="" prop="pass">
                         <el-input v-model="state.password" type="password" width="300px" autocomplete="off"
-                            placeholder="nhập lại password" :prefix-icon="Key" />
+                            placeholder="Nhập lại password" :prefix-icon="Key" />
                     </el-form-item>
 
 
                     <el-form-item>
-                        <el-button type="primary" @click="register()">Submit</el-button>
+                        <el-button type="primary" @click="register()">Creat Account</el-button>
                     </el-form-item>
 
                 </el-form>
@@ -58,6 +59,12 @@ const register = async () => {
 </script>
   
 <style>
+.grid-content > .helloRegister
+{
+  margin-bottom: 50px;
+  font-size: 25px;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
 /* Your CSS styles here */
 body,
 html {
@@ -70,8 +77,8 @@ html {
 
 .login-container {
     width: 600px;
-    height: 300px;
-    background-color: #f0f0f0;
+    height: 400px;
+    background-color: var(--el-color-primary-light-7);
     position: absolute;
     top: 50%;
     left: 50%;
