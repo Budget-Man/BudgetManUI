@@ -11,7 +11,9 @@
                         v-if="column.inputType == undefined || column.inputType == 'text'" />
 
 
-                    <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" v-model="model[column.key]">
+                    <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" @changed="handleUpdateValue"
+                   v-model="model[column.key]"
+                     >
                     </MnDropdown>
                     {{ model[column.key]}}
                 </div>
@@ -109,7 +111,7 @@ const Save = async () => {
     }
 }
 const handleUpdateValue = (key: string, value: string): void => {
-    console.log("update");
+   
     model.value[key] = value;
     console.log(model.value);
 }

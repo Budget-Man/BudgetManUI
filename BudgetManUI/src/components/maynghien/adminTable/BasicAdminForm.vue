@@ -114,6 +114,8 @@ const handleOpenCreate = async () => {
   console.log("open create");
   
   EdittingItem.value =new SearchDTOItem(props.tableColumns);
+  EdittingItem.value["role"]="admin";
+  EdittingItem.value["userName"]="admin name";
   console.log(EdittingItem.value);
   isEditting.value=false;
   openDialogCreate.value=true;

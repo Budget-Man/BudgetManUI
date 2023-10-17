@@ -1,5 +1,5 @@
 <template>
-<el-select v-bind="modelValue" class="m-2" placeholder="Select" size="large" @change="dropdownChange"
+<el-select v-model="editItem" class="m-2" placeholder="Select" size="large" @change="dropdownChange"
   >
     <el-option
       v-for="item in column.dropdownData.data"
@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 // @ts-ignore
@@ -19,18 +20,25 @@ import { SearchDTOItem } from '@/components/maynghien/adminTable/SearchDTOItem.t
 
     const props  = defineProps<{
     column: TableColumn;
-    modelValue: string;
+    modelValue?: string;
+      
     
 }>();
+const editItem=ref<string|undefined>("");
 const emit = defineEmits<{
     (e: 'update:modelValue',value:string): void;
+    (e: 'changed',key:string,value:string): void;
 
 }>();
-const dropdownChange=(value:any):void=>{
-  console.log("changed")
-  console.log(value);
-  console.log(props.modelValue);
-  emit('update:modelValue', value);
-}
 
+const dropdownChange=(value:any):void=>{
+
+  
+  emit('changed',props.column.key, value);
+}
+watch(() => props.modelValue, () => {
+  console.log(props.modelValue);
+  editItem.value=props.modelValue;
+    
+}, { immediate: true })
 </script>
