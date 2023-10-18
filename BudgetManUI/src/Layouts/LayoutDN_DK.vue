@@ -2,11 +2,11 @@
   <el-container>
 
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
-      @select="handleSelect">
+      @keyup.enter="handleSelect">
       <el-menu-item index="0">LOGO</el-menu-item>
       <div class="flex-grow" />
-      <el-menu-item index="1">Login</el-menu-item>
-      <el-menu-item index="2">Register</el-menu-item>
+      <el-menu-item index="1" @click="Login()">Login</el-menu-item>
+      <el-menu-item index="2" @click="Register()">Register</el-menu-item>
     </el-menu>
 
     <el-container>
@@ -21,12 +21,19 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const activeIndex = ref('1')
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const Login = () => {
+    window.location.href = `/login`;
+  }
+const Register = () => {
+    window.location.href = `/register`;
+  }
 </script>
-
 <style>
 .el-container {
   height: 600px;
@@ -60,6 +67,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 .el-main {
   padding: 10px;
+  height: 550px;
 }
 
 .toolbar {

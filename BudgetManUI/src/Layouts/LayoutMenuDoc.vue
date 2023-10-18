@@ -2,10 +2,10 @@
   <div>
     <el-container>
       <el-header>
-        <button><el-icon><SwitchButton /></el-icon>Tên Đăng Nhập</button>
+        <button @click="logout()"><el-icon><SwitchButton /></el-icon>Tên Đăng Nhập</button>
       </el-header>
       <el-container>
-        <el-aside :width="isCollapse ? '100px' : '200px'">
+        <el-aside :width="isCollapse ? '65px' : '150px'">
           <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
             @close="handleClose">
             <el-menu-item index="1" @click="toggleMenu">
@@ -81,7 +81,7 @@
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 150px;
   min-height: 400px;
 }
 </style>
@@ -97,7 +97,6 @@ import {
   SwitchButton,
   Menu,
 } from '@element-plus/icons-vue'
-
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -109,4 +108,15 @@ const toggleMenu = () => {
   // Thay đổi giá trị của biến `isCollapse`
   isCollapse.value = !isCollapse.value;
 };
+function logout() {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+  }
+  window.location.href = "/login";
+}
 </script>
