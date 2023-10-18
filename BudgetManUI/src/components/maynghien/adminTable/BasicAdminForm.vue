@@ -1,18 +1,15 @@
 
 <template>
-  <MnActionPane :allowAdd="true" :tableColumns="tableColumns"  :isEdit="isEditting"
-  @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate"  :openDialog="openDialogCreate" >
+  <MnActionPane :allowAdd="true" :tableColumns="tableColumns" :isEdit="isEditting"
+    @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :openDialog="openDialogCreate">
   </MnActionPane>
-  <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" 
-    :onCloseClicked="handleOnEditCloseClicked"/>
-    <MnEditItem ref="MnEdit"
-      :columns="tableColumns" 
-      :apiName="apiName"
-      :openDialog="openDialogCreate"
-      :editItem="EdittingItem"
-      :isEdit="isEditting"
-      @onSaved="handleSaved"
-      @onCloseClicked="handleOnEditCloseClicked"/>
+  <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
+    :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked"
+    @onEdit="handleEdit" @onDelete="handleDelete" />
+
+
+  <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate"
+    :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved" @onCloseClicked="handleOnEditCloseClicked" />
 </template>
   
 <script setup lang="ts">
@@ -25,7 +22,7 @@ import MnActionPane from './MnActionPane.vue'
 // @ts-ignore
 import MnEditItem from './MnEditItem.vue'
 
-import { ref,provide  } from 'vue';
+import { ref, provide } from 'vue';
 // @ts-ignore
 import { TableColumn } from './Models/TableColumn.ts'
 // @ts-ignore
@@ -79,9 +76,9 @@ await Search();
 //#endregion
 //#region variable
 const SelectedRowId = ref<string | null>(null);
-const EdittingItem=ref<SearchDTOItem>({});
+const EdittingItem = ref<SearchDTOItem>({});
 const openDialogCreate = ref<boolean>(false);
-const isEditting=ref(false);
+const isEditting = ref(false);
 //#endregion
 
 //#region event funcs
@@ -95,12 +92,12 @@ const handleBtnSearchClicked = (filters: Filter[]) => {
 const handleSaved = async () => {
   openDialogCreate.value = false;
   searchRequest.PageIndex = 1;
-  EdittingItem.value =new SearchDTOItem(props.tableColumns);
+  EdittingItem.value = new SearchDTOItem(props.tableColumns);
   Search();
 }
 const handleOnEditCloseClicked = async () => {
   openDialogCreate.value = false;
-  EdittingItem.value =new SearchDTOItem(props.tableColumns);
+  EdittingItem.value = new SearchDTOItem(props.tableColumns);
 }
 type OpenCreateDialogType = () => void;
 type ChildMethodType = () => void;
@@ -112,20 +109,24 @@ type ChildMethodType = () => void;
 
 const handleOpenCreate = async () => {
   console.log("open create");
-  
-  EdittingItem.value =new SearchDTOItem(props.tableColumns);
-  EdittingItem.value["role"]="admin";
-  EdittingItem.value["userName"]="admin name";
+
+  EdittingItem.value = new SearchDTOItem(props.tableColumns);
+  EdittingItem.value["role"] = "admin";
+  EdittingItem.value["userName"] = "admin name";
   console.log(EdittingItem.value);
-  isEditting.value=false;
-  openDialogCreate.value=true;
+  isEditting.value = false;
+  openDialogCreate.value = true;
 }
-const SelectedId=ref("");
+
+const handleDelete = (item: SearchDTOItem) => {
+
+}
+
+const SelectedId = ref("");
 //provide('OpenDialogCreateItem', openDialogCreate);
-const handleEdit = async (id:string) => {
-  
-  SelectedId.value=id;
-  openDialogCreate.value=true;
+const handleEdit = async (item: SearchDTOItem) => {
+  EdittingItem.value = {...item};
+  openDialogCreate.value = true;
 }
 //#endregion
 </script>

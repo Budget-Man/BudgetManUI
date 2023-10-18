@@ -1,7 +1,7 @@
 <template>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'user'" :allowAdd="true" :allowDelete="true"
-            :allowEdit="false"></BasicAdminFormVue>
+            :allowEdit="true"></BasicAdminFormVue>
     </Suspense>
 </template>
 

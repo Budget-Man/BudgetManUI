@@ -16,7 +16,7 @@ import { ref, watch } from 'vue';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 // @ts-ignore
-import { SearchDTOItem } from '@/components/maynghien/adminTable/SearchDTOItem.ts';
+import { SearchDTOItem } from '@/components/maynghien/adminTable/Models/SearchDTOItem.ts';
 
     const props  = defineProps<{
     column: TableColumn;
