@@ -19,9 +19,6 @@
           </el-form-item>
         </el-form>
       </div>
-      <!-- <div>
-        <p>Hiii</p>
-      </div> -->
     </el-col>
   </el-row>
 </template>
@@ -87,12 +84,16 @@ html {
 .login-col {
   display: grid;
   place-items: center;
-  
 }
 
 .grid-content {
   width: 400px;
   text-align: center;
 }
+@media (min-width: 1024px) {
+  #app {
+    display: block;
+    padding: 0 0rem;
+  }
+}
 </style>
-  
