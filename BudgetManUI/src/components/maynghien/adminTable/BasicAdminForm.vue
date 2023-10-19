@@ -4,8 +4,8 @@
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :openDialog="openDialogCreate">
   </MnActionPane>
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
-    :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked"
-    @onEdit="handleEdit" @onDelete="handleDelete" />
+    :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit"
+    @onDelete="handleDelete" />
 
 
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate"
@@ -29,7 +29,7 @@ import { TableColumn } from './Models/TableColumn.ts'
 import { SearchDTOItem } from './Models/SearchDTOItem.ts'
 
 // @ts-ignore
-import { handleSearch } from './Service/BasicAdminService.ts'
+import { handleAPIDelete, handleSearch } from './Service/BasicAdminService.ts'
 
 // @ts-ignore
 import { Filter } from '../BaseModels/Filter';
@@ -37,7 +37,10 @@ import { Filter } from '../BaseModels/Filter';
 import { SearchResponse } from '../BaseModels/SearchResponse';
 import { SearchRequest } from '../BaseModels/SearchRequest';
 import type { AppResponse } from '@/models/AppResponse';
-
+// @ts-ignore
+import { ElMessage } from 'element-plus';
+// @ts-ignore
+import { handleAPIDelete } from './Service/BasicAdminService.ts'
 //#region Method
 
 const Search = async () => {
@@ -118,14 +121,26 @@ const handleOpenCreate = async () => {
   openDialogCreate.value = true;
 }
 
-const handleDelete = (item: SearchDTOItem) => {
-
+const handleDelete = async (id: string) => {
+  var deleteresult = await handleAPIDelete(id, props.apiName);
+  if (deleteresult.isSuccess) {
+    ElMessage({
+      message: 'row deleted.',
+      type: 'success',
+    });
+  }
+  else{
+    ElMessage({
+      message: 'row not deleted.',
+      type: 'error',
+    });
+  }
 }
 
 const SelectedId = ref("");
 //provide('OpenDialogCreateItem', openDialogCreate);
 const handleEdit = async (item: SearchDTOItem) => {
-  EdittingItem.value = {...item};
+  EdittingItem.value = { ...item };
   openDialogCreate.value = true;
 }
 //#endregion

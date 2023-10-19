@@ -38,7 +38,7 @@ import { ref, toRefs, computed, watch, inject } from 'vue';
 // @ts-ignore
 import { ElMessage, ElInput } from 'element-plus';
 // @ts-ignore
-import { handleCreate, handleUpdate } from './Service/BasicAdminService.ts'
+import { handleAPICreate, handleAPIUpdate } from './Service/BasicAdminService.ts'
 import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
@@ -79,7 +79,7 @@ const Save = async () => {
     const valid = Validate();
     if (valid) {
         if (props.isEdit == true && props.editItem != undefined) {
-            var editresult = await handleUpdate(props.editItem, props.apiName);
+            var editresult = await handleAPIUpdate(props.editItem, props.apiName);
             if (editresult.isSuccess) {
                 ElMessage({
                     message: 'data Updated.',
@@ -92,7 +92,7 @@ const Save = async () => {
             }
         }
         else if (props.editItem != undefined) {
-            var createresult = await handleCreate(props.editItem, props.apiName);
+            var createresult = await handleAPICreate(props.editItem, props.apiName);
             if (createresult.isSuccess) {
                 ElMessage({
                     message: 'data Created.',
