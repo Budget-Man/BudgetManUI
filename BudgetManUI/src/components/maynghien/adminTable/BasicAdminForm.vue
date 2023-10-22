@@ -6,7 +6,8 @@
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
     :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit"
     @onDelete="handleDelete" />
-
+  <el-pagination small background layout="prev, pager, next" :total="totalPages"
+  @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
 
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate"
     :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved" @onCloseClicked="handleOnEditCloseClicked" />
@@ -50,6 +51,10 @@ const Search = async () => {
 
     if (dataresponse != undefined && dataresponse.data != undefined && dataresponse.data.length > 0) {
       datas.value = dataresponse.data;
+      if (dataresponse.totalPages != undefined)
+        totalPages.value = dataresponse.totalPages;
+      else
+        totalPages.value = 0;
 
     }
     else {
@@ -69,6 +74,8 @@ const props = defineProps<{
   allowDelete: boolean;
 }>();
 let datas = ref<SearchDTOItem[]>([]);
+const totalPages = ref(0);
+
 let searchRequest: SearchRequest = {
   PageIndex: 1,
   PageSize: 10,
@@ -129,7 +136,7 @@ const handleDelete = async (id: string) => {
       type: 'success',
     });
   }
-  else{
+  else {
     ElMessage({
       message: 'row not deleted.',
       type: 'error',
@@ -142,6 +149,10 @@ const SelectedId = ref("");
 const handleEdit = async (item: SearchDTOItem) => {
   EdittingItem.value = { ...item };
   openDialogCreate.value = true;
+}
+const handlePageChange = async (value: number) => {
+  //searchRequest.PageIndex = value;
+  await Search();
 }
 //#endregion
 </script>
