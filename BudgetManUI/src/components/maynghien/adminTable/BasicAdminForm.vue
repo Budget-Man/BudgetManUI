@@ -6,10 +6,13 @@
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
     :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit"
     @onDelete="handleDelete" />
-  <el-pagination small background layout="prev, pager, next" :total="totalPages"
-  @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
+  <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
+    @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
+  Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages
 
+  
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate"
+  :title="title"
     :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved" @onCloseClicked="handleOnEditCloseClicked" />
 </template>
   
@@ -30,7 +33,7 @@ import { TableColumn } from './Models/TableColumn.ts'
 import { SearchDTOItem } from './Models/SearchDTOItem.ts'
 
 // @ts-ignore
-import { handleAPIDelete, handleSearch } from './Service/BasicAdminService.ts'
+import { handleAPIDelete, handleAPISearch } from './Service/BasicAdminService.ts'
 
 // @ts-ignore
 import { Filter } from '../BaseModels/Filter';
@@ -40,12 +43,10 @@ import { SearchRequest } from '../BaseModels/SearchRequest';
 import type { AppResponse } from '@/models/AppResponse';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
-// @ts-ignore
-import { handleAPIDelete } from './Service/BasicAdminService.ts'
 //#region Method
 
 const Search = async () => {
-  var searchApiResponse = await handleSearch(searchRequest, props.apiName);
+  var searchApiResponse = await handleAPISearch(searchRequest, props.apiName);
   if (searchApiResponse.isSuccess) {
     let dataresponse: SearchResponse<SearchDTOItem[]> = searchApiResponse.data;
 
@@ -55,7 +56,11 @@ const Search = async () => {
         totalPages.value = dataresponse.totalPages;
       else
         totalPages.value = 0;
-
+      if (dataresponse.totalRows != undefined) {
+        totalItem.value = dataresponse.totalRows;
+      }
+      else
+        totalItem.value = 0;
     }
     else {
       datas.value = [];
@@ -72,9 +77,12 @@ const props = defineProps<{
   allowAdd: boolean;
   allowEdit: boolean;
   allowDelete: boolean;
+  title:string;
 }>();
 let datas = ref<SearchDTOItem[]>([]);
 const totalPages = ref(0);
+const totalItem = ref(10);
+
 
 let searchRequest: SearchRequest = {
   PageIndex: 1,
@@ -121,9 +129,7 @@ const handleOpenCreate = async () => {
   console.log("open create");
 
   EdittingItem.value = new SearchDTOItem(props.tableColumns);
-  EdittingItem.value["role"] = "admin";
-  EdittingItem.value["userName"] = "admin name";
-  console.log(EdittingItem.value);
+
   isEditting.value = false;
   openDialogCreate.value = true;
 }
@@ -148,10 +154,11 @@ const SelectedId = ref("");
 //provide('OpenDialogCreateItem', openDialogCreate);
 const handleEdit = async (item: SearchDTOItem) => {
   EdittingItem.value = { ...item };
+  isEditting.value = true;
   openDialogCreate.value = true;
 }
 const handlePageChange = async (value: number) => {
-  //searchRequest.PageIndex = value;
+  searchRequest.PageIndex = value;
   await Search();
 }
 //#endregion

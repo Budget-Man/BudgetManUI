@@ -1,9 +1,9 @@
 <template>
-    <el-dialog :model-value="openDialog" title="Tips" class="form-dialog" width="30%" @close="emit('onCloseClicked')">
+    <el-dialog :model-value="openDialog" :title="(isEdit?'Edit ':'Create ')+ title" class="form-dialog" width="30%" @close="emit('onCloseClicked')">
 
         <div class="editform" v-if="model != undefined">
             <div v-for="column in columns" :key="column.key">
-                <div v-if="column.enableEdit == true">
+                <div v-if="(isEdit && column.enableEdit == true) || (!isEdit && column.enableCreate == true)">
                     <!-- Use double curly braces to bind variable values in templates -->
                     <label>{{ column.label }}</label>
 
@@ -54,6 +54,7 @@ const props = defineProps<{
     apiName: string;
     isEdit: boolean;
     openDialog: boolean;
+    title:string;
 }>();
 // Use computed to create a filtered model
 const model = ref<SearchDTOItem>(props.editItem);

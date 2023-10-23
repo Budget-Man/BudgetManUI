@@ -84,7 +84,7 @@ const handleEdit = (index: number, row: SearchDTOItem) => {
 }
 const handleDelete = (index: number, row: SearchDTOItem) => {
     
-    emit("onDelete", row)
+    emit("onDelete", row["id"])
 }
 
 </script>
