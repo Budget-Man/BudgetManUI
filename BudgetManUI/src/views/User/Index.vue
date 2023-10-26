@@ -34,7 +34,7 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: false,
+        showSearch: true,
         inputType: "dropdown",
         dropdownData: {
             displayMember: "roleName",

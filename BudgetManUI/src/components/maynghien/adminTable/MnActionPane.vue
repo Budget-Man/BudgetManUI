@@ -6,8 +6,17 @@
                     <el-row>
                         <div v-for="filter in filters">
 
-                            <el-input v-model="filter.Value" :placeholder="filter.DisplayName"></el-input>
-
+                            <el-input v-model="filter.Value" :placeholder="filter.DisplayName"
+                                v-if="filter.Type == undefined || filter.Type == 'text'">
+                            </el-input>
+                            <el-select v-model="filter.Value"
+                            :placeholder="filter.DisplayName"
+                             v-if="filter.Type == 'dropdown'">
+                                <el-option v-for="item in filter.dropdownData.data"
+                                    :key="item[filter.dropdownData.keyMember]"
+                                    :label="item[filter.dropdownData.displayMember]"
+                                    :value="item[filter.dropdownData.keyMember]" />
+                            </el-select>
                         </div>
                         <el-button :icon="Search" circle @click="handlebtnSearchClicked"> search</el-button>
 
@@ -60,10 +69,13 @@ const filters = ref<Filter[]>([]);
 
 props.tableColumns.forEach(colum => {
     if (colum.showSearch) {
-        const newFilter = {
+        const newFilter: Filter = {
             FieldName: colum.key,
             DisplayName: colum.label,
             Value: "",
+            Operation: "",
+            Type: colum.inputType,
+            dropdownData: colum.dropdownData,
         };
         filters.value?.push(newFilter);
     }
