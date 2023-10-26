@@ -5,7 +5,7 @@
     <div>
         <el-table class="admin-table" :data="datas" @sort-change="handleSortChange" border row-key="id" table-layout="auto"
             @row-click="handleRowClick">
-            <el-table-column v-for="column in columns" :key="column.key" :prop="column.key" :label="column.label"
+            <el-table-column v-for="column in shownCol" :key="column.key" :prop="column.key" :label="column.label"
                 :sortable="column.sorable" :visible="column.hidden == false" />
             <el-table-column label="Operations" v-if="enableDelete || enableEdit">
                 <template #default="scope">
@@ -26,7 +26,7 @@
 import { TableColumn } from '../Models/TableColumn.ts'
 // @ts-ignore
 import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
-import { ref } from 'vue';
+import { ref,watch } from 'vue';
 import {
     Check,
     Delete,
@@ -50,6 +50,8 @@ const emit = defineEmits<{
 
 }>()
 const selectedId = ref("");
+
+const shownCol=ref<TableColumn[]>([{}]);
 // column: The column component
 // prop: The property associated with the column
 // order: 'ascending' or 'descending'
@@ -86,7 +88,10 @@ const handleDelete = (index: number, row: SearchDTOItem) => {
     
     emit("onDelete", row["id"])
 }
+watch(() => props.columns, () => {
+    shownCol.value=props.columns.filter(m=>m.hidden==false);4
 
+}, { immediate: true })
 </script>
   
 <style scoped>
