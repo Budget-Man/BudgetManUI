@@ -13,6 +13,8 @@
                         @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                     <el-button v-if="enableDelete" :icon="Delete" size="small" type="danger"
                         @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                    <el-button v-for="action in CustomActions" :icon="action.Icon" size="small"
+                        @click="handleCustomAction(scope.$index, scope.row, action)">{{ action.ActionLabel }}</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -26,7 +28,7 @@
 import { TableColumn } from '../Models/TableColumn.ts'
 // @ts-ignore
 import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
-import { ref,watch } from 'vue';
+import { ref, watch } from 'vue';
 import {
     Check,
     Delete,
@@ -36,22 +38,25 @@ import {
     Star,
     Plus,
 } from '@element-plus/icons-vue';
+import { CustomActionResponse, type CustomAction } from './Models/CustomAction';
 
 const props = defineProps<{
     columns: TableColumn[];
     datas: SearchDTOItem[];
     enableEdit: boolean;
     enableDelete: boolean;
+    CustomActions: CustomAction[];
 
 }>();
 const emit = defineEmits<{
     (e: 'onEdit', item: SearchDTOItem): void;
     (e: 'onDelete', item: SearchDTOItem): void;
-
+    (e: 'onCustomAction', item: CustomActionResponse): void;
 }>()
 const selectedId = ref("");
 
-const shownCol=ref<TableColumn[]>([{}]);
+const shownCol = ref<TableColumn[]>([{}]);
+
 // column: The column component
 // prop: The property associated with the column
 // order: 'ascending' or 'descending'
@@ -81,17 +86,30 @@ const handleRowClick = (row: any, column: any, event: any) => {
 }
 
 const handleEdit = (index: number, row: SearchDTOItem) => {
-    
+
     emit("onEdit", row)
 }
 const handleDelete = (index: number, row: SearchDTOItem) => {
-    
+
     emit("onDelete", row["id"])
 }
+
+const handleCustomAction = (index: number, row: SearchDTOItem, action: CustomAction) => {
+    let response:CustomActionResponse= new CustomActionResponse(action,row);
+
+    if (action.ApiAction != undefined) {
+
+    }
+    else {
+
+    }
+
+}
 watch(() => props.columns, () => {
-    shownCol.value=props.columns.filter(m=>m.hidden==false);4
+    shownCol.value = props.columns.filter(m => m.hidden == false);
 
 }, { immediate: true })
+
 </script>
   
 <style scoped>

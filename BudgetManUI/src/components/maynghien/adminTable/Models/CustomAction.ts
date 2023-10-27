@@ -1,8 +1,11 @@
 // @strict: false
 export class CustomAction {
-    ActionName: string = "";
+    ActionName?: string = "";
+    ActionLabel?: string = "";
+    Icon?: any;
     IsRowAction?: boolean = false;
     ApiAction?: string;
+    ApiActiontype?: ApiActionType =ApiActionType.POST ;
     DataType?: CustomActionDataType = CustomActionDataType.RowId;
 
 }
@@ -18,4 +21,7 @@ export class CustomActionResponse {
 
 export enum CustomActionDataType {
     MultiRowId, FullRow, RowId
+}
+export enum ApiActionType {
+    POST, GET, PUT, DELETE
 }

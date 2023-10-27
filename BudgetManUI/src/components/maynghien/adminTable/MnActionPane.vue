@@ -56,9 +56,11 @@ import { TableColumn } from './Models/TableColumn.ts'
 import { Filter } from '../BaseModels/Filter';
 
 import { ref } from 'vue';
+import type { CustomAction } from './Models/CustomAction';
 const props = defineProps<{
     tableColumns: TableColumn[];
     allowAdd: boolean;
+    CustomActions: CustomAction[];
 }>();
 
 const emit = defineEmits<{
