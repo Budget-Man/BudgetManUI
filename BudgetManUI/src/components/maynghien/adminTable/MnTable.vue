@@ -19,7 +19,6 @@
             </el-table-column>
         </el-table>
 
-
     </div>
 </template>
   
@@ -39,6 +38,7 @@ import {
     Plus,
 } from '@element-plus/icons-vue';
 import { CustomActionResponse, type CustomAction } from './Models/CustomAction';
+import { handleAPICustom } from './Service/BasicAdminService';
 
 const props = defineProps<{
     columns: TableColumn[];
@@ -94,15 +94,12 @@ const handleDelete = (index: number, row: SearchDTOItem) => {
     emit("onDelete", row["id"])
 }
 
-const handleCustomAction = (index: number, row: SearchDTOItem, action: CustomAction) => {
-    let response:CustomActionResponse= new CustomActionResponse(action,row);
+const handleCustomAction = async (index: number, row: SearchDTOItem, action: CustomAction) => {
+    let response: CustomActionResponse = new CustomActionResponse(action, row);
 
-    if (action.ApiAction != undefined) {
+    
 
-    }
-    else {
-
-    }
+    emit("onCustomAction", response);
 
 }
 watch(() => props.columns, () => {

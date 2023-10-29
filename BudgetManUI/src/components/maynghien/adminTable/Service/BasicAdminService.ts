@@ -10,15 +10,17 @@ import { SearchResponse } from '../../BaseModels/SearchResponse.js'
 // @ts-ignore
 import { axiosInstance } from "../../../../Services/axiosConfig.js"
 // @ts-ignore
-import Filter  from '../../BaseModels/Filter.js'
+import Filter from '../../BaseModels/Filter.js'
 // @ts-ignore
-import SortByInfo  from '../../BaseModels/SortByInfo.js';
+import SortByInfo from '../../BaseModels/SortByInfo.js';
 
 
 // @ts-ignore
 import { TableColumn } from '../Models/TableColumn.ts'
 // @ts-ignore
 import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
+import { ApiActionType, CustomAction, CustomActionResponse } from '../Models/CustomAction.js'
+import type { AxiosResponse } from 'axios'
 
 
 export const handleAPISearch = async (model: SearchRequest, apiurl: string): Promise<AppResponse<SearchResponse<SearchDTOItem[] | undefined>>> => {
@@ -116,6 +118,48 @@ export const handleAPIDelete = async (id: string, apiurl: string): Promise<AppRe
     try {
         const deleteUrl = apiurl + "/" + id;
         const postResult = await axiosInstance.delete(deleteUrl);
+        console.log(postResult.data);
+        const responseObject = postResult.data
+        resust = responseObject;
+        if (resust.isSuccess) {
+            return resust;
+        }
+        else {
+            console.log(resust.message);
+            return resust;
+        }
+    } catch (error) {
+        console.error(error);
+
+    }
+    return resust;
+
+}
+
+
+export const handleAPICustom = async (model: SearchDTOItem, action: CustomAction, ActionUrl: string): Promise<AppResponse<CustomActionResponse>> => {
+
+    let resust: AppResponse<CustomActionResponse> = ({
+        isSuccess: false,
+        message: '',
+        data: undefined
+    });
+
+    try {
+        let postResult: any = "";
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.PUT) {
+            postResult = await axiosInstance.put(ActionUrl, model);
+        }
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.POST) {
+            postResult = await axiosInstance.post(ActionUrl, model);
+        }
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.DELETE) {
+            postResult = await axiosInstance.delete(ActionUrl, model);
+        }
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.GET) {
+            postResult = await axiosInstance.get(ActionUrl + "/" + model.id);
+        }
+
         console.log(postResult.data);
         const responseObject = postResult.data
         resust = responseObject;
