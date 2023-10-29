@@ -4,20 +4,19 @@
   <el-row class="login-container">
     <el-col :span="24" class="login-col">
       <div class="grid-content ep-bg-purple">
+        <p>Hello!</p>
+        <p class="hello">Sign in to your account </p>
         <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
           <el-form-item label="" prop="username">
             <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
           </el-form-item>
           <el-form-item label="" prop="pass">
-            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="password"
+            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="assword"
               :prefix-icon="Key" />
           </el-form-item>
-
-
           <el-form-item>
-            <el-button type="primary" @click="login()">Submit</el-button>
+            <el-button type="primary" @click="login()">Sign In</el-button>
           </el-form-item>
-
         </el-form>
       </div>
     </el-col>
@@ -52,6 +51,16 @@ const login = async () => {
 </script>
   
 <style>
+.grid-content > .hello
+{
+  margin-bottom: 50px;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.grid-content > p {
+  font-size: 25px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 /* Your CSS styles here */
 body,
 html {
@@ -64,8 +73,8 @@ html {
 
 .login-container {
   width: 600px;
-  height: 300px;
-  background-color: #f0f0f0;
+  height: 400px;
+  background-color: var(--el-color-primary-light-7);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -81,5 +90,10 @@ html {
   width: 400px;
   text-align: center;
 }
+@media (min-width: 1024px) {
+  #app {
+    display: block;
+    padding: 0 0rem;
+  }
+}
 </style>
-  

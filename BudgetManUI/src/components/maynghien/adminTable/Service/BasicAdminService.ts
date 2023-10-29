@@ -6,13 +6,13 @@ import { AppResponse } from '../../../../models/AppResponse.js'
 import { SearchRequest } from '../../BaseModels/SearchRequest.js'
 
 // @ts-ignore
-import { SearchResponse } from '../../../../Models/Maynghien/Models/Response/SearchResponse.js'
+import { SearchResponse } from '../../BaseModels/SearchResponse.js'
 // @ts-ignore
 import { axiosInstance } from "../../../../Services/axiosConfig.js"
 // @ts-ignore
-import Filter from "../../../../Models/Maynghien/Models/Request/SearchModels/Filter.js";
+import Filter  from '../../BaseModels/Filter.js'
 // @ts-ignore
-import SortByInfo from "../../../../Models/Maynghien/Models/Request/SearchModels/SortByInfo.js";
+import SortByInfo  from '../../BaseModels/SortByInfo.js';
 
 
 // @ts-ignore
