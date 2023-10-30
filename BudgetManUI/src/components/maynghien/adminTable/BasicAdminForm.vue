@@ -150,6 +150,7 @@ const handleDelete = async (id: string) => {
       message: 'row deleted.',
       type: 'success',
     });
+    await Search();
   }
   else {
     ElMessage({

@@ -9,16 +9,16 @@
                             <el-input v-model="filter.Value" :placeholder="filter.DisplayName"
                                 v-if="filter.Type == undefined || filter.Type == 'text'">
                             </el-input>
-                            <el-select v-model="filter.Value"
-                            :placeholder="filter.DisplayName"
-                             v-if="filter.Type == 'dropdown'">
+                            <el-select v-model="filter.Value" :placeholder="filter.DisplayName"
+                                v-if="filter.Type == 'dropdown'">
                                 <el-option v-for="item in filter.dropdownData.data"
                                     :key="item[filter.dropdownData.keyMember]"
                                     :label="item[filter.dropdownData.displayMember]"
                                     :value="item[filter.dropdownData.keyMember]" />
                             </el-select>
                         </div>
-                        <el-button :icon="Search" circle @click="handlebtnSearchClicked"> search</el-button>
+                        <el-button v-if="filters != undefined && filters.length > 0" :icon="Search" 
+                            @click="handlebtnSearchClicked"> search</el-button>
 
                     </el-row>
 
@@ -30,7 +30,7 @@
             <el-row>
                 <el-col :span="12" class="buttons">
 
-                    <el-button :icon="Plus" circle @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
+                    <el-button :icon="Plus"  @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
                 </el-col>
 
             </el-row>

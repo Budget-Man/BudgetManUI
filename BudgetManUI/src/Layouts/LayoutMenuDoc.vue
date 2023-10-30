@@ -2,17 +2,22 @@
   <div>
     <el-container>
       <el-header>
-        <button @click="logout()"><el-icon><SwitchButton /></el-icon>Tên Đăng Nhập</button>
+        <button @click="logout()"><el-icon><SwitchButton /></el-icon> {{userName}}</button>
       </el-header>
       <el-container>
         <el-aside :width="isCollapse ? '65px' : '150px'">
           <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
+          router= true
             @close="handleClose">
-            <el-menu-item index="1" @click="toggleMenu">
+            <el-menu-item @click="toggleMenu">
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="/budgetCate" >
+              <el-icon><PriceTag /></el-icon>
+              <template #title>Budget Category</template>
+            </el-menu-item>
+            <el-menu-item index="/user" >
               <el-icon><Avatar /></el-icon>
               <template #title>USER</template>
             </el-menu-item>
@@ -49,10 +54,10 @@
 }
 .el-header > button {
   height: 100%;
-  width: 150px;
+  width: auto;
   background-color: var(--el-color-primary-light-7);
   cursor: pointer;
-  margin-left: 90%;
+  float: right;
   border: var(--el-color-primary-light-7);
 }
 .el-header>p {
@@ -96,11 +101,22 @@ import {
   PieChart,
   SwitchButton,
   Menu,
+  WalletFilled,
+  PriceTag,
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
+const getCookie = (name: string): string | null => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+};
+
+const userName=getCookie('UserName');
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }

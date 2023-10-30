@@ -12,6 +12,7 @@ import LoginView from '../views/Auth/LoginView.vue'
 import RegisterView from '../views/Auth/RegisterView.vue'
 
 import UserView from '../views/User/Index.vue'
+import BudgetCateView from '../views/BudgetCat/Index.vue'
 
 // Create the router instance
 const router = createRouter({
@@ -25,6 +26,10 @@ const router = createRouter({
         {
           path: '',
           component: HomeView,
+        },
+        {
+          path: 'budgetcate',
+          component: BudgetCateView,
         },
         {
           path: 'user',

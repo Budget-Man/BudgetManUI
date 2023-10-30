@@ -25,6 +25,7 @@ export const handleLogin = async (model: LoginViewModel): Promise<AppResponse<st
         if (resust.isSuccess) {
             if(resust.data!=undefined){
                 Cookies.set('accessToken', resust.data, { expires: undefined });
+                Cookies.set('UserName',model.userName, { expires: undefined });
             }
             
         }
