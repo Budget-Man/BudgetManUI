@@ -36,7 +36,7 @@ const Register = () => {
 </script>
 <style>
 .el-container {
-  height: 600px;
+  /* height: 600px; */
 }
 
 .el-header {
@@ -67,7 +67,7 @@ const Register = () => {
 
 .el-main {
   padding: 10px;
-  height: 550px;
+  /* height: 550px; */
 }
 
 .toolbar {

@@ -17,6 +17,10 @@
               <el-icon><PriceTag /></el-icon>
               <template #title>Budget Category</template>
             </el-menu-item>
+            <el-menu-item index="/MoneyHolder" >
+              <el-icon><WalletFilled /></el-icon>
+              <template #title>Money Holder</template>
+            </el-menu-item>
             <el-menu-item index="/user" >
               <el-icon><Avatar /></el-icon>
               <template #title>USER</template>
