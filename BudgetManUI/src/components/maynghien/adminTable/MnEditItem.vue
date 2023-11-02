@@ -15,7 +15,6 @@
                    v-model="model[column.key]"
                      >
                     </MnDropdown>
-                    {{ model[column.key]}}
                 </div>
 
             </div>
@@ -28,7 +27,6 @@
                     Confirm
                 </el-button>
             </span>
-            {{ model }}
         </template>
     </el-dialog>
 </template>

@@ -17,7 +17,7 @@
                                     :value="item[filter.dropdownData.keyMember]" />
                             </el-select>
                         </div>
-                        <el-button v-if="filters != undefined && filters.length > 0" :icon="Search" 
+                        <el-button v-if="filters != undefined && filters.length > 0" :icon="Search"
                             @click="handlebtnSearchClicked"> search</el-button>
 
                     </el-row>
@@ -30,7 +30,7 @@
             <el-row>
                 <el-col :span="12" class="buttons">
 
-                    <el-button :icon="Plus"  @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
+                    <el-button :icon="Plus" @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
                 </el-col>
 
             </el-row>
@@ -55,8 +55,9 @@ import { TableColumn } from './Models/TableColumn.ts'
 // @ts-ignore
 import { Filter } from '../BaseModels/Filter';
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import type { CustomAction } from './Models/CustomAction';
+import { handleAPIGetDropdownList } from './Service/BasicAdminService';
 const props = defineProps<{
     tableColumns: TableColumn[];
     allowAdd: boolean;
@@ -69,6 +70,7 @@ const emit = defineEmits<{
 }>();
 const filters = ref<Filter[]>([]);
 
+const dropdownData = ref<any[]>([]);
 props.tableColumns.forEach(colum => {
     if (colum.showSearch) {
         const newFilter: Filter = {
@@ -92,6 +94,39 @@ const handlebtnSearchClicked = () => {
 
     emit("onBtnSearchClicked", filtersRequest);
 }
+
+watch(() => props.tableColumns, async () => {
+    props.tableColumns.forEach(async tableCol => {
+        if (tableCol.inputType == "dropdown" && tableCol.dropdownData.apiUrl != undefined) {
+            var data = await handleAPIGetDropdownList(tableCol.dropdownData.apiUrl);
+            console.log(data);
+
+            if (data != undefined && data.data) {
+                tableCol.dropdownData.data = data.data;
+            }
+
+        }
+        
+
+    });
+    console.log(props.tableColumns);
+    filters.value=[];
+    props.tableColumns.forEach(colum => {
+        if (colum.showSearch) {
+            const newFilter: Filter = {
+                FieldName: colum.key,
+                DisplayName: colum.label,
+                Value: "",
+                Operation: "",
+                Type: colum.inputType,
+                dropdownData: colum.dropdownData,
+            };
+            filters.value?.push(newFilter);
+        }
+    });
+
+}, { immediate: true })
+
 </script>
 <style >
 .action-pane {

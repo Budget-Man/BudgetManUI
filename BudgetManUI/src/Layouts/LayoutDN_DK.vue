@@ -1,7 +1,7 @@
 <template>
   <el-container>
 
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
+    <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
       @keyup.enter="handleSelect">
       <el-menu-item index="0">LOGO</el-menu-item>
       <div class="flex-grow" />
@@ -35,9 +35,6 @@ const Register = () => {
   }
 </script>
 <style>
-.el-container {
-  /* height: 600px; */
-}
 
 .el-header {
   position: relative;

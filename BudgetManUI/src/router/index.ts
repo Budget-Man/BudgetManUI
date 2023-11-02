@@ -14,6 +14,7 @@ import RegisterView from '../views/Auth/RegisterView.vue'
 import UserView from '../views/User/Index.vue'
 import BudgetCateView from '../views/BudgetCat/Index.vue'
 import MoneyHolderView from '../views/MoneyHolder/Index.vue'
+import IncomeView from '../views/Income/Index.vue'
 
 // Create the router instance
 const router = createRouter({
@@ -35,6 +36,10 @@ const router = createRouter({
         {
           path: 'MoneyHolder',
           component: MoneyHolderView,
+        },
+        {
+          path: 'Income',
+          component: IncomeView,
         },
         {
           path: 'user',

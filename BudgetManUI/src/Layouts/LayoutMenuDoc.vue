@@ -13,6 +13,10 @@
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
+            <el-menu-item index="/income" >
+              <el-icon><Money /></el-icon>
+              <template #title>Income</template>
+            </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
               <template #title>Budget Category</template>
@@ -107,6 +111,7 @@ import {
   Menu,
   WalletFilled,
   PriceTag,
+  Money
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
