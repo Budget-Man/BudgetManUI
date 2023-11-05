@@ -8,7 +8,8 @@
                     <label>{{ column.label }}</label>
 
                     <el-input v-model="model[column.key]" :placeholder="column.label"
-                        v-if="column.inputType == undefined || column.inputType == 'text'" />
+                        v-if="column.inputType == undefined || column.inputType == 'text' || column.inputType=='number'"  
+                        :type="column.inputType" />
 
 
                     <MnDropdown v-if="column.inputType == 'dropdown'" :column="column" @changed="handleUpdateValue"
@@ -125,5 +126,8 @@ watch(() => props.editItem, () => {
     margin-top: 0;
     margin-right: 0;
     height: 100%;
+}
+.editform .el-select {
+    width: 100%;
 }
 </style>

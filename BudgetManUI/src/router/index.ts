@@ -13,6 +13,8 @@ import RegisterView from '../views/Auth/RegisterView.vue'
 
 import UserView from '../views/User/Index.vue'
 import BudgetCateView from '../views/BudgetCat/Index.vue'
+
+import BudgetView from '../views/Budget/Index.vue'
 import MoneyHolderView from '../views/MoneyHolder/Index.vue'
 import IncomeView from '../views/Income/Index.vue'
 
@@ -32,6 +34,10 @@ const router = createRouter({
         {
           path: 'budgetcate',
           component: BudgetCateView,
+        },
+        {
+          path: 'budget',
+          component: BudgetView,
         },
         {
           path: 'MoneyHolder',

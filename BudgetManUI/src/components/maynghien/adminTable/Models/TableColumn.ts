@@ -3,7 +3,7 @@ export class TableColumn {
     key: string = "";
     label: string = "";
     width: number = 0;
-    sortable: boolean = true;
+    sortable: boolean = false;
     enableEdit: boolean = true;
 
     enableCreate: boolean = true;

@@ -1,15 +1,15 @@
 <template>
-    <el-row>
+    <el-row class="action-pane">
         <el-col :span="24">
-            <el-row class="ep-bg-purple-dark el-col-24 action-pane">
+            <el-row class="ep-bg-purple-dark el-col-24">
                 <el-col :span="24">
                     <el-row>
                         <div v-for="filter in filters">
 
                             <el-input v-model="filter.Value" :placeholder="filter.DisplayName"
-                                v-if="filter.Type == undefined || filter.Type == 'text'">
+                                v-if="filter.Type == undefined || filter.Type == 'text'" class="action-input">
                             </el-input>
-                            <el-select v-model="filter.Value" :placeholder="filter.DisplayName"
+                            <el-select v-model="filter.Value" :placeholder="filter.DisplayName" class="action-input"
                                 v-if="filter.Type == 'dropdown'">
                                 <el-option v-for="item in filter.dropdownData.data"
                                     :key="item[filter.dropdownData.keyMember]"
@@ -28,7 +28,7 @@
 
             </el-row>
             <el-row>
-                <el-col :span="12" class="buttons">
+                <el-col :span="12" class="buttons p-1">
 
                     <el-button :icon="Plus" @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
                 </el-col>
@@ -135,11 +135,11 @@ watch(() => props.tableColumns, async () => {
 }
 
 .action-pane .buttons {
-    float: right;
-    text-align: right;
+    padding: 5px 0px;
 }
 
-button {
-    margin-left: 5px;
+.action-pane .action-input {
+    padding-right:5px;
 }
+
 </style>
