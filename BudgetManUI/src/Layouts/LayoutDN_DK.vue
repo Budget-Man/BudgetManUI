@@ -8,10 +8,7 @@
       <el-menu-item index="1" @click="Login()">Login</el-menu-item>
       <el-menu-item index="2" @click="Register()">Register</el-menu-item>
     </el-menu>
-
     <el-container>
-      <el-aside width="200px"></el-aside>
-
       <el-main>
         <router-view />
       </el-main>
@@ -37,11 +34,10 @@ const Register = () => {
 <style>
 
 .el-header {
-  position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
+    position: relative;
+    background-color: var(--el-color-primary-light-7);
+    color: var(--el-text-color-primary);
 }
-
 .el-footer {
   color: var(--el-text-color-primary);
   background: var(--el-color-primary-light-8);
@@ -53,13 +49,14 @@ const Register = () => {
 }
 
 .flex-grow {
-  flex-grow: 1;
+  flex-grow:2;
 }
 
 .el-menu {
   border-right: none;
   color: var(--el-text-color-primary);
   background: var(--el-color-primary-light-8);
+  width: 100%;
 }
 
 .el-main {

@@ -11,7 +11,7 @@
             <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
           </el-form-item>
           <el-form-item label="" prop="pass">
-            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="assword"
+            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="Password"
               :prefix-icon="Key" />
           </el-form-item>
           <el-form-item>
