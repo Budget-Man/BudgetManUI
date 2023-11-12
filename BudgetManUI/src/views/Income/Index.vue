@@ -46,7 +46,7 @@ const tableColumns: TableColumn[] = [
         label: "Money Holder",
         enableEdit: true,
         enableCreate: true,
-        hidden: false,
+        hidden: true,
         width: 300,
         required: true,
         sortable: true,
@@ -58,6 +58,20 @@ const tableColumns: TableColumn[] = [
             apiUrl: "moneyHolder"
 
         },
+
+    },
+    {
+        key: "moneyHolderName",
+        label: "Money Holder",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
 
     },
 

@@ -42,22 +42,36 @@ const tableColumns: TableColumn[] = [
 
     },
     {
-        key: "BudgetCategoryId",
+        key: "budgetCategoryId",
         label: "Category",
         enableEdit: true,
         enableCreate: true,
+        hidden: true,
+        width: 300,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "budgetCategory"
+
+        },
+
+    },
+    {
+        key: "budgetCategoryName",
+        label: "Category",
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 300,
         required: true,
         sortable: true,
         showSearch: true,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "BudgetCategory"
-
-        },
+        inputType: "text",
+        dropdownData: null,
 
     },
     {
