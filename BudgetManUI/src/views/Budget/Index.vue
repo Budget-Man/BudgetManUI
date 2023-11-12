@@ -48,9 +48,9 @@ const tableColumns: TableColumn[] = [
         enableCreate: true,
         hidden: true,
         width: 300,
-        required: false,
+        required: true,
         sortable: true,
-        showSearch: false,
+        showSearch: true,
         inputType: "dropdown",
         dropdownData: {
             displayMember: "name",
@@ -69,7 +69,7 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: true,
+        showSearch: false,
         inputType: "text",
         dropdownData: null,
 
