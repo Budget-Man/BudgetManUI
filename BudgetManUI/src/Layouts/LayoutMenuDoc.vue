@@ -5,13 +5,17 @@
         <button @click="logout()"><el-icon><SwitchButton /></el-icon> {{userName}}</button>
       </el-header>
       <el-container>
-        <el-aside :width="isCollapse ? '65px' : '150px'">
+        <el-aside class="menu-aside" :collapse="isCollapse">
           <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
-          router= true
+          router= true collapse-transition="false"
             @close="handleClose">
             <el-menu-item @click="toggleMenu">
               <el-icon><Menu /></el-icon>
               <template></template>
+            </el-menu-item>
+            <el-menu-item index="/budget" >
+              <el-icon><Money /></el-icon>
+              <template #title>Budget</template>
             </el-menu-item>
             <el-menu-item index="/income" >
               <el-icon><Money /></el-icon>
@@ -76,7 +80,10 @@
   color: var(--el-text-color-primary);
   background: var(--el-color-primary-light-8);
 }
-
+.menu-aside{
+  width: fit-content;
+  
+}
 .el-menu {
   border-right: none;
 }
@@ -94,7 +101,11 @@
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 150px;
+  width: fit-content;
+  min-height: 400px;
+}
+.el-menu-vertical-demo {
+  width: 55px;
   min-height: 400px;
 }
 </style>
