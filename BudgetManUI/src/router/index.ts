@@ -17,6 +17,8 @@ import BudgetCateView from '../views/BudgetCat/Index.vue'
 import BudgetView from '../views/Budget/Index.vue'
 import MoneyHolderView from '../views/MoneyHolder/Index.vue'
 import IncomeView from '../views/Income/Index.vue'
+import DebtView from '../views/Debt/Index.vue'
+import LoanView from '../views/Loan/Index.vue'
 
 // Create the router instance
 const router = createRouter({
@@ -50,6 +52,14 @@ const router = createRouter({
         {
           path: 'user',
           component: UserView,
+        },
+        {
+          path: 'Loan',
+          component: LoanView,
+        },
+        {
+          path: 'Debt',
+          component: DebtView,
         },
         // Other routes using default layout...
       ],
