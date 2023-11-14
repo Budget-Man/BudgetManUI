@@ -43,8 +43,8 @@ const tableColumns: TableColumn[] = [
     {
         key: "totalAmount",
         label: "TotalAmount",
-        enableEdit: true,
-        enableCreate: true,
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 500,
         required: false,
@@ -56,8 +56,8 @@ const tableColumns: TableColumn[] = [
     {
         key: "remainAmount",
         label: "RemainAmount",
-        enableEdit: true,
-        enableCreate: true,
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 500,
         required: false,
@@ -82,8 +82,8 @@ const tableColumns: TableColumn[] = [
     {
         key: "totalInterest",
         label: "totalInterest",
-        enableEdit: true,
-        enableCreate: true,
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 500,
         required: false,
@@ -115,8 +115,38 @@ const tableColumns: TableColumn[] = [
         required: false,
         sortable: true,
         showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "ratePeriodText",
+            keyMember: "ratePeriod",
+            data: [
+                {
+                    ratePeriod:0,
+                    ratePeriodText: "Daily",
+                },
+                {
+                    ratePeriod:1,
+                    ratePeriodText: "Weekly",
+                },
+                {
+                    ratePeriod:2,
+                    ratePeriodText: "Monthly",
+                },
+                {
+                    ratePeriod:3,
+                    ratePeriodText: "Quarterly",
+                },
+                {
+                    ratePeriod:4,
+                    ratePeriodText: "Annually",
+                },
+                {
+                    ratePeriod:5,
+                    ratePeriodText: "Irregular",
+                },
+            ]
+
+        },
     },
 ]
 const CustomActions: CustomAction[] = ([
