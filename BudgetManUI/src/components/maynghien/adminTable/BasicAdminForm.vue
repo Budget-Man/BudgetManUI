@@ -81,6 +81,7 @@ const props = defineProps<{
   allowDelete: boolean;
   title: string;
   CustomActions: CustomAction[];
+  CustomFilters?: Filter[] ;
 }>();
 const emit = defineEmits<{
 
@@ -94,7 +95,7 @@ const totalItem = ref(10);
 let searchRequest: SearchRequest = {
   PageIndex: 1,
   PageSize: 10,
-  filters: undefined,
+  filters: props.CustomFilters,
   SortBy: undefined
 }
 const CustomButtons = ref<CustomAction[]>([{}]);
@@ -111,7 +112,7 @@ const isEditting = ref(false);
 
 //#region event funcs
 const handleBtnSearchClicked = (filters: Filter[]) => {
-
+  filters = filters.concat(props.CustomFilters ?? []);
   searchRequest.filters = filters;
   searchRequest.PageIndex = 1;
   Search();
