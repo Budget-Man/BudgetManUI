@@ -19,6 +19,7 @@ import MoneyHolderView from '../views/MoneyHolder/Index.vue'
 import IncomeView from '../views/Income/Index.vue'
 import DebtView from '../views/Debt/Index.vue'
 import LoanView from '../views/Loan/Index.vue'
+import LoanDeatailView from '../views/Loan/Deatail.vue'
 
 // Create the router instance
 const router = createRouter({
@@ -61,6 +62,10 @@ const router = createRouter({
           path: 'Debt',
           component: DebtView,
         },
+        {
+          path: 'Loan/:Id',
+          component: LoanDeatailView,
+        }
         // Other routes using default layout...
       ],
     },

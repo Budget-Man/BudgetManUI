@@ -1,76 +1,41 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Loan'" :allowAdd="true" :allowDelete="true"
-            title="Loan" :CustomActions="CustomActions" :allowEdit="true" @onCustomAction="ChangePage"></BasicAdminFormVue>
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="true"
+            title="LoanPay" :CustomActions="CustomActions" :allowEdit="true" :CustomFilters="CustomFilters"></BasicAdminFormVue>
     </Suspense>
 </template>
 
 <script setup lang="ts">
 
+import type { Filter } from '@/components/maynghien/BaseModels/Filter';
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-import router from '@/router';
-import axios from 'axios';
+import { useRoute } from 'vue-router';
 
 const tableColumns: TableColumn[] = [
     {
-        key: "id",
-        label: "id",
+        key: "loanName",
+        label: "LoanName",
         enableEdit: false,
-        enableCreate: false,
+        enableCreate: true,
         hidden: true,
         width: 500,
         required: false,
         sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-
-    },
-    {
-        key: "name",
-        label: "Name",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
         showSearch: true,
-        inputType: "text",
-        dropdownData: null,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "Loan"
+
+        },
     },
     {
-        key: "totalAmount",
-        label: "TotalAmount",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "remainAmount",
-        label: "RemainAmount",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "loanAmount",
-        label: "LoanAmount",
+        key: "paidAmount",
+        label: "PaidAmount",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -82,10 +47,10 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
     },
     {
-        key: "totalInterest",
-        label: "totalInterest",
-        enableEdit: false,
-        enableCreate: false,
+        key: "interest",
+        label: "Interest",
+        enableEdit: true,
+        enableCreate: true,
         hidden: false,
         width: 500,
         required: false,
@@ -97,8 +62,21 @@ const tableColumns: TableColumn[] = [
     {
         key: "interestRate",
         label: "InterestRate",
-        enableEdit: true,
-        enableCreate: true,
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 500,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+    },
+    {
+        key: "isPaid",
+        label: "IsPaid",
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 500,
         required: false,
@@ -152,16 +130,16 @@ const tableColumns: TableColumn[] = [
     },
 ]
 const CustomActions: CustomAction[] = ([
-    {
-        ActionName: "Deatail",
-        ActionLabel: "Deatail",
-        ApiActiontype:ApiActionType.PUT,
-        IsRowAction: true,
-        DataType: CustomActionDataType.RowId,
-    }
+
 ]);
-function ChangePage(item: CustomActionResponse){
-    if(item.Action.ActionName == "Deatail")
-    router.push("/loan/" + item.Data.id);
-}
+const CustomFilters: Filter[] = ([
+    {
+        FieldName: "LoanId",
+        Value: useRoute().params.Id.toString(),
+        DisplayName: undefined,
+        Operation:undefined,
+        Type:undefined,
+        dropdownData:undefined
+    }
+])
 </script>
