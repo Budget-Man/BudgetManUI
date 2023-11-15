@@ -11,6 +11,8 @@
                             </el-input>
                             <el-select v-model="filter.Value" :placeholder="filter.DisplayName" class="action-input"
                                 v-if="filter.Type == 'dropdown'">
+                                <el-option label="" value=""/>
+                                 
                                 <el-option v-for="item in filter.dropdownData.data"
                                     :key="item[filter.dropdownData.keyMember]"
                                     :label="item[filter.dropdownData.displayMember]"
