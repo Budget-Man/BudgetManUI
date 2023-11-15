@@ -1,6 +1,10 @@
 <template>
+    <el-row>
+        Loan Details
+    </el-row>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="true"
+        :createUrl="useRoute().params.Id.toString()"
             title="LoanPay" :CustomActions="CustomActions" :allowEdit="true" :CustomFilters="CustomFilters"></BasicAdminFormVue>
     </Suspense>
 </template>
@@ -15,24 +19,7 @@ import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColum
 import { useRoute } from 'vue-router';
 
 const tableColumns: TableColumn[] = [
-    {
-        key: "loanName",
-        label: "LoanName",
-        enableEdit: false,
-        enableCreate: true,
-        hidden: true,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: true,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "Loan"
-
-        },
-    },
+    
     {
         key: "paidAmount",
         label: "PaidAmount",
@@ -72,61 +59,19 @@ const tableColumns: TableColumn[] = [
         inputType: "text",
         dropdownData: null,
     },
+    
     {
-        key: "isPaid",
-        label: "IsPaid",
+        key: "ratePeriodName",
+        label: "Rate Period",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
-        width: 500,
+        width: 300,
         required: false,
-        sortable: true,
+        sortable: false,
         showSearch: false,
         inputType: "text",
         dropdownData: null,
-    },
-    {
-        key: "ratePeriod",
-        label: "RatePeriod",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "ratePeriodText",
-            keyMember: "ratePeriod",
-            data: [
-                {
-                    ratePeriod:0,
-                    ratePeriodText: "Daily",
-                },
-                {
-                    ratePeriod:1,
-                    ratePeriodText: "Weekly",
-                },
-                {
-                    ratePeriod:2,
-                    ratePeriodText: "Monthly",
-                },
-                {
-                    ratePeriod:3,
-                    ratePeriodText: "Quarterly",
-                },
-                {
-                    ratePeriod:4,
-                    ratePeriodText: "Annually",
-                },
-                {
-                    ratePeriod:5,
-                    ratePeriodText: "Irregular",
-                },
-            ]
-
-        },
     },
 ]
 const CustomActions: CustomAction[] = ([
@@ -142,4 +87,5 @@ const CustomFilters: Filter[] = ([
         dropdownData:undefined
     }
 ])
+//console.log(useRoute().params.Id.toString())
 </script>

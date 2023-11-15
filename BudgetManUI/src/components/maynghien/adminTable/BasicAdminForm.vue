@@ -13,6 +13,7 @@
 
 
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
+    :createUrl="createUrl" :editUrl="editUrl"
     :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved" @onCloseClicked="handleOnEditCloseClicked" />
 </template>
   
@@ -76,12 +77,14 @@ const Search = async () => {
 const props = defineProps<{
   tableColumns: TableColumn[];
   apiName: string;
+  createUrl?: string;
+  editUrl?: string;
   allowAdd: boolean;
   allowEdit: boolean;
   allowDelete: boolean;
   title: string;
   CustomActions: CustomAction[];
-  CustomFilters?: Filter[] ;
+  CustomFilters?: Filter[];
 }>();
 const emit = defineEmits<{
 
@@ -163,12 +166,12 @@ const handleDelete = async (id: string) => {
 }
 const handleSortChange = async (event: any) => {
   const sortByInfo: SortByInfo = {
-    FieldName:event.column.property,
-    Ascending:event.column.order!="descending"
+    FieldName: event.column.property,
+    Ascending: event.column.order != "descending"
 
   }
   searchRequest.SortBy = sortByInfo;
-  searchRequest.PageIndex=1;
+  searchRequest.PageIndex = 1;
   await Search();
 };
 const SelectedId = ref("");
