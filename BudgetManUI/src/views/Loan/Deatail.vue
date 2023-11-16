@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        Loan Details
+        Loan Name: {{ Loan.data?.name }}
     </el-row>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="true"
@@ -17,7 +17,16 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useRoute } from 'vue-router';
+import { handleGetLoan } from '../../Services/Loan/GetById'
+import type { LoanDto } from '@/Models/Dtos/LoanDto';
+import { ref } from 'vue';
+import type { AppResponse } from '@/models/AppResponse';
 
+const Loan = ref<AppResponse<LoanDto>>({
+    data: undefined,
+    isSuccess: false,
+    message: "",
+})
 const tableColumns: TableColumn[] = [
     
     {
@@ -87,5 +96,13 @@ const CustomFilters: Filter[] = ([
         dropdownData:undefined
     }
 ])
+
+
+handleGetLoan(useRoute().params.Id.toString()).then(
+    (response) => {
+        Loan.value = response
+        console.log(Loan.value)
+    }
+)
 //console.log(useRoute().params.Id.toString())
 </script>
