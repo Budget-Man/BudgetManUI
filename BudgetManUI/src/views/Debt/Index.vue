@@ -1,7 +1,7 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Debt'" :allowAdd="true" :allowDelete="true"
-            title="Debt" :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Debt'" :allowAdd="true" :allowDelete="true" title="Debt"
+            :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
     </Suspense>
 </template>
 
@@ -13,7 +13,7 @@ import { ApiActionType, CustomAction, CustomActionDataType } from '../../compone
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 
 const tableColumns: TableColumn[] = [
-{
+    {
         key: "id",
         label: "id",
         enableEdit: false,
@@ -121,32 +121,66 @@ const tableColumns: TableColumn[] = [
             keyMember: "ratePeriod",
             data: [
                 {
-                    ratePeriod:0,
+                    ratePeriod: 0,
                     ratePeriodText: "Daily",
                 },
                 {
-                    ratePeriod:1,
+                    ratePeriod: 1,
                     ratePeriodText: "Weekly",
                 },
                 {
-                    ratePeriod:2,
+                    ratePeriod: 2,
                     ratePeriodText: "Monthly",
                 },
                 {
-                    ratePeriod:3,
+                    ratePeriod: 3,
                     ratePeriodText: "Quarterly",
                 },
                 {
-                    ratePeriod:4,
+                    ratePeriod: 4,
                     ratePeriodText: "Annually",
                 },
                 {
-                    ratePeriod:5,
+                    ratePeriod: 5,
                     ratePeriodText: "Irregular",
                 },
             ]
 
         },
+
+    },
+    {
+        key: "moneyHolderId",
+        label: "Category",
+        enableEdit: true,
+        enableCreate: true,
+        hidden: true,
+        width: 300,
+        required: true,
+        sortable: true,
+        showSearch: true,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHoler"
+
+        },
+
+    },
+    {
+        key: "moneyHolderName",
+        label: "Money Holder",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: true,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
     },
 ]
 const CustomActions: CustomAction[] = ([

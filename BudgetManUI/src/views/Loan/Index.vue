@@ -150,6 +150,39 @@ const tableColumns: TableColumn[] = [
 
         },
     },
+    {
+        key: "moneyHolderId",
+        label: "Category",
+        enableEdit: true,
+        enableCreate: true,
+        hidden: true,
+        width: 300,
+        required: true,
+        sortable: true,
+        showSearch: true,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHoler"
+
+        },
+
+    },
+    {
+        key: "moneyHolderName",
+        label: "Money Holder",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: true,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
+    },
 ]
 const CustomActions: CustomAction[] = ([
     {
