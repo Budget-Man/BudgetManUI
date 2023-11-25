@@ -2,7 +2,7 @@
 <template>
   <MnActionPane :allowAdd="true" :tableColumns="tableColumns" :isEdit="isEditting"
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
-    :openDialog="openDialogCreate">
+    :openDialog="openDialogCreate"  @onCustomAction="handleCustomAction">
   </MnActionPane>
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
     :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
