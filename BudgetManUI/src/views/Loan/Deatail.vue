@@ -78,17 +78,42 @@ const tableColumns: TableColumn[] = [
     },
     
     {
-        key: "ratePeriodName",
-        label: "Rate Period",
+        key: "moneyHolderId",
+        label: "Money Holder",
         enableEdit: false,
-        enableCreate: false,
-        hidden: false,
+        enableCreate: true,
+        hidden: true,
         width: 300,
         required: false,
         sortable: false,
         showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHolder"
+
+        },
+
+    },
+    {
+        key: "budgetId",
+        label: "Budget",
+        enableEdit: false,
+        enableCreate: true,
+        hidden: true,
+        width: 300,
+        required: false,
+        sortable: false,
+        showSearch: false,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "budget"
+
+        },
+
     },
     {
         key: "moneyHolderId",
