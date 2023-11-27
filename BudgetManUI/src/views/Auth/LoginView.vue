@@ -20,6 +20,11 @@
         </el-form>
       </div>
     </el-col>
+    <el-image
+  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+  fit="cover"
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+</el-image>
   </el-row>
 </template>
   
@@ -55,10 +60,12 @@ const login = async () => {
 {
   margin-bottom: 50px;
   font-size: 18px;
+  color:white ;
   font-family: 'Times New Roman', Times, serif;
 }
 .grid-content > p {
-  font-size: 25px;
+  font-size: 35px;
+  color:white  ;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 /* Your CSS styles here */
@@ -95,5 +102,14 @@ html {
     display: block;
     padding: 0 0rem;
   }
+}
+/* .el-row  {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+} */
+.el-menu {
+    border-right: none;
+    color: var(--el-text-color-primary);
+    background:#b9ddfb;
+    width: 100%;
 }
 </style>

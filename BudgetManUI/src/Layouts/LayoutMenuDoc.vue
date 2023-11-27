@@ -51,34 +51,87 @@
         </el-aside>
         <el-main>
           <router-view />
+          <el-image
+  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+  fit="cover"
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+</el-image>
         </el-main>
       </el-container>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <div class="footer-container">
+          <div class="footer-item">
+            <h4>Contact Us</h4>
+            <p>Address: Ap Bac Street, My Tho City, Tien Giang Province</p>
+            <p>Phone: 0273 387 8900</p>
+            <p>Email: y021101022@tgu.edu.vn</p>
+          </div>
+          <div class="footer-item">
+            <h4>About Us</h4>
+            <p>Welcome to our website!</p>
+            <p>We are a company providing high-quality products and services.</p>
+            <p>Please visit our website to learn more about us.</p>
+          </div>
+          <div class="footer-item">
+            <h4>News</h4>
+            <p><a href="#">Latest News</a></p>
+            <p><a href="#">Product News</a></p>
+            <p><a href="#">Service News</a></p>
+          </div>
+        </div>
+      </el-footer>
     </el-container>
   </div>
 </template>
 
 <style>
+.el-footer{
+  height:150px;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+
+
+}
+
+.footer-item {
+  width: 25%;
+  margin-bottom: 20px;
+  margin-left: 5%;
+}
+
+.footer-item h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-item p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .el-header {
   position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
+  background-color: #b9ddfb;
+  color: #b9ddfb;
 }
 .el-header > button {
   height: 100%;
   width: auto;
-  background-color: var(--el-color-primary-light-7);
+  background-color: #b9ddfb;
   cursor: pointer;
   float: right;
-  border: var(--el-color-primary-light-7);
+  border: #b9ddfb;
 }
 .el-header>p {
   margin-left: 90%;
 }
 
 .el-aside {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
+  color: #b9ddfb;
+  background:#b9ddfb;
+  height: 580px;
 }
 .menu-aside{
   width: fit-content;
@@ -86,10 +139,13 @@
 }
 .el-menu {
   border-right: none;
+  
 }
 
 .el-main {
   padding: 10px;
+  width: 100%;
+  height: 580px;
 }
 
 .toolbar {
@@ -99,7 +155,9 @@
   height: 100%;
   right: 20px;
 }
-
+.el-footer{
+  background-color: #b9ddfb;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: fit-content;
   min-height: 400px;
