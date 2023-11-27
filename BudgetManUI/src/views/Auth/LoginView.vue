@@ -56,6 +56,11 @@ const login = async () => {
 </script>
   
 <style>
+div.el-row.login-container{
+  margin-left: 520px;
+  width:450px;
+  height:100%
+}
 .grid-content > .hello
 {
   margin-bottom: 50px;
@@ -68,24 +73,9 @@ const login = async () => {
   color:white  ;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
-/* Your CSS styles here */
-body,
-html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .login-container {
-  width: 600px;
-  height: 400px;
-  background-color: var(--el-color-primary-light-7);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 800px;
 }
 
 .login-col {
@@ -103,9 +93,6 @@ html {
     padding: 0 0rem;
   }
 }
-/* .el-row  {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
-} */
 .el-menu {
     border-right: none;
     color: var(--el-text-color-primary);
