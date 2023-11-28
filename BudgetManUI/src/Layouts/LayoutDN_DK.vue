@@ -1,20 +1,19 @@
 <template>
-  <el-container>
-
-    <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
-      @keyup.enter="handleSelect">
-      <el-menu-item index="0">LOGO</el-menu-item>
-      <div class="flex-grow" />
-      <el-menu-item index="1" @click="Login()">Login</el-menu-item>
-      <el-menu-item index="2" @click="Register()">Register</el-menu-item>
-    </el-menu>
-    <el-container>
-      <el-main>
-        <router-view />
-      </el-main>
-    </el-container>
-    <!-- <el-footer>Footer</el-footer> -->
-  </el-container>
+  <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
+    @keyup.enter="handleSelect">
+    <el-menu-item index="0">LOGO</el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1" @click="Login()">Login</el-menu-item>
+    <el-menu-item index="2" @click="Register()">Register</el-menu-item>
+  </el-menu>
+<div class="container">
+  <div class="left-part">
+    <el-image src="https://genieacademy.net/wp-content/uploads/2020/03/phuong-phap-quan-ly-chi-tieu-cua-tu-2048x1165.jpg"></el-image>
+  </div>
+  <div class="right-part">
+      <router-view />
+  </div>
+</div>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
@@ -32,42 +31,41 @@ const Register = () => {
   }
 </script>
 <style>
-
-.el-header {
-    position: relative;
-    background-color: var(--el-color-primary-light-7);
-    color: var(--el-text-color-primary);
+div.el-row.login-container{
+  margin-left: 50px;
 }
-.el-footer {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
-}
-
-.el-aside {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
+.left-part {
+  width: 60%;
+}
+
+.right-part {
+  width: 30%;
+}
+.left-part>.el-image{
+  width: 70%;
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .flex-grow {
   flex-grow:2;
 }
-
+ul.el-menu.el-menu--horizontal.el-menu-demo {
+    height: 60px;
+}
 .el-menu {
   border-right: none;
   color: var(--el-text-color-primary);
   background: var(--el-color-primary-light-8);
   width: 100%;
 }
-
-.el-main {
-  padding: 10px;
-  /* height: 550px; */
-}
-
-.toolbar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  right: 20px;
-}</style>
+</style>
