@@ -33,7 +33,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          component: HomeView,
+          component: MoneyHolderView,
         },
         {
           path: 'budgetcate',

@@ -74,6 +74,20 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "amount",
+        label: "Amount",
+        enableEdit: false,
+        enableCreate: true,
+        hidden: false,
+        width: 300,
+        required: true,
+        sortable: false,
+        showSearch: false,
+        inputType: "number",
+        dropdownData: null,
+
+    },
 
 ]
 const CustomActions: CustomAction[] = ([

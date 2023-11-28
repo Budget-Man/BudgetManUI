@@ -55,6 +55,20 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "balanace",
+        label: "Balance",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 500,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "number",
+        dropdownData: null,
+
+    },
 
 ]
 const CustomActions: CustomAction[] = ([

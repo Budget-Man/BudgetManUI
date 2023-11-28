@@ -1,16 +1,24 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Income'" :allowAdd="false" :allowDelete="false"
-            title="Income" :CustomActions="CustomActions" :allowEdit="false"  @onCustomAction="handleCustomAction"></BasicAdminFormVue>
-    </Suspense>
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneySpend'" :allowAdd="false" :allowDelete="false"
+            title="Money spend" :CustomActions="CustomActions" :allowEdit="false"  @onCustomAction="handleCustomAction"></BasicAdminFormVue>
+   </Suspense>
+   <Suspense>
+            <CreateMoneySpend :openDialog="isOpenCreateDialog" @onSaved="Reload" @onCloseClicked="CloseCreate"></CreateMoneySpend>
+        </Suspense>
+
+    
 </template>
 
 <script setup lang="ts">
 
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
-import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
+
+import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
+import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
+import { ref } from 'vue';
 
 const tableColumns: TableColumn[] = [
     {
@@ -118,10 +126,16 @@ const CustomActions: CustomAction[] = ([
         DataType: CustomActionDataType.null,
     }
 ]);
-
+const isOpenCreateDialog=ref(false);
 const handleCustomAction = async (item: CustomActionResponse) => {
     if (item.Action.ActionName == "Create") {
-        
+        isOpenCreateDialog.value=true;
     }
+}
+const Reload=async()=>{
+    isOpenCreateDialog.value=false;
+}
+const CloseCreate=async()=>{
+    isOpenCreateDialog.value=false;
 }
 </script>

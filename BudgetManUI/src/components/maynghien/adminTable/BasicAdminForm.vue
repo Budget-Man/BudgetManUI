@@ -1,6 +1,6 @@
 
 <template>
-  <MnActionPane :allowAdd="true" :tableColumns="tableColumns" :isEdit="isEditting"
+  <MnActionPane :allowAdd="allowAdd" :tableColumns="tableColumns" :isEdit="isEditting"
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
     :openDialog="openDialogCreate"  @onCustomAction="handleCustomAction">
   </MnActionPane>

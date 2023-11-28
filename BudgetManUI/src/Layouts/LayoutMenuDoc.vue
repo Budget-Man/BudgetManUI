@@ -13,40 +13,40 @@
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
-            <el-menu-item index="/budget" >
+            <el-menu-item index="/MoneyHolder" >
+              <el-icon><WalletFilled /></el-icon>
+              <template #title>Money Holder</template>
+            </el-menu-item>
+            <el-menu-item index="/moneyspend" >
               <el-icon><Money /></el-icon>
-              <template #title>Budget</template>
+              <template #title>Money spend</template>
             </el-menu-item>
             <el-menu-item index="/income" >
               <el-icon><Money /></el-icon>
               <template #title>Income</template>
             </el-menu-item>
+            <el-menu-item index="/loan" >
+              <el-icon><Money /></el-icon>
+              <template #title>Loan</template>
+            </el-menu-item>
+            <el-menu-item index="/debt" >
+              <el-icon><Money /></el-icon>
+              <template #title>Debt</template>
+            </el-menu-item>
+            <el-menu-item index="/budget" >
+              <el-icon><Money /></el-icon>
+              <template #title>Budget</template>
+            </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
               <template #title>Budget Category</template>
             </el-menu-item>
-            <el-menu-item index="/MoneyHolder" >
-              <el-icon><WalletFilled /></el-icon>
-              <template #title>Money Holder</template>
-            </el-menu-item>
+           
             <el-menu-item index="/user" >
               <el-icon><Avatar /></el-icon>
               <template #title>USER</template>
             </el-menu-item>
-            <el-menu-item index="3">
-              <el-icon><Search /></el-icon>
-              <template #title>SEARCH USER</template>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <el-icon><PieChart /></el-icon>
-              <template #title> STATISTICS</template>
-            </el-menu-item>
-            <el-menu-item index="5">
-              <el-icon>
-                <setting />
-              </el-icon>
-              <template #title>SETTING</template>
-            </el-menu-item>
+           
           </el-menu>
         </el-aside>
         <el-main>
