@@ -46,10 +46,10 @@ const tableColumns: TableColumn[] = [
         key: "totalAmount",
         label: "TotalAmount",
         enableEdit: false,
-        enableCreate: false,
+        enableCreate: true,
         hidden: false,
         width: 500,
-        required: false,
+        required: true,
         sortable: true,
         showSearch: false,
         inputType: "text",
@@ -68,19 +68,7 @@ const tableColumns: TableColumn[] = [
         inputType: "text",
         dropdownData: null,
     },
-    {
-        key: "loanAmount",
-        label: "LoanAmount",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
+    
     {
         key: "totalInterest",
         label: "totalInterest",
@@ -152,7 +140,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Category",
+        label: "Money Holder",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -164,7 +152,7 @@ const tableColumns: TableColumn[] = [
         dropdownData: {
             displayMember: "name",
             keyMember: "id",
-            apiUrl: "moneyHoler"
+            apiUrl: "moneyHolder"
 
         },
 

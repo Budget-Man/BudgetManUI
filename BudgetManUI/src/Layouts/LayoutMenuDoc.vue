@@ -58,7 +58,7 @@
 </el-image>
         </el-main>
       </el-container>
-      <el-footer>
+      <!-- <el-footer>
         <div class="footer-container">
           <div class="footer-item">
             <h4>Contact Us</h4>
@@ -79,7 +79,7 @@
             <p><a href="#">Service News</a></p>
           </div>
         </div>
-      </el-footer>
+      </el-footer> -->
     </el-container>
   </div>
 </template>
@@ -157,6 +157,9 @@
 }
 .el-footer{
   background-color: #b9ddfb;
+}
+.el-pagination{
+  background-color: #ffffff;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: fit-content;
