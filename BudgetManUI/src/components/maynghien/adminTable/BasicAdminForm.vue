@@ -2,7 +2,7 @@
 <template>
   <MnActionPane :allowAdd="allowAdd" :tableColumns="tableColumns" :isEdit="isEditting"
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
-    :openDialog="openDialogCreate"  @onCustomAction="handleCustomAction">
+    :openDialog="openDialogCreate" @onCustomAction="handleCustomAction">
   </MnActionPane>
   <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
     :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
@@ -13,8 +13,8 @@
 
 
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
-    :createUrl="createUrl" :editUrl="editUrl"
-    :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved" @onCloseClicked="handleOnEditCloseClicked" />
+    :createUrl="createUrl" :editUrl="editUrl" :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved"
+    @onCloseClicked="handleOnEditCloseClicked" />
 </template>
   
 <script setup lang="ts">
@@ -85,6 +85,7 @@ const props = defineProps<{
   title: string;
   CustomActions: CustomAction[];
   CustomFilters?: Filter[];
+  isEditedOutSide?: boolean;
 }>();
 const emit = defineEmits<{
 
@@ -210,5 +211,11 @@ watch(() => props.CustomActions, () => {
   CustomButtons.value = props.CustomActions.filter(m => m.IsRowAction == false);
   CustomRowActions.value = props.CustomActions.filter(m => m.IsRowAction == true);
   console.log(CustomRowActions);
+}, { immediate: true })
+
+watch(() => props.isEditedOutSide, () => {
+  if(props.isEditedOutSide!=undefined && props.isEditedOutSide==true){
+    Search();
+  }
 }, { immediate: true })
 </script>

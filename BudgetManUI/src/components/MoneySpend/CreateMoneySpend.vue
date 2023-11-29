@@ -1,6 +1,6 @@
 <template>
     <el-dialog :model-value="openDialog" title="Create Money spend" class="form-dialog" width="50%"
-        @close="emit('onCloseClicked')">
+        @close="Close">
 
         <div class="editform" v-if="model != undefined">
             <div>
@@ -81,7 +81,7 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="emit('onCloseClicked')">Cancel</el-button>
+                <el-button @click="Close">Cancel</el-button>
                 <el-button type="primary" @click="Save">
                     Confirm
                 </el-button>
@@ -131,6 +131,8 @@ const Validate = (): boolean => {
     return true;
 }
 const Close = async () => {
+    model.value={};
+    emit('onCloseClicked');
 
 }
 const Save = async () => {
@@ -145,10 +147,10 @@ const Save = async () => {
             });
         }
         else {
-            ElMessage.error('Update failed.');
+            ElMessage.error(editresult.message);
             return;
         }
-
+        model.value={};
         emit("onSaved");
     }
     else {
