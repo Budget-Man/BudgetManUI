@@ -70,5 +70,6 @@ const CustomActions: CustomAction[] = ([
         IsRowAction: true,
         DataType: CustomActionDataType.RowId,
     }
+    
 ]);
 </script>

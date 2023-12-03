@@ -6,13 +6,12 @@
         <el-col :span="5">
             Số Tiền vay: {{ Loan?.totalAmount }}
         </el-col>
-        <el-col :span="5">
+        <!-- <el-col :span="5">
            Lãi Suất: {{ Loan?.interestRate }}
         </el-col>
         <el-col :span="5">
            Thời gian tính: 
-            
-        </el-col>
+        </el-col> -->
     </el-row>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="true"
@@ -136,7 +135,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Người giữ tiền",
+        label: "Nơi giữ tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -229,3 +228,10 @@ handleGetLoan(useRoute().params.Id.toString()).then(
 )
 //console.log(useRoute().params.Id.toString())
 </script>
+<style>
+.el-col{
+    color:antiquewhite;
+    font-weight: bold;
+    font-size: 16px;
+}
+</style>

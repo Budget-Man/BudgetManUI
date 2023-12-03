@@ -46,6 +46,10 @@
               <el-icon><User /></el-icon>
               <template #title>Người Dùng</template>
             </el-menu-item>
+            <el-menu-item index="/setting" >
+              <el-icon><Setting /></el-icon>
+              <template #title>Cài Đặt</template>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
@@ -182,7 +186,8 @@ import {
   User,
   Wallet,
   Coin,
-  Notebook
+  Notebook,
+  Setting 
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
