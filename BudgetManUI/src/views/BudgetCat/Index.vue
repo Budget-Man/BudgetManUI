@@ -29,7 +29,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "name",
+        label: "Tên",
         enableEdit: true,
         enableCreate: true,
         hidden: false,

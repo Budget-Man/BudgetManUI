@@ -1,16 +1,16 @@
 <template>
     <el-row :gutter="20">
         <el-col :span="5">
-            Loan Name: {{ Loan?.name }}
+           Tên Khoản Vay: {{ Loan?.name }}
         </el-col>
         <el-col :span="5">
-            Loan Amount: {{ Loan?.totalAmount }}
+            Số Tiền vay: {{ Loan?.totalAmount }}
         </el-col>
         <el-col :span="5">
-            Interest Rate: {{ Loan?.interestRate }}
+           Lãi Suất: {{ Loan?.interestRate }}
         </el-col>
         <el-col :span="5">
-            Rate Period: 
+           Thời gian tính: 
             
         </el-col>
     </el-row>
@@ -39,7 +39,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "paidAmount",
-        label: "PaidAmount",
+        label: "Số tiền thanh toán",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -52,7 +52,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interest",
-        label: "Interest",
+        label: "Lãi",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -65,7 +65,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "InterestRate",
+        label: "Lãi Suất",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -79,7 +79,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "moneyHolderId",
-        label: "Money Holder",
+        label: "Nơi giữ tiền",
         enableEdit: false,
         enableCreate: true,
         hidden: true,
@@ -98,7 +98,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetId",
-        label: "Budget",
+        label: "Ngân Sách",
         enableEdit: false,
         enableCreate: true,
         hidden: true,
@@ -117,7 +117,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Category",
+        label: "Hạng Mục",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -136,7 +136,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: "Người giữ tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -150,7 +150,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetId",
-        label: "Category",
+        label: "Ngân Sách",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -169,7 +169,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetName",
-        label: "budget",
+        label: "Ngân Sách",
         enableEdit: false,
         enableCreate: false,
         hidden: true,

@@ -20,7 +20,7 @@ import type { DebtDto } from '@/Models/Dtos/DebtDto';
 const tableColumns: TableColumn[] = [
     {
         key: "debtsName",
-        label: "DebtsName",
+        label: "Tên",
         enableEdit: false,
         enableCreate: true,
         hidden: true,
@@ -38,7 +38,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "paidAmount",
-        label: "PaidAmount",
+        label: "Số tiền thanh toán",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -51,7 +51,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interest",
-        label: "Interest",
+        label: "Lãi",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -64,7 +64,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "InterestRate",
+        label: "Lãi Suất",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -77,7 +77,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "isPaid",
-        label: "IsPaid",
+        label: "Được thanh toán",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -90,7 +90,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "RatePeriod",
+        label: "Tỷ lệ thời gian",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -133,7 +133,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Category",
+        label: "Hạng Mục",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -152,7 +152,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: "Nơi Giữ Tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -166,7 +166,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetId",
-        label: "Category",
+        label: "Hạng Mục",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -185,7 +185,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetName",
-        label: "budget",
+        label: "Ngân Sách",
         enableEdit: false,
         enableCreate: false,
         hidden: true,

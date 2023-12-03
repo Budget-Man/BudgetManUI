@@ -1,17 +1,17 @@
 <template>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Debt'" :allowAdd="true" :allowDelete="true" title="Debt"
-            :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
+            :CustomActions="CustomActions" :allowEdit="true"  @onCustomAction="ChangePage"></BasicAdminFormVue>
     </Suspense>
 </template>
 
 <script setup lang="ts">
 
 import BasicAdminFormVue from '../../components/maynghien/adminTable/BasicAdminForm.vue';
-import { ApiActionType, CustomAction, CustomActionDataType } from '../../components/maynghien/adminTable/Models/CustomAction';
+import { ApiActionType, CustomAction, CustomActionDataType,CustomActionResponse  } from '../../components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-
+import router from '@/router';
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -29,7 +29,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "Name",
+        label: "Tên",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -42,7 +42,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "totalAmount",
-        label: "TotalAmount",
+        label: "Tổng Cộng",
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -55,7 +55,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "remainAmount",
-        label: "Remain Amount",
+        label: "Số Tiền Còn Lại",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -69,7 +69,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "totalInterest",
-        label: "totalInterest",
+        label: "Tổng Tiền Lãi",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -82,7 +82,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "InterestRate",
+        label: "Lãi suất",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -95,7 +95,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "RatePeriod",
+        label: "Tỷ lệ thời gian",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -139,7 +139,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money holder",
+        label: "Nơi giữ tiền",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -158,7 +158,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: "Nơi giữ tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -172,6 +172,16 @@ const tableColumns: TableColumn[] = [
     },
 ]
 const CustomActions: CustomAction[] = ([
-
+{
+        ActionName: "Deatail",
+        ActionLabel: "Chi Tiết",
+        ApiActiontype:ApiActionType.PUT,
+        IsRowAction: true,
+        DataType: CustomActionDataType.RowId,
+    }
 ]);
+function ChangePage(item: CustomActionResponse){
+    if(item.Action.ActionName == "Deatail")
+    router.push("/Debt/" + item.Data.id);
+}
 </script>

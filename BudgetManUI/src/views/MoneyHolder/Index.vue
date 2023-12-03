@@ -29,7 +29,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "name",
+        label: "Tên",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -43,7 +43,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "bankName",
-        label: "bankName",
+        label: "Tên Ngân Hàng",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -57,9 +57,9 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "balanace",
-        label: "Balance",
-        enableEdit: false,
-        enableCreate: false,
+        label: "Số Tiền",
+        enableEdit: true,
+        enableCreate: true,
         hidden: false,
         width: 500,
         required: false,

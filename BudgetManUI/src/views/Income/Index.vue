@@ -29,7 +29,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "name",
+        label: "Tên",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -43,7 +43,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money Holder",
+        label: "Nơi Giữ Tiền",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -62,7 +62,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: "Nơi Giữ Tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -76,7 +76,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "amount",
-        label: "Amount",
+        label: "Số Lượng",
         enableEdit: false,
         enableCreate: true,
         hidden: false,

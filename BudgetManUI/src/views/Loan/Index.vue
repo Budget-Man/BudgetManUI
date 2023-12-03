@@ -31,7 +31,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "Name",
+        label: "Tên",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -44,7 +44,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "totalAmount",
-        label: "TotalAmount",
+        label: "Tổng Cộng",
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -57,7 +57,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "remainAmount",
-        label: "RemainAmount",
+        label: "Số Tiền Còn Lại",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -71,7 +71,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "totalInterest",
-        label: "totalInterest",
+        label: "Tổng Tiền Lãi",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -84,7 +84,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "InterestRate",
+        label: "Lãi Suất",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -97,7 +97,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "RatePeriod",
+        label: "Tỷ lệ thời gian",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -140,7 +140,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money Holder",
+        label: "Nơi giữ tiền",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -159,7 +159,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: "Nơi giữ tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -175,7 +175,7 @@ const tableColumns: TableColumn[] = [
 const CustomActions: CustomAction[] = ([
     {
         ActionName: "Deatail",
-        ActionLabel: "Deatail",
+        ActionLabel: "Chi Tiết",
         ApiActiontype:ApiActionType.PUT,
         IsRowAction: true,
         DataType: CustomActionDataType.RowId,

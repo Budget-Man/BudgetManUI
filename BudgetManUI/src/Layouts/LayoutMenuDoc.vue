@@ -15,38 +15,37 @@
             </el-menu-item>
             <el-menu-item index="/MoneyHolder" >
               <el-icon><WalletFilled /></el-icon>
-              <template #title>Money Holder</template>
+              <template #title>Nơi Giữ Tiền</template>
             </el-menu-item>
             <el-menu-item index="/moneyspend" >
-              <el-icon><Money /></el-icon>
-              <template #title>Money spend</template>
+              <el-icon><ShoppingTrolley /></el-icon>
+              <template #title>Tiêu Tiền</template>
             </el-menu-item>
             <el-menu-item index="/income" >
-              <el-icon><Money /></el-icon>
-              <template #title>Income</template>
+              <el-icon><Coin /></el-icon>
+              <template #title>Thu Nhập</template>
             </el-menu-item>
             <el-menu-item index="/loan" >
               <el-icon><Money /></el-icon>
-              <template #title>Loan</template>
+              <template #title>Khoản Vay</template>
             </el-menu-item>
             <el-menu-item index="/debt" >
-              <el-icon><Money /></el-icon>
-              <template #title>Debt</template>
+              <el-icon><Notebook /></el-icon>
+              <template #title>Món Nợ</template>
             </el-menu-item>
             <el-menu-item index="/budget" >
-              <el-icon><Money /></el-icon>
-              <template #title>Budget</template>
+              <el-icon><Wallet /></el-icon>
+              <template #title>Ngân Sách</template>
             </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
-              <template #title>Budget Category</template>
+              <template #title>Hạng Mục Ngân Sách</template>
             </el-menu-item>
            
             <el-menu-item index="/user" >
-              <el-icon><Avatar /></el-icon>
-              <template #title>USER</template>
+              <el-icon><User /></el-icon>
+              <template #title>Người Dùng</template>
             </el-menu-item>
-           
           </el-menu>
         </el-aside>
         <el-main>
@@ -131,7 +130,7 @@
 .el-aside {
   color: #b9ddfb;
   background:#b9ddfb;
-  height: 580px;
+  height: 682px;
 }
 .menu-aside{
   width: fit-content;
@@ -174,16 +173,16 @@
 import { ref } from 'vue'
 import {
   Menu as IconMenu,
-  Setting,
-  House,
-  Avatar,
-  Search,
-  PieChart,
   SwitchButton,
   Menu,
   WalletFilled,
   PriceTag,
-  Money
+  Money,
+  ShoppingTrolley,
+  User,
+  Wallet,
+  Coin,
+  Notebook
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
