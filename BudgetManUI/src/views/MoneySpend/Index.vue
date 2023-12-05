@@ -59,7 +59,7 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: true,
+        showSearch: false,
         inputType: "dropdown",
         dropdownData: {
             displayMember: "name",
@@ -71,16 +71,21 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Người giữ tiền",
+        label: "Nơi giữ tiền",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
         width: 300,
         required: false,
         sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+        showSearch: true,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "name",
+            apiUrl: "moneyHolder"
+
+        },
 
     },
     {
@@ -92,7 +97,7 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: true,
+        showSearch: false,
         inputType: "dropdown",
         dropdownData: {
             displayMember: "name",

@@ -147,7 +147,7 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: true,
+        showSearch: false,
         inputType: "dropdown",
         dropdownData: {
             displayMember: "name",
@@ -166,9 +166,14 @@ const tableColumns: TableColumn[] = [
         width: 300,
         required: true,
         sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+        showSearch: true,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "name",
+            apiUrl: "moneyHolder"
+
+        },
 
     },
 ]

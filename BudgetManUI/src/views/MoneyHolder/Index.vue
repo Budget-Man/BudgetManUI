@@ -58,8 +58,8 @@ const tableColumns: TableColumn[] = [
     {
         key: "balance",
         label: "Số Tiền",
-        enableEdit: true,
-        enableCreate: true,
+        enableEdit: false,
+        enableCreate: false,
         hidden: false,
         width: 500,
         required: false,
