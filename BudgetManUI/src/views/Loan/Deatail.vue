@@ -49,32 +49,32 @@ const tableColumns: TableColumn[] = [
         inputType: "text",
         dropdownData: null,
     },
-    {
-        key: "interest",
-        label: "Lãi",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "interestRate",
-        label: "Lãi Suất",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
+//    {
+//         key: "interest",
+//         label: "Lãi",
+//         enableEdit: true,
+//         enableCreate: true,
+//         hidden: false,
+//         width: 500,
+//         required: false,
+//         sortable: true,
+//         showSearch: false,
+//         inputType: "text",
+//         dropdownData: null,
+//     },
+    // {
+    //     key: "interestRate",
+    //     label: "Lãi Suất",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
+    // },
     
     {
         key: "moneyHolderId",
@@ -95,44 +95,44 @@ const tableColumns: TableColumn[] = [
         },
 
     },
-    {
-        key: "budgetId",
-        label: "Ngân Sách",
-        enableEdit: false,
-        enableCreate: true,
-        hidden: true,
-        width: 300,
-        required: false,
-        sortable: false,
-        showSearch: false,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "budget"
+    // {
+    //     key: "budgetId",
+    //     label: "Ngân Sách",
+    //     enableEdit: false,
+    //     enableCreate: true,
+    //     hidden: true,
+    //     width: 300,
+    //     required: false,
+    //     sortable: false,
+    //     showSearch: false,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "name",
+    //         keyMember: "id",
+    //         apiUrl: "budget"
 
-        },
+    //     },
 
-    },
-    {
-        key: "moneyHolderId",
-        label: "Hạng Mục",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: true,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "moneyHoler"
+    // },
+    // {
+    //     key: "moneyHolderId",
+    //     label: "Hạng Mục",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: true,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "name",
+    //         keyMember: "id",
+    //         apiUrl: "moneyHoler"
 
-        },
+    //     },
 
-    },
+    // },
     {
         key: "moneyHolderName",
         label: "Nơi giữ tiền",
@@ -147,39 +147,39 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
-    {
-        key: "budgetId",
-        label: "Ngân Sách",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: false,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "budget"
+    // {
+    //     key: "budgetId",
+    //     label: "Ngân Sách",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "name",
+    //         keyMember: "id",
+    //         apiUrl: "budget"
 
-        },
+    //     },
 
-    },
-    {
-        key: "budgetName",
-        label: "Ngân Sách",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+    // },
+    // {
+    //     key: "budgetName",
+    //     label: "Ngân Sách",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
 
-    },
+    // },
 ]
 const CustomActions: CustomAction[] = ([
 

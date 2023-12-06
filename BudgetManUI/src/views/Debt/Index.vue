@@ -67,76 +67,76 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
     },
     
-    {
-        key: "totalInterest",
-        label: "Tổng Tiền Lãi",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "interestRate",
-        label: "Lãi suất",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "ratePeriod",
-        label: "Tỷ lệ thời gian",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "ratePeriodText",
-            keyMember: "ratePeriod",
-            data: [
-                {
-                    ratePeriod: 0,
-                    ratePeriodText: "Daily",
-                },
-                {
-                    ratePeriod: 1,
-                    ratePeriodText: "Weekly",
-                },
-                {
-                    ratePeriod: 2,
-                    ratePeriodText: "Monthly",
-                },
-                {
-                    ratePeriod: 3,
-                    ratePeriodText: "Quarterly",
-                },
-                {
-                    ratePeriod: 4,
-                    ratePeriodText: "Annually",
-                },
-                {
-                    ratePeriod: 5,
-                    ratePeriodText: "Irregular",
-                },
-            ]
+    // {
+    //     key: "totalInterest",
+    //     label: "Tổng Tiền Lãi",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
+    // },
+    // {
+    //     key: "interestRate",
+    //     label: "Lãi suất",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
+    // },
+    // {
+    //     key: "ratePeriod",
+    //     label: "Tỷ lệ thời gian",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "ratePeriodText",
+    //         keyMember: "ratePeriod",
+    //         data: [
+    //             {
+    //                 ratePeriod: 0,
+    //                 ratePeriodText: "Daily",
+    //             },
+    //             {
+    //                 ratePeriod: 1,
+    //                 ratePeriodText: "Weekly",
+    //             },
+    //             {
+    //                 ratePeriod: 2,
+    //                 ratePeriodText: "Monthly",
+    //             },
+    //             {
+    //                 ratePeriod: 3,
+    //                 ratePeriodText: "Quarterly",
+    //             },
+    //             {
+    //                 ratePeriod: 4,
+    //                 ratePeriodText: "Annually",
+    //             },
+    //             {
+    //                 ratePeriod: 5,
+    //                 ratePeriodText: "Irregular",
+    //             },
+    //         ]
 
-        },
+    //     },
 
-    },
+    // },
     {
         key: "moneyHolderId",
         label: "Nơi giữ tiền",

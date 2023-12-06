@@ -27,11 +27,11 @@
             </el-menu-item>
             <el-menu-item index="/loan" >
               <el-icon><Money /></el-icon>
-              <template #title>Khoản Vay</template>
+              <template #title>Khoản Cho Vay</template>
             </el-menu-item>
             <el-menu-item index="/debt" >
               <el-icon><Notebook /></el-icon>
-              <template #title>Món Nợ</template>
+              <template #title>Khoản Mượn Nợ</template>
             </el-menu-item>
             <el-menu-item index="/budget" >
               <el-icon><Wallet /></el-icon>

@@ -20,7 +20,7 @@
                             </el-select>
                         </div>
                         <el-button v-if="filters != undefined && filters.length > 0" :icon="Search"
-                            @click="handlebtnSearchClicked"> search</el-button>
+                            @click="handlebtnSearchClicked"> Tìm Kiếm</el-button>
 
                     </el-row>
 
@@ -35,7 +35,7 @@
                         @click="handlebtnCustomActionClicked(customAction)">
                         {{ customAction.ActionLabel }}
                     </el-button>
-                    <el-button :icon="Plus" @click="handlebtnAddClicked" v-if="allowAdd"> Create</el-button>
+                    <el-button :icon="Plus" @click="handlebtnAddClicked" v-if="allowAdd"> Thêm</el-button>
                 </el-col>
 
             </el-row>

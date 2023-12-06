@@ -13,10 +13,11 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useRoute } from 'vue-router';
-import { ref } from 'vue/dist/vue.js';
+import { ref } from 'vue';
 // @ts-ignore
 import { handleGetDebt } from '../../Services/Debt/DeptService.ts'
 import type { DebtDto } from '@/Models/Dtos/DebtDto';
+const Debt = ref<DebtDto|undefined>();
 const tableColumns: TableColumn[] = [
     {
         key: "debtsName",
@@ -77,7 +78,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "isPaid",
-        label: "Được thanh toán",
+        label: "Đã thanh toán",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -131,42 +132,42 @@ const tableColumns: TableColumn[] = [
 
         },
     },
-    {
-        key: "moneyHolderId",
-        label: "Hạng Mục",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: true,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "moneyHoler"
+    // {
+    //     key: "moneyHolderId",
+    //     label: "Nơi Giữ Tiền",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: true,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "name",
+    //         keyMember: "id",
+    //         apiUrl: "moneyHoler"
 
-        },
+    //     },
 
-    },
-    {
-        key: "moneyHolderName",
-        label: "Nơi Giữ Tiền",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+    // },
+    // {
+    //     key: "moneyHolderName",
+    //     label: "Nơi Giữ Tiền",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: false,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
 
-    },
+    // },
     {
         key: "budgetId",
-        label: "Hạng Mục",
+        label: "Ngân Sách",
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -212,7 +213,7 @@ const CustomFilters: Filter[] = ([
     }
 ])
 
-const Debt = ref<DebtDto|undefined>();
+
 const RatePeriod =ref("");
 handleGetDebt(useRoute().params.Id.toString()).then(
     (response) => {

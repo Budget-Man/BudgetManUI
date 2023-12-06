@@ -1,7 +1,7 @@
 <template>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Loan'" :allowAdd="true" :allowDelete="true"
-            title="Loan" :CustomActions="CustomActions" :allowEdit="true" @onCustomAction="ChangePage"></BasicAdminFormVue>
+            title="Loan" :CustomActions="CustomActions" :allowEdit="false" @onCustomAction="ChangePage"></BasicAdminFormVue>
     </Suspense>
 </template>
 
@@ -32,7 +32,7 @@ const tableColumns: TableColumn[] = [
     {
         key: "name",
         label: "Tên",
-        enableEdit: true,
+        enableEdit: false,
         enableCreate: true,
         hidden: false,
         width: 500,
@@ -69,7 +69,7 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
     },
     
-    {
+   /* {
         key: "totalInterest",
         label: "Tổng Tiền Lãi",
         enableEdit: false,
@@ -137,11 +137,11 @@ const tableColumns: TableColumn[] = [
             ]
 
         },
-    },
+    },*/
     {
         key: "moneyHolderId",
         label: "Nơi giữ tiền",
-        enableEdit: true,
+        enableEdit: false,
         enableCreate: true,
         hidden: true,
         width: 300,

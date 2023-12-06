@@ -85,12 +85,12 @@ const Save = async () => {
             var editresult = await handleAPIUpdate(props.editItem, editUrl);
             if (editresult.isSuccess) {
                 ElMessage({
-                    message: 'data Updated.',
+                    message: 'Đã Cập Nhật',
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Update failed.');
+                ElMessage.error('Cập Nhật Thất Bại');
                 return;
             }
         }
@@ -99,12 +99,12 @@ const Save = async () => {
             var createresult = await handleAPICreate(props.editItem, createUrl);
             if (createresult.isSuccess) {
                 ElMessage({
-                    message: 'data Created.',
+                    message: 'Thêm Thành Công',
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Create failed.');
+                ElMessage.error('Thêm Thất Bại');
                 return;
             }
         }
