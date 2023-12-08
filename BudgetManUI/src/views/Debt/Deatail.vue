@@ -1,7 +1,8 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'DebtPay'" :allowAdd="true" :allowDelete="true"
-            title="DebtPay" :CustomActions="CustomActions" :allowEdit="true" :CustomFilters="CustomFilters"></BasicAdminFormVue>
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'DebtsPay'" :allowAdd="true" :allowDelete="false"
+        :createUrl="useRoute().params.Id.toString()"
+            title="DebtsPay" :CustomActions="CustomActions" :allowEdit="false" :CustomFilters="CustomFilters"></BasicAdminFormVue>
     </Suspense>
 </template>
 
@@ -50,32 +51,32 @@ const tableColumns: TableColumn[] = [
         inputType: "text",
         dropdownData: null,
     },
-    {
-        key: "interest",
-        label: "Lãi",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
-    {
-        key: "interestRate",
-        label: "Lãi Suất",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 500,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
-    },
+    // {
+    //     key: "interest",
+    //     label: "Lãi",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
+    // },
+    // {
+    //     key: "interestRate",
+    //     label: "Lãi Suất",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
+    // },
     {
         key: "isPaid",
         label: "Đã thanh toán",
@@ -90,48 +91,81 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
     },
     {
-        key: "ratePeriod",
-        label: "Tỷ lệ thời gian",
-        enableEdit: true,
+        key: "moneyHolderId",
+        label: "Nơi giữ tiền",
+        enableEdit: false,
         enableCreate: true,
-        hidden: false,
-        width: 500,
+        hidden: true,
+        width: 300,
         required: false,
-        sortable: true,
+        sortable: false,
         showSearch: false,
         inputType: "dropdown",
         dropdownData: {
-            displayMember: "ratePeriodText",
-            keyMember: "ratePeriod",
-            data: [
-                {
-                    ratePeriod:0,
-                    ratePeriodText: "Daily",
-                },
-                {
-                    ratePeriod:1,
-                    ratePeriodText: "Weekly",
-                },
-                {
-                    ratePeriod:2,
-                    ratePeriodText: "Monthly",
-                },
-                {
-                    ratePeriod:3,
-                    ratePeriodText: "Quarterly",
-                },
-                {
-                    ratePeriod:4,
-                    ratePeriodText: "Annually",
-                },
-                {
-                    ratePeriod:5,
-                    ratePeriodText: "Irregular",
-                },
-            ]
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHolder"
 
         },
+
     },
+    {
+        key: "moneyHolderName",
+        label: "Nơi giữ tiền",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: true,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
+    },
+    // {
+    //     key: "ratePeriod",
+    //     label: "Tỷ lệ thời gian",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: false,
+    //     width: 500,
+    //     required: false,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "ratePeriodText",
+    //         keyMember: "ratePeriod",
+    //         data: [
+    //             {
+    //                 ratePeriod:0,
+    //                 ratePeriodText: "Daily",
+    //             },
+    //             {
+    //                 ratePeriod:1,
+    //                 ratePeriodText: "Weekly",
+    //             },
+    //             {
+    //                 ratePeriod:2,
+    //                 ratePeriodText: "Monthly",
+    //             },
+    //             {
+    //                 ratePeriod:3,
+    //                 ratePeriodText: "Quarterly",
+    //             },
+    //             {
+    //                 ratePeriod:4,
+    //                 ratePeriodText: "Annually",
+    //             },
+    //             {
+    //                 ratePeriod:5,
+    //                 ratePeriodText: "Irregular",
+    //             },
+    //         ]
+
+    //     },
+    // },
     // {
     //     key: "moneyHolderId",
     //     label: "Nơi Giữ Tiền",
@@ -165,46 +199,46 @@ const tableColumns: TableColumn[] = [
     //     dropdownData: null,
 
     // },
-    {
-        key: "budgetId",
-        label: "Ngân Sách",
-        enableEdit: true,
-        enableCreate: true,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: false,
-        inputType: "dropdown",
-        dropdownData: {
-            displayMember: "name",
-            keyMember: "id",
-            apiUrl: "budget"
+    // {
+    //     key: "budgetId",
+    //     label: "Ngân Sách",
+    //     enableEdit: true,
+    //     enableCreate: true,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "dropdown",
+    //     dropdownData: {
+    //         displayMember: "name",
+    //         keyMember: "id",
+    //         apiUrl: "budget"
 
-        },
+    //     },
 
-    },
-    {
-        key: "budgetName",
-        label: "Ngân Sách",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: true,
-        width: 300,
-        required: true,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
+    // },
+    // {
+    //     key: "budgetName",
+    //     label: "Ngân Sách",
+    //     enableEdit: false,
+    //     enableCreate: false,
+    //     hidden: true,
+    //     width: 300,
+    //     required: true,
+    //     sortable: true,
+    //     showSearch: false,
+    //     inputType: "text",
+    //     dropdownData: null,
 
-    },
+    // },
 ]
 const CustomActions: CustomAction[] = ([
 
 ]);
 const CustomFilters: Filter[] = ([
     {
-        FieldName: "DebtId",
+        FieldName: "debtId",
         Value: useRoute().params.Id.toString(),
         DisplayName: undefined,
         Operation:undefined,

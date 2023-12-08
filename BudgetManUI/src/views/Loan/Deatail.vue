@@ -14,9 +14,9 @@
         </el-col> -->
     </el-row>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="true"
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'LoanPay'" :allowAdd="true" :allowDelete="false"
         :createUrl="useRoute().params.Id.toString()"
-            title="LoanPay" :CustomActions="CustomActions" :allowEdit="true" :CustomFilters="CustomFilters"></BasicAdminFormVue>
+            title="LoanPay" :CustomActions="CustomActions" :allowEdit="false" :CustomFilters="CustomFilters"></BasicAdminFormVue>
     </Suspense>
 </template>
 
