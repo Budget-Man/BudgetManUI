@@ -20,7 +20,7 @@ import { handleGetDebt } from '../../Services/Debt/DeptService.ts'
 import type { DebtDto } from '@/Models/Dtos/DebtDto';
 const Debt = ref<DebtDto|undefined>();
 const tableColumns: TableColumn[] = [
-    {
+   /* {
         key: "debtsName",
         label: "Tên",
         enableEdit: false,
@@ -37,7 +37,7 @@ const tableColumns: TableColumn[] = [
             apiUrl: "Debt"
 
         },
-    },
+    },*/
     {
         key: "paidAmount",
         label: "Số tiền thanh toán",

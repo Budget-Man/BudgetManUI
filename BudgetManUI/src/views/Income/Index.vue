@@ -3,6 +3,7 @@
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Income'" :allowAdd="true" :allowDelete="true"
             title="Income" :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
     </Suspense>
+    <el-button @click="DownloadExcel()">In</el-button>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +12,10 @@ import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-
+import {axiosInstance} from '../../Services/axiosConfig';
+import {reactive} from 'vue';
+import{SearchRequest} from '../../components/maynghien/BaseModels/SearchRequest';
+import Filter from '../../components/maynghien/BaseModels/Filter';
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -76,7 +80,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "amount",
-        label: "Số Lượng",
+        label: "Số Tiền",
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -93,4 +97,35 @@ const tableColumns: TableColumn[] = [
 const CustomActions: CustomAction[] = ([
 
 ]);
+function DownloadExcel() {
+  var data;
+  let searchRequest = reactive<SearchRequest>({
+  filters: [
+    {
+      FieldName: "IsDelete",
+      Value: "",
+      Operation: undefined,
+    },
+  ] as Filter[],
+  SortBy: undefined,
+  PageIndex: 1,
+  PageSize: 10,
+});
+  axiosInstance
+    .post("Income/Download", searchRequest, {
+      responseType: "blob",
+    })
+    .then((response) => {
+      data = response.data;
+      // Chuyển dữ liệu thành một đối tượng Blob
+      const blob = new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+      // Tải file về máy
+      const filename = "InboundReceipt"+new Date().toLocaleDateString("vi-GB")+".xlsx";
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    });
+}
 </script>

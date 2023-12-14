@@ -9,6 +9,7 @@
         <CreateMoneySpend :openDialog="isOpenCreateDialog" @onSaved="Reload" @onCloseClicked="CloseCreate">
         </CreateMoneySpend>
     </Suspense>
+    <el-button @click="DownloadExcel()">In</el-button>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +21,10 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { ref } from 'vue';
+import {axiosInstance} from '../../Services/axiosConfig';
+import {reactive} from 'vue';
+import{SearchRequest} from '../../components/maynghien/BaseModels/SearchRequest';
+import Filter from '../../components/maynghien/BaseModels/Filter';
 const isEditedOutSide = ref(false);
 const tableColumns: TableColumn[] = [
     {
@@ -121,17 +126,76 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "amount",
+        label: "Số Tiền",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
+    },
+    {
+        key: "amount",
+        label: "Số Tiền",
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
+    },
 
 ]
 const CustomActions: CustomAction[] = ([
     {
         ActionName: "Create",
-        ActionLabel: "Create",
+        ActionLabel: "Thêm",
         ApiActiontype: ApiActionType.POST,
         IsRowAction: false,
         DataType: CustomActionDataType.null,
     }
 ]);
+function DownloadExcel() {
+  var data;
+  let searchRequest = reactive<SearchRequest>({
+  filters: [
+    {
+      FieldName: "IsDelete",
+      Value: "",
+      Operation: undefined,
+    },
+  ] as Filter[],
+  SortBy: undefined,
+  PageIndex: 1,
+  PageSize: 10,
+});
+  axiosInstance
+    .post("MoneySpend/Download", searchRequest, {
+      responseType: "blob",
+    })
+    .then((response) => {
+      data = response.data;
+      // Chuyển dữ liệu thành một đối tượng Blob
+      const blob = new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+      // Tải file về máy
+      const filename = "ThongKeChiTieu"+new Date().toLocaleDateString("vi-GB")+".xlsx";
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    });
+}
 const isOpenCreateDialog = ref(false);
 const handleCustomAction = async (item: CustomActionResponse) => {
     if (item.Action.ActionName == "Create") {
