@@ -60,25 +60,38 @@ const props = defineProps<{
 // Use computed to create a filtered model
 const model = ref<SearchDTOItem>(props.editItem);
 const Validate = (): boolean => {
-    if (model != undefined)
+    let result=true;
+    if (model != undefined){
+
         props.columns.forEach(column => {
             if (column.enableEdit) {
                 const value = model.value[column.key];
                 if (column.key == "id" && props.isEdit) {
-                    if (value == undefined)
-                        return false;
+                    if (value == undefined){
+                        result=false;
+                        return;
+                    }
+                        
                 }
                 if (column.required && (value == undefined || value == "")) {
-                    return false;
+                    
+                    console.log("validate false");
+                    result=false;
+                    return;
                 }
+                
             }
 
         });
+    }
     else return false;
-    return true;
+
+    console.log("validate true");
+    return result;
 }
 const Save = async () => {
     const valid = Validate();
+    console.log(valid);
     if (valid) {
         if (props.isEdit == true && props.editItem != undefined) {
             const editUrl = props.apiName + (props.editUrl != undefined ? "/" + props.editUrl : "");
