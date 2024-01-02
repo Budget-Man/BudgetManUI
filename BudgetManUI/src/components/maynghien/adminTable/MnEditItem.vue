@@ -42,6 +42,7 @@ import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts';
+
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;
@@ -59,27 +60,33 @@ const props = defineProps<{
 }>();
 // Use computed to create a filtered model
 const model = ref<SearchDTOItem>(props.editItem);
-const Validate = (): boolean => {
+const Validate = (): any => {
     if (model != undefined)
-        props.columns.forEach(column => {
+        for (const column of props.columns) {
             if (column.enableEdit) {
                 const value = model.value[column.key];
                 if (column.key == "id" && props.isEdit) {
                     if (value == undefined)
-                        return false;
+                        return column;
                 }
-                if (column.required && (value == undefined || value == "")) {
-                    return false;
+                // console.log("Validate:");
+                // console.log(column);
+                // console.log(value);
+                if (column.required && (value == undefined || value == "" || (column.inputType=="number" && value == 0))) {
+                    console.log("false");
+                    return column;
                 }
+                //console.log("true");
             }
 
-        });
+        }
     else return false;
     return true;
 }
 const Save = async () => {
     const valid = Validate();
-    if (valid) {
+    console.log(valid);
+    if (valid === true) {
         if (props.isEdit == true && props.editItem != undefined) {
             const editUrl = props.apiName + (props.editUrl != undefined ? "/" + props.editUrl : "");
             var editresult = await handleAPIUpdate(props.editItem, editUrl);
@@ -109,6 +116,9 @@ const Save = async () => {
             }
         }
         emit("onSaved");
+    }
+    else if (valid !== false) {
+        ElMessage.error('The field: ' + valid.label + ' is not allowed!');
     }
     else {
         ElMessage.error('valid failed.');
