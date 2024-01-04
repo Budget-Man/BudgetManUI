@@ -13,6 +13,10 @@
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
+            <el-menu-item index="/Overview" >
+              <el-icon><PieChart /></el-icon>
+              <template #title>Money Overview</template>
+            </el-menu-item>
             <el-menu-item index="/MoneyHolder" >
               <el-icon><WalletFilled /></el-icon>
               <template #title>Money Holder</template>
@@ -160,6 +164,7 @@
 }
 .el-pagination{
   background-color: #ffffff;
+  justify-content: center;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: fit-content;
@@ -168,6 +173,14 @@
 .el-menu-vertical-demo {
   width: 55px;
   min-height: 400px;
+}
+
+.table-container{
+  background-color: white; 
+  padding: 10px;
+  border-radius: var(--el-border-radius-base);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
 <script lang="ts" setup>

@@ -4,14 +4,16 @@
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
     :openDialog="openDialogCreate" @onCustomAction="handleCustomAction">
   </MnActionPane>
-  <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
-    :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
-    :CustomActions="CustomRowActions" @on-custom-action="handleCustomAction" @onSortChange="handleSortChange" />
-  <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
-    @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
-  Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages
-
-
+  <!-- <el-space fill class="table-container" direction="vertical"> -->
+    <div class="table-container">
+    <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
+      :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
+      :CustomActions="CustomRowActions" @on-custom-action="handleCustomAction" @onSortChange="handleSortChange" />
+    <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
+      @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
+    <div class="el-pagination">Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages</div>
+  <!-- </el-space> -->
+</div>
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
     :createUrl="createUrl" :editUrl="editUrl" :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved"
     @onCloseClicked="handleOnEditCloseClicked" />
@@ -60,7 +62,7 @@ const Search = async () => {
       else
         totalPages.value = 0;
       if (dataresponse.totalRows != undefined) {
-        totalItem.value = dataresponse.totalRows;
+        totalItem.value =  Math.abs(dataresponse.totalRows);
       }
       else
         totalItem.value = 0;

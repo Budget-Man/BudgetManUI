@@ -3,8 +3,8 @@
 
 <template>
     <div>
-        <el-table class="admin-table" :data="datas" @sort-change="handleSortChange" border row-key="id" table-layout="auto"
-            @row-click="handleRowClick">
+        <el-table class="admin-table" :data="datas" @sort-change="handleSortChange" border row-key="id" table-layout="fixed"
+            @row-click="handleRowClick" >
             <el-table-column v-for="column in shownCol" :key="column.key" :prop="column.key" :label="column.label"
                 :sortable="column.sorable ? 'custom' : 'false'" :visible="column.hidden == false" />
             <el-table-column label="Operations" v-if="enableDelete || enableEdit">
