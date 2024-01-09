@@ -14,6 +14,8 @@ import 'vue-toastification/dist/index.css';
 // @ts-ignore
 import router from './router/index.ts'
 // import './styles/dark/css-vars.css'
+// @ts-ignore
+import startup from './Services/Startup.ts'
 const app = createApp(App)
 
 
@@ -21,4 +23,4 @@ app.use(router)
 app.use(ElementPlus)
 app.use(Toast)
 app.mount('#app')
-    
+startup.initialize();
