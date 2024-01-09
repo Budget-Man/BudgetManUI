@@ -76,12 +76,13 @@ const Validate = (): any => {
                     console.log("false");
                     return column;
                 }
-                //console.log("true");
             }
 
-        }
+        });
     else return false;
-    return true;
+
+    console.log("validate true");
+    return result;
 }
 const Save = async () => {
     const valid = Validate();
