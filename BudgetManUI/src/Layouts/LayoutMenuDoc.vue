@@ -59,10 +59,10 @@
         <el-main>
           <router-view />
           <el-image
-  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
-  fit="cover"
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-</el-image>
+            src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+            fit="cover"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+          </el-image>
         </el-main>
       </el-container>
       <!-- <el-footer>

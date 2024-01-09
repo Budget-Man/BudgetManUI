@@ -6,13 +6,13 @@
     <el-menu-item index="1" @click="Login()">Login</el-menu-item>
     <el-menu-item index="2" @click="Register()">Register</el-menu-item>
   </el-menu>
-<div class="container">
-  <div class="left-part">
-    <el-image src="https://genieacademy.net/wp-content/uploads/2020/03/phuong-phap-quan-ly-chi-tieu-cua-tu-2048x1165.jpg"></el-image>
-  </div>
-  <div class="right-part">
+  <div class="container">
+    <div class="left-part">
+      <el-image src="https://genieacademy.net/wp-content/uploads/2020/03/phuong-phap-quan-ly-chi-tieu-cua-tu-2048x1165.jpg"></el-image>
+    </div>
+    <div class="right-part">
       <router-view />
-  </div>
+    </div>
 </div>
 </template>
 <script lang="ts" setup>
