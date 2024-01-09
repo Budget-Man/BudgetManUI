@@ -56,7 +56,7 @@ const tableColumns: TableColumn[] = [
 
     },
     {
-        key: "balanace",
+        key: "balance",
         label: "Balance",
         enableEdit: false,
         enableCreate: false,
