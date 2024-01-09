@@ -81,9 +81,10 @@ const Validate = (): any => {
 
         }
     else return false;
-
+    
     // console.log("validate true");
     // return result;
+    return true;
 }
 const Save = async () => {
     const valid = Validate();

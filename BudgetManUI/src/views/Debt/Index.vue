@@ -34,7 +34,7 @@ const tableColumns: TableColumn[] = [
         enableCreate: true,
         hidden: false,
         width: 500,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: true,
         inputType: "text",
@@ -42,7 +42,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "totalAmount",
-        label: "Total Amount",
+        label: "TotalAmount",
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -69,7 +69,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "totalInterest",
-        label: "total Interest",
+        label: "totalInterest",
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -82,7 +82,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "Interest Rate",
+        label: "InterestRate",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -95,12 +95,12 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "Rate Period",
+        label: "RatePeriod",
         enableEdit: true,
         enableCreate: true,
         hidden: false,
         width: 500,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: false,
         inputType: "dropdown",
