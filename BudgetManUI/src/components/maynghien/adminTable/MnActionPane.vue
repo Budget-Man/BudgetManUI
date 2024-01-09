@@ -120,7 +120,7 @@ watch(() => props.tableColumns, async () => {
 
     });
 
-    console.log(props.tableColumns);
+    // console.log(props.tableColumns);
     filters.value = [];
     props.tableColumns.forEach(colum => {
         if (colum.showSearch) {
