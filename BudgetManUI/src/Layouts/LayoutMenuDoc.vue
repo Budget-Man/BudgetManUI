@@ -50,7 +50,10 @@
               <el-icon><Avatar /></el-icon>
               <template #title>USER</template>
             </el-menu-item>
-           
+            <el-menu-item index="/setting" >
+              <el-icon><Setting /></el-icon>
+              <template #title>Seting</template>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
@@ -135,7 +138,6 @@
 .el-aside {
   color: #b9ddfb;
   background:#b9ddfb;
-  height: 580px;
 }
 .menu-aside{
   width: fit-content;
@@ -149,7 +151,6 @@
 .el-main {
   padding: 10px;
   width: 100%;
-  height: 580px;
 }
 
 .toolbar {
@@ -229,4 +230,5 @@ function logout() {
   }
   window.location.href = "/login";
 }
+
 </script>
