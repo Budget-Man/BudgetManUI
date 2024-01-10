@@ -238,7 +238,7 @@ const CustomActions: CustomAction[] = ([
 ]);
 const CustomFilters: Filter[] = ([
     {
-        FieldName: "debtId",
+        FieldName: "debtsId",
         Value: useRoute().params.Id.toString(),
         DisplayName: undefined,
         Operation:undefined,

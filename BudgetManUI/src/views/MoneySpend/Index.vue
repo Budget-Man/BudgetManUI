@@ -126,20 +126,7 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
-    {
-        key: "amount",
-        label: "Số Tiền",
-        enableEdit: false,
-        enableCreate: false,
-        hidden: false,
-        width: 300,
-        required: false,
-        sortable: true,
-        showSearch: false,
-        inputType: "text",
-        dropdownData: null,
 
-    },
     {
         key: "amount",
         label: "Số Tiền",
