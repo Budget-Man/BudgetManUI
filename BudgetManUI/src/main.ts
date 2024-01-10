@@ -16,11 +16,14 @@ import router from './router/index.ts'
 // import './styles/dark/css-vars.css'
 // @ts-ignore
 import startup from './Services/Startup.ts'
+import languages from './languages'
 const app = createApp(App)
 
 
 app.use(router)
 app.use(ElementPlus)
 app.use(Toast)
+app.use(languages)
 app.mount('#app')
+
 startup.initialize();

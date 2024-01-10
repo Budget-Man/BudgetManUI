@@ -43,6 +43,7 @@ import { Filter } from '../BaseModels/Filter';
 // @ts-ignore
 import { SearchResponse } from '../BaseModels/SearchResponse';
 import { SearchRequest } from '../BaseModels/SearchRequest';
+// @ts-ignore
 import type { AppResponse } from '@/models/AppResponse';
 // @ts-ignore
 import { ElMessage } from 'element-plus';

@@ -5,7 +5,7 @@
         <!-- title  -->
         <el-row>
             <el-col :span="24"  :align="'center'">
-                <el-text size="large" tag="b">Money Overview</el-text>
+                <el-text size="large" tag="b">{{ $t('moneyOverview.title') }}</el-text>
             </el-col>
             <!-- holder selector -->
             <el-select v-model="moneyHolderValue" class="m-2 absolute-right" size="small">
@@ -19,7 +19,7 @@
         </el-row>
         <!-- balance -->
         <el-row justify="space-around">
-            <el-text size="large" class="absolute-left">Your balance: </el-text>
+            <el-text size="large" class="absolute-left">{{ $t("moneyOverview.yourBalance") }}: </el-text>
             <el-col :span="24" :align="'center'">
                 <h2>{{ formatCurrency(balance)}}</h2>
             </el-col>
@@ -68,23 +68,7 @@
 </template>
   
 <script setup lang="ts">
-  
-  // export default {
-  //   data() {
-  //     return {
-  //       incomeItems: [
-  //         { description: "Salary", amount: 3000 },
-  //         { description: "Freelance Work", amount: 500 },
-  //         // Add more income items as needed
-  //       ],
-  //       outcomeItems: [
-  //         { description: "Rent", amount: 1200 },
-  //         { description: "Groceries", amount: 200 },
-  //         // Add more outcome items as needed
-  //       ],
-  //     };
-  //   },
-  // };
+
 import { ref, watch, onMounted, computed  } from 'vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts'
@@ -94,8 +78,9 @@ import { TableColumn } from './Models/TableColumn.ts'
 import { handleAPICustom, handleAPIDelete, handleAPISearch } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts'
 // @ts-ignore
 import { SearchRequest, SearchResponse } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts';
+// @ts-ignore
 import { Filter } from '@/components/maynghien/BaseModels/Filter';
-
+// @ts-ignore
 import { formatCurrency } from "@/Services/Utilities";
 
 const Search = async (apiName: any) => {
