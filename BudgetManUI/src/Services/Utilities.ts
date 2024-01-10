@@ -21,18 +21,19 @@ const getLocaleFromCurrency = (currency: string): string => {
   // Return the associated locale or a default if not found
   return currencyLocaleMap[currency] || 'en-US';
 };
-  const formatCurrency = (number: number): string => {
-    const currencyStyle = getCurrencyStyleFromCookie() || 'USD';
-    
-    const locale = getLocaleFromCurrency(currencyStyle);
-    const options: Intl.NumberFormatOptions = {
-      style: 'currency',
-      currency: currencyStyle,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    };
+
+const formatCurrency = (number: number): string => {
+  const currencyStyle = getCurrencyStyleFromCookie() || 'USD';
   
-    return new Intl.NumberFormat(locale, options).format(number);
+  const locale = getLocaleFromCurrency(currencyStyle);
+  const options: Intl.NumberFormatOptions = {
+    style: 'currency',
+    currency: currencyStyle,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   };
+
+  return new Intl.NumberFormat(locale, options).format(number);
+};
   
   export { formatCurrency };

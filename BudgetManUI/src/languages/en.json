@@ -1,0 +1,58 @@
+{
+  "home": "Home",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "profile": "Profile",
+  "edit": "Edit",
+  "delete": "Delete",
+  "save": "Save",
+  "cancel": "Cancel",
+  "Auth": {
+    "LoginView": {
+      "hello": "Hello",
+      "message": "Sign in to your account",
+      "signin": "Sign in"
+    },
+    "RegisterView": {
+      "title": "Register page",
+      "message": "Hello, Friend!",
+      "create": "Creat Account"
+    }
+  },
+  "moneyOverview": {
+    "title": "Money overview",
+    "yourBalance": "Your balance"
+  },
+  "budget": {
+    "title": "Budget"
+  },
+  "moneyHolder": {
+    "title": "Money holder"
+  },
+  "moneySpend": {
+    "title": "Money spend"
+  },
+  "income": {
+    "title": "Income"
+  },
+  "loan": {
+    "title": "Loan"
+  },
+  "debt": {
+    "title": "Debt"
+  },
+  "budgetCat": {
+    "title": "Budget category"
+  },
+  "user": {
+    "title": "Users"
+  },
+  "setting": {
+    "title": "Setting"
+  },
+  "error": {
+    "message": "Our server is undergoing maintenance. Please try again later"
+  },
+  "page-title": "Budget Manager"
+}

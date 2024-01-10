@@ -1,0 +1,58 @@
+{
+  "home": "Trang chủ",
+  "login": "Đăng nhập",
+  "register": "Đăng ký",
+  "logout": "Đăng xuất",
+  "profile": "Hồ sơ",
+  "edit": "Chỉnh sửa",
+  "delete": "Xóa",
+  "save": "Lưu",
+  "cancel": "Hủy",
+  "Auth": {
+    "LoginView": {
+      "hello": "Xin chào",
+      "message": "Đăng nhập vào tài khoản của bạn",
+      "signin": "Đăng nhập"
+    },
+    "RegisterView": {
+      "title": "Trang đăng ký",
+      "message": "Chào bạn, bạn mới!",
+      "create": "Tạo tài khoản"
+    }
+  },
+  "moneyOverview": {
+    "title": "Tổng quan tài chính",
+    "yourBalance": "Số dư của bạn"
+  },
+  "budget": {
+    "title": "Ngân sách"
+  },
+  "moneyHolder": {
+    "title": "Người giữ tiền"
+  },
+  "moneySpend": {
+    "title": "Chi tiêu"
+  },
+  "income": {
+    "title": "Thu nhập"
+  },
+  "loan": {
+    "title": "Vay mượn"
+  },
+  "debt": {
+    "title": "Nợ"
+  },
+  "budgetCat": {
+    "title": "Danh mục ngân sách"
+  },
+  "user": {
+    "title": "Người dùng"
+  },
+  "setting": {
+    "title": "Cài đặt"
+  },
+  "page-title": "Quản lý ngân sách",
+  "error": {
+    "message": "Máy chủ của chúng tôi đang được bảo trì. Vui lòng thử lại sau"
+  }
+}

@@ -2,7 +2,7 @@
 <!-- <div > -->
     <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":">
         <el-form-item label="Language">
-          <el-select v-model="form.language" disabled="">
+          <el-select v-model="form.language" >
             <el-option
                 v-for="item in LanguageOptions"
                 :key="item.value"
@@ -31,6 +31,8 @@
 
 import { ref, watch, onMounted, computed, nextTick, reactive  } from 'vue'
 import Cookies from 'js-cookie';
+// @ts-ignore
+import languages from '@/languages'
 
 const form = reactive({
             language: 'en',
@@ -51,31 +53,40 @@ onMounted(async () => {
     await nextTick(); // Wait for the next update cycle
     form.language = "en";
     form.currency = Cookies.get('currency') || "VND";
-    console.log(form.currency);
+    // console.log(form.currency);
   } catch (error) {
     console.error("Error fetching budget data:", error);
     // Handle the error accordingly
   }
 });
 
+// const _i18n = i18n;
 
 const submitForm = () => {
-    // const formReactive = reactive[formName];
-    // formReactive.value.validate((valid) => {
-    //     if (valid) {
-    //         alert('submit!');
-    //     } else {
-    //         console.log('error submit!!');
-    //         return false;
-    //     }
-    // });
-    // Cookies.set('language', form.language, { expires: 365 });
-    Cookies.set('currency', form.currency, { expires: 365 });
+  // const formReactive = reactive[formName];
+  // formReactive.value.validate((valid) => {
+  //     if (valid) {
+  //         alert('submit!');
+  //     } else {
+  //         console.log('error submit!!');
+  //         return false;
+  //     }
+  // });
+  // $language.languages.locale = form.language;
+  // console.log(form.language);
+  // switchLanguage(form.language);
+  languages.global.locale = form.language as "en" | "vn";
+  Cookies.set('language', form.language, { expires: 365 });
+
+  Cookies.set('currency', form.currency, { expires: 365 });
 };
+
 
 const resetForm = () => {
     // this.$refs[formName].resetFields();
 };
+
+
 </script>
 
 <style>
@@ -105,4 +116,4 @@ const resetForm = () => {
         position: absolute;
         right: 0px;
     }
-</style>
+</style>@/languages@/locales
