@@ -1,7 +1,7 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Debt'" :allowAdd="true" :allowDelete="true" title="Debt"
-            :CustomActions="CustomActions" :allowEdit="false"  @onCustomAction="ChangePage"></BasicAdminFormVue>
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Debt'" :allowAdd="true" :allowDelete="false" title="Debt"
+            :CustomActions="CustomActions" :allowEdit="true"  @onCustomAction="ChangePage"></BasicAdminFormVue>
     </Suspense>
 </template>
 
