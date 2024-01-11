@@ -15,8 +15,10 @@
     "element-plus": "^2.3.7",
     "js-cookie": "^3.0.5",
     "vue": "^3.3.4",
+    "vue-i18n": "^9.9.0",
     "vue-router": "^4.0.13",
-    "vue-toastification": "^2.0.0-rc.5"
+    "vue-toastification": "^2.0.0-rc.5",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",

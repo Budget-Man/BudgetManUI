@@ -15,41 +15,45 @@
       "signin": "Đăng nhập"
     },
     "RegisterView": {
-      "title": "Trang đăng ký",
+      "name": "Trang đăng ký",
       "message": "Chào bạn, bạn mới!",
       "create": "Tạo tài khoản"
     }
   },
   "moneyOverview": {
-    "title": "Tổng quan tài chính",
-    "yourBalance": "Số dư của bạn"
+    "name": "Tổng quan tài chính",
+    "yourBalance": "Số dư của bạn",
+    "expense": "Chi tiêu"
   },
   "budget": {
-    "title": "Ngân sách"
+    "name": "Ngân sách"
   },
   "moneyHolder": {
-    "title": "Người giữ tiền"
+    "name": "Người giữ tiền"
   },
   "moneySpend": {
-    "title": "Chi tiêu"
+    "name": "Chi tiêu"
   },
   "income": {
-    "title": "Thu nhập"
+    "name": "Thu nhập"
   },
   "loan": {
-    "title": "Vay mượn"
+    "name": "Vay mượn"
   },
   "debt": {
-    "title": "Nợ"
+    "name": "Nợ"
   },
   "budgetCat": {
-    "title": "Danh mục ngân sách"
+    "name": "Danh mục ngân sách"
   },
   "user": {
-    "title": "Người dùng"
+    "name": "Người dùng"
   },
   "setting": {
-    "title": "Cài đặt"
+    "name": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "currency-style": "Kiểu tiền tệ",
+    "defaultMoneyHolder": "@:moneyHolder.name mặc định"
   },
   "page-title": "Quản lý ngân sách",
   "error": {
