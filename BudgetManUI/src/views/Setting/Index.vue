@@ -1,7 +1,7 @@
 <template>
 <!-- <div > -->
     <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":">
-        <el-form-item label="Language">
+        <el-form-item :label="$t('setting.language')">
           <el-select v-model="form.language" >
             <el-option
                 v-for="item in LanguageOptions"
@@ -11,14 +11,22 @@
                 />
           </el-select>
         </el-form-item>
-        <el-form-item label="Currency style">
+        <el-form-item :label="$t('setting.currency-style')">
             <el-select v-model="form.currency">
                 <el-option key="USD" label="USD" value="USD" />
                 <el-option key="VND" label="VND" value="VND" />
             </el-select>
         </el-form-item>
-
-
+        <el-form-item :label="$t('setting.defaultMoneyHolder')">
+          <el-select v-model="form.defaultMoneyHolder">
+            <el-option
+                v-for="item in moneyHolderData"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+                />
+          </el-select>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">Save</el-button>
           <el-button @click="resetForm()">Reset default</el-button>
@@ -33,10 +41,17 @@ import { ref, watch, onMounted, computed, nextTick, reactive  } from 'vue'
 import Cookies from 'js-cookie';
 // @ts-ignore
 import languages from '@/languages'
+// @ts-ignore
+import { SearchDTOItem } from './Models/SearchDTOItem.ts'
+// @ts-ignore
+import { handleAPICustom, handleAPIDelete, handleAPISearch } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts'
+// @ts-ignore
+import { SearchRequest, SearchResponse } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts';
 
 const form = reactive({
-            language: 'en',
-            currency: ''
+              language: '',
+              currency: '',
+              defaultMoneyHolder: ''
             });
 const LanguageOptions = [
   {
@@ -51,8 +66,14 @@ const LanguageOptions = [
 onMounted(async () => {
   try {
     await nextTick(); // Wait for the next update cycle
-    form.language = "en";
+    
+    form.language = Cookies.get('language') || "en"; //need to replace with user data from back-end
     form.currency = Cookies.get('currency') || "VND";
+
+    moneyHolderData.value = await getTableData("MoneyHolder");
+    if (moneyHolderData.value && moneyHolderData.value.length > 0) {
+      form.defaultMoneyHolder = Cookies.get('defaultMoneyHolder') || "";
+    }
     // console.log(form.currency);
   } catch (error) {
     console.error("Error fetching budget data:", error);
@@ -63,22 +84,12 @@ onMounted(async () => {
 // const _i18n = i18n;
 
 const submitForm = () => {
-  // const formReactive = reactive[formName];
-  // formReactive.value.validate((valid) => {
-  //     if (valid) {
-  //         alert('submit!');
-  //     } else {
-  //         console.log('error submit!!');
-  //         return false;
-  //     }
-  // });
-  // $language.languages.locale = form.language;
-  // console.log(form.language);
-  // switchLanguage(form.language);
   languages.global.locale = form.language as "en" | "vn";
   Cookies.set('language', form.language, { expires: 365 });
-
   Cookies.set('currency', form.currency, { expires: 365 });
+  Cookies.set('defaultMoneyHolder', form.defaultMoneyHolder, { expires: 365 });
+  // console.log(form.defaultMoneyHolder);
+  //need to save to database
 };
 
 
@@ -86,7 +97,29 @@ const resetForm = () => {
     // this.$refs[formName].resetFields();
 };
 
+const moneyHolderData = ref<[SearchDTOItem]>();
 
+const getTableData = async (apiName: any) => {
+    let searchRequest: SearchRequest = {
+      PageIndex: 1,
+      PageSize: 10,
+    //   filters:  Filter[],
+      SortBy: undefined
+    }
+    var searchApiResponse = await handleAPISearch(searchRequest, apiName);
+    // console.log(searchApiResponse);
+    if (searchApiResponse.isSuccess && searchApiResponse.data != undefined) {
+        // console.log("success");
+        let dataResponse: SearchResponse<SearchDTOItem[] | undefined> = searchApiResponse.data;
+        // console.log(dataResponse);
+        if (dataResponse != undefined && dataResponse.data != undefined && dataResponse.data.length > 0) {
+          return dataResponse.data;
+        }
+        else {
+          return [];
+        }
+    }
+}
 </script>
 
 <style>
@@ -116,4 +149,4 @@ const resetForm = () => {
         position: absolute;
         right: 0px;
     }
-</style>@/languages@/locales
+</style>

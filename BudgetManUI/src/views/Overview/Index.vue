@@ -5,7 +5,7 @@
         <!-- title  -->
         <el-row>
             <el-col :span="24"  :align="'center'">
-                <el-text size="large" tag="b">{{ $t('moneyOverview.title') }}</el-text>
+                <el-text size="large" tag="b">{{ $t('moneyOverview.name') }}</el-text>
             </el-col>
             <!-- holder selector -->
             <el-select v-model="moneyHolderValue" class="m-2 absolute-right" size="small">
@@ -35,7 +35,7 @@
         <el-row justify="space-between">
         <el-col :span="11">
             <el-row justify="space-between">
-                <h2>Income:</h2>
+                <h2>{{ $t('income.name') }}:</h2>
                 <el-col :span="5" >
                     <h1 Id="income-summary" class="summary">{{ formatCurrency(incomeSummary) }}</h1>
                 </el-col>
@@ -50,14 +50,14 @@
     
         <el-col :span="11">
             <el-row justify="space-between">
-                <h2>Outcome:</h2>
+                <h2>{{ $t('moneyOverview.expense') }}:</h2>
                 <el-col :span="5">
-                    <h1 Id="outcome-summary" class="summary">{{ formatCurrency(outcomeSummary) }}</h1>
+                    <h1 Id="expense-summary" class="summary">{{ formatCurrency(expenseSummary) }}</h1>
                 </el-col>
             </el-row>
-            <el-table class="admin-table" :data="outcomeData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false">
+            <el-table class="admin-table" :data="expenseData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false">
                 
-                <el-table-column v-for="column in outcomeCol" :key="column.key" :prop="column.key" :label="column.label"
+                <el-table-column v-for="column in expenseCol" :key="column.key" :prop="column.key" :label="column.label"
                     :sortable="false" :align="column.align"/>
                 
                 </el-table>
@@ -161,7 +161,7 @@ const incomeCol : TableColumn[] = [
         align: "right"
     },
 ];
-const outcomeCol : TableColumn[] = [
+const expenseCol : TableColumn[] = [
     // {
     //     key: "id",
     //     label: "id",
@@ -198,7 +198,7 @@ const handleRowClick = (row: any, column: any, event: any) => {
 const moneyHolderValue = ref('')
 const budgetData = ref(null);
 const incomeData = ref<[] | null>(null)
-const outcomeData = ref<[] | null>(null)
+const expenseData = ref<[] | null>(null)
 // const moneyHolderData = ref<[{
 //     value: 'Option1',
 //     label: 'Option1',
@@ -224,13 +224,13 @@ const incomeSummary = computed(() => {
     return incomeData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
         
 });
-const outcomeSummary = computed(() => {
-    if (!outcomeData.value) {
+const expenseSummary = computed(() => {
+    if (!expenseData.value) {
         return 0; // or any default value when there's no data
     }
 
-    const lastColumnKey = outcomeCol[incomeCol.length - 1].key;
-    return outcomeData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
+    const lastColumnKey = expenseCol[incomeCol.length - 1].key;
+    return expenseData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
         
 });
 onMounted(async () => {
@@ -240,7 +240,7 @@ onMounted(async () => {
 
     //incomeData.value = await Search("Income");
 
-    //outcomeData.value = await Search("MoneySpend");
+    //expenseData.value = await Search("MoneySpend");
     moneyHolderData.value = await Search("MoneyHolder");
     // console.log(moneyHolderData);
     // Set default value to the id of the first row, if available
@@ -260,7 +260,7 @@ watch(moneyHolderValue, async (newValue) => {
       // Process the additional data as needed
       incomeData.value = await Search("Income");
 
-        outcomeData.value = await Search("MoneySpend");
+        expenseData.value = await Search("MoneySpend");
     } catch (error) {
       console.error("Error fetching additional data:", error);
       // Handle the error accordingly

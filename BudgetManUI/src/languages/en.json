@@ -15,44 +15,49 @@
       "signin": "Sign in"
     },
     "RegisterView": {
-      "title": "Register page",
+      "name": "Register page",
       "message": "Hello, Friend!",
       "create": "Creat Account"
     }
   },
   "moneyOverview": {
-    "title": "Money overview",
-    "yourBalance": "Your balance"
+    "name": "Money overview",
+    "yourBalance": "Your balance",
+    "expense": "Expense"
   },
   "budget": {
-    "title": "Budget"
+    "name": "Budget"
   },
   "moneyHolder": {
-    "title": "Money holder"
+    "name": "Money holder"
   },
   "moneySpend": {
-    "title": "Money spend"
+    "name": "Money spend"
   },
   "income": {
-    "title": "Income"
+    "name": "Income"
   },
   "loan": {
-    "title": "Loan"
+    "name": "Loan"
   },
   "debt": {
-    "title": "Debt"
+    "name": "Debt"
   },
   "budgetCat": {
-    "title": "Budget category"
+    "name": "Budget category"
   },
   "user": {
-    "title": "Users"
+    "name": "Users"
   },
   "setting": {
-    "title": "Setting"
+    "name": "Setting",
+    "language": "Language",
+    "currency-style": "Currency style",
+    "defaultMoneyHolder": "Default @.lower:moneyHolder.name"
   },
   "error": {
     "message": "Our server is undergoing maintenance. Please try again later"
   },
-  "page-title": "Budget Manager"
+  "page-title": "Budget Manager",
+  "currency-style": "Currency style"
 }

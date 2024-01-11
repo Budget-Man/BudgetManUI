@@ -15,44 +15,44 @@
             </el-menu-item>
             <el-menu-item index="/Overview" >
               <el-icon><PieChart /></el-icon>
-              <template #title>{{ $t('moneyOverview.title') }}</template>
+              <template #title>{{ $t('moneyOverview.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/MoneyHolder" >
               <el-icon><WalletFilled /></el-icon>
-              <template #title>{{ $t('moneyHolder.title') }}</template>
+              <template #title>{{ $t('moneyHolder.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/moneyspend" >
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('moneySpend.title') }} </template>
+              <template #title>{{ $t('moneySpend.name') }} </template>
             </el-menu-item>
             <el-menu-item index="/income" >
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('income.title') }}</template>
+              <template #title>{{ $t('income.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/loan" >
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('loan.title') }}</template>
+              <template #title>{{ $t('loan.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/debt" >
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('debt.title') }}</template>
+              <template #title>{{ $t('debt.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budget" >
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('budget.title') }}</template>
+              <template #title>{{ $t('budget.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
-              <template #title>{{ $t('budgetCat.title') }}</template>
+              <template #title>{{ $t('budgetCat.name') }}</template>
             </el-menu-item>
            
             <el-menu-item index="/user" >
               <el-icon><Avatar /></el-icon>
-              <template #title>{{ $t('user.title') }}</template>
+              <template #title>{{ $t('user.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/setting" >
               <el-icon><Setting /></el-icon>
-              <template #title>{{ $t('setting.title') }}</template>
+              <template #title>{{ $t('setting.name') }}</template>
             </el-menu-item>
           </el-menu>
         </el-aside>

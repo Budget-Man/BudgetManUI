@@ -27,6 +27,9 @@ export const handleLogin = async (model: LoginViewModel): Promise<AppResponse<st
                 Cookies.set('accessToken', resust.data, { expires: undefined });
                 Cookies.set('UserName',model.userName, { expires: undefined });
 
+                //need to get value of user setting from bank-end
+                //set temporary language
+                Cookies.set('language', 'en', { expires: 365 });
                 //set temporary currency
                 Cookies.set('currency', 'VND', { expires: undefined });
             }
