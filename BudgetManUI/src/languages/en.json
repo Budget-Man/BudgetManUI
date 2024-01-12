@@ -32,7 +32,7 @@
   "budget": {
     "name": "Budget",
     "choose": "@:chose @.lower:budget.name",
-    "please-choise": "Please choise Budget"
+    "please-choise": "Please choise @:budget.name"
   },
   "moneyHolder": {
     "name": "Money holder",

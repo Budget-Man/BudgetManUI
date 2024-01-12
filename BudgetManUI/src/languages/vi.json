@@ -31,7 +31,8 @@
   },
   "budget": {
     "name": "Ngân sách",
-    "choose": "@:choose @.lower:budget.name"
+    "choose": "@:choose @.lower:budget.name",
+    "please-choise": "Vui lòng chọn @:budget.name"
   },
   "moneyHolder": {
     "name": "Nơi giữ tiền",
@@ -78,7 +79,7 @@
   "confirm": "Xác nhận",
   "reset-default": "Trờ về mặc định",
   "search": "Tìm",
-  "results": "Kết quả",
+  "results": "kết quả",
   "page": "Trang",
   "name": "Tên",
   "balance": "Số tiền",
