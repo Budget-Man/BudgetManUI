@@ -23,9 +23,9 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="emit('onCloseClicked')">Cancel</el-button>
+                <el-button @click="emit('onCloseClicked')">{{ $t('cancel') }}</el-button>
                 <el-button type="primary" @click="Save">
-                    Confirm
+                    {{ $t('confirm') }}
                 </el-button>
             </span>
         </template>
@@ -42,7 +42,8 @@ import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts';
-
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;
@@ -95,12 +96,12 @@ const Save = async () => {
             var editresult = await handleAPIUpdate(props.editItem, editUrl);
             if (editresult.isSuccess) {
                 ElMessage({
-                    message: 'data Updated.',
+                    message: t('data-updated'),
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Update failed.');
+                ElMessage.error(t('update-failed'));
                 return;
             }
         }
@@ -109,22 +110,22 @@ const Save = async () => {
             var createresult = await handleAPICreate(props.editItem, createUrl);
             if (createresult.isSuccess) {
                 ElMessage({
-                    message: 'data Created.',
+                    message: t('data-created'),
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Create failed.');
+                ElMessage.error(t('create-failed'));
                 return;
             }
         }
         emit("onSaved");
     }
     else if (valid !== false) {
-        ElMessage.error('The field: ' + valid.label + ' is not allowed!');
+        ElMessage.error(t('field-valid-false',{val:valid.label}));
     }
     else {
-        ElMessage.error('valid failed.');
+        ElMessage.error(t('valid-failed'));
     }
 }
 const handleUpdateValue = (key: string, value: string): void => {

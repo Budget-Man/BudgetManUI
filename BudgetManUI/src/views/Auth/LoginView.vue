@@ -5,17 +5,17 @@
     <el-col :span="24" class="login-col">
       <div class="grid-content ep-bg-purple">
         <p>Hello!</p>
-        <p class="hello">Sign in to your account </p>
+        <p class="hello">{{ $t('Auth.LoginView.message') }} </p>
         <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
           <el-form-item label="" prop="username">
-            <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
+            <el-input v-model="state.userName" :placeholder="$t('Auth.LoginView.user-name')" :prefix-icon="User" />
           </el-form-item>
           <el-form-item label="" prop="pass">
-            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" placeholder="Password"
+            <el-input v-model="state.password" type="password" width="300px" autocomplete="off" :placeholder="$t('Auth.LoginView.password')"
               :prefix-icon="Key" />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="login()">Sign In</el-button>
+            <el-button type="primary" @click="login()">{{ $t('Auth.LoginView.sign-in') }}</el-button>
           </el-form-item>
         </el-form>
       </div>

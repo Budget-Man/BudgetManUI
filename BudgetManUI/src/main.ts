@@ -15,7 +15,8 @@ import 'vue-toastification/dist/index.css';
 import router from './router/index.ts'
 // import './styles/dark/css-vars.css'
 // @ts-ignore
-import startup from './Services/Startup.ts'
+import './Services/Startup.ts'
+// @ts-ignore
 import languages from './languages'
 const app = createApp(App)
 
@@ -25,5 +26,3 @@ app.use(ElementPlus)
 app.use(Toast)
 app.use(languages)
 app.mount('#app')
-
-startup.initialize();

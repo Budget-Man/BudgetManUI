@@ -28,8 +28,8 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()">Save</el-button>
-          <el-button @click="resetForm()">Reset default</el-button>
+          <el-button type="primary" @click="submitForm()">{{ $t('save') }}</el-button>
+          <el-button @click="resetForm()">{{ $t('reset-default') }}</el-button>
         </el-form-item>
     </el-form>
 <!-- </div> -->
@@ -59,7 +59,7 @@ const LanguageOptions = [
     label: 'English',
   },
   {
-    value: 'vn',
+    value: 'vi',
     label: 'Tiếng Việt',
   }];
 
@@ -84,13 +84,16 @@ onMounted(async () => {
 // const _i18n = i18n;
 
 const submitForm = () => {
-  languages.global.locale = form.language as "en" | "vn";
+  // languages.global.legacy = false;
+   languages.global.locale.value = form.language as "en" | "vi";
+  //languages.global.locale = "vn";
   Cookies.set('language', form.language, { expires: 365 });
   Cookies.set('currency', form.currency, { expires: 365 });
   Cookies.set('defaultMoneyHolder', form.defaultMoneyHolder, { expires: 365 });
   // console.log(form.defaultMoneyHolder);
   //need to save to database
 };
+
 
 
 const resetForm = () => {

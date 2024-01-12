@@ -1,47 +1,47 @@
 <template>
-    <el-dialog :model-value="openDialog" title="Create Money spend" class="form-dialog" width="50%"
+    <el-dialog :model-value="openDialog" :title="$t('moneySpend.create')" class="form-dialog" width="50%"
         @close="Close">
 
         <div class="editform" v-if="model != undefined">
             <div>
-                <label>Budget</label>
-                <el-select v-model="model.BudgetId" placeholder="Chose Budget" class="action-input">
+                <label>{{ $t('budget.name') }}</label>
+                <el-select v-model="model.BudgetId" :placeholder="$t('budget.choose')" class="action-input">
 
                     <el-option v-for="item in BudgetList.data" :key="item.id" :label="item.name" :value="item.id" />
                 </el-select>
             </div>
             <div>
-                <label>Money Holder</label>
-                <el-select v-model="model.MoneyHolderId" placeholder="Chose Money holder" class="action-input">
+                <label>{{ $t('moneyHolder.name') }}</label>
+                <el-select v-model="model.MoneyHolderId" :placeholder="$t('moneyHolder.choose')" class="action-input">
 
                     <el-option v-for="item in MoneyHolderList.data" :key="item.id" :label="item.name" :value="item.id" />
                 </el-select>
             </div>
             <el-row class="mb-4">
                 <label>Reason</label>
-                <el-input v-model="model.Reason" placeholder="Reason" />
+                <el-input v-model="model.Reason" :placeholder="$t('moneySpend.reason')" />
 
             </el-row>
 
             <el-row class="mt-1">
-                <label>Details</label>
+                <label>{{ $t('details') }}</label>
                 <el-button small type="success" @click="AddDetail" :icon="Plus" class="ml-1" round />
 
             </el-row>
 
             <el-row :gutter="20">
                 <el-col :span="5">
-                    Reason
+                    {{ $t('moneySpend.reason') }}
                 </el-col>
                 <el-col :span="5">
-                    Quantity
+                    {{ $t('moneySpend.quantity') }}
                 </el-col>
 
                 <el-col :span="5">
-                    Unit Price
+                    {{ $t('moneySpend.unit-price') }}
                 </el-col>
                 <el-col :span="1">
-                    Total
+                    {{ $t('total') }}
                 </el-col>
             </el-row>
             <div v-for="detail in model.Details">
@@ -71,7 +71,7 @@
                 </el-col>
 
                 <el-col :span="7">
-                    Total Amount:
+                    {{ $t('total-amount') }}:
                 </el-col>
                 <el-col :span="3">
                     {{ TotalPrice }}
@@ -81,9 +81,9 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="Close">Cancel</el-button>
+                <el-button @click="Close">{{ $t('cancel') }}</el-button>
                 <el-button type="primary" @click="Save">
-                    Confirm
+                    {{ $t('confirm') }}
                 </el-button>
             </span>
         </template>
@@ -108,6 +108,9 @@ import {
 
 } from '@element-plus/icons-vue'
 import { MoneySpendDetailDto } from '@/Models/Dtos/MoneySpendDetail';
+
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n();
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;
@@ -121,7 +124,7 @@ const props = defineProps<{
 const model = ref<CreateMoneySpendRequest>({});
 const Validate = (): boolean => {
     if (model.value.BudgetId == undefined) {
-        ElMessage.error('Please choise Budget.');
+        ElMessage.error(t("budget.please-choise"));
         return false;
     }
     if (model.value.MoneyHolderId == undefined) {
