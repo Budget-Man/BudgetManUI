@@ -11,7 +11,7 @@
       :CustomActions="CustomRowActions" @on-custom-action="handleCustomAction" @onSortChange="handleSortChange" />
     <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
       @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
-    <div class="el-pagination">Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages</div>
+    <div class="el-pagination"> {{ totalItem }} {{ $t('results') }}. {{ $t('page') }} {{ searchRequest.PageIndex }} / {{ totalPages }}</div>
   <!-- </el-space> -->
 </div>
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
@@ -49,6 +49,8 @@ import type { AppResponse } from '@/models/AppResponse';
 import { ElMessage } from 'element-plus';
 import type { CustomAction, CustomActionResponse } from './Models/CustomAction';
 import { SortByInfo } from '../BaseModels/SortByInfo';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 //#region Method
 
 const Search = async () => {
@@ -144,7 +146,7 @@ type ChildMethodType = () => void;
 // const OpenCreateDialog: OpenCreateDialogType = inject('OpenDialogEditItem', undefined);
 
 const handleOpenCreate = async () => {
-  console.log("open create");
+  // console.log("open create");
 
   EdittingItem.value = new SearchDTOItem(props.tableColumns);
 
@@ -156,14 +158,14 @@ const handleDelete = async (id: string) => {
   var deleteresult = await handleAPIDelete(id, props.apiName);
   if (deleteresult.isSuccess) {
     ElMessage({
-      message: 'row deleted.',
+      message: t('row-deleted'),
       type: 'success',
     });
     await Search();
   }
   else {
     ElMessage({
-      message: 'row not deleted.',
+      message: t('deleted-error'),
       type: 'error',
     });
   }

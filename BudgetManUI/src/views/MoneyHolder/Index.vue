@@ -1,6 +1,6 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneyHolder'" :allowAdd="true" :allowDelete="true" title="Money Holder"
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneyHolder'" :allowAdd="true" :allowDelete="true" :title="$t('moneyHolder.name')"
            :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
     </Suspense>
 </template>
@@ -12,7 +12,8 @@ import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n();
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -30,7 +31,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "name",
+        label: t('name'),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -44,7 +45,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "bankName",
-        label: "bankName",
+        label: t('moneyHolder.bankname'),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -58,7 +59,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "balance",
-        label: "Balance",
+        label: t('balance'),
         enableEdit: false,
         enableCreate: false,
         hidden: false,

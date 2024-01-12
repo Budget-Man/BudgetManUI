@@ -3,8 +3,8 @@
     @keyup.enter="handleSelect">
     <el-menu-item index="0">LOGO</el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item index="1" @click="Login()">Login</el-menu-item>
-    <el-menu-item index="2" @click="Register()">Register</el-menu-item>
+    <el-menu-item index="1" @click="Login()">{{ $t('login') }}</el-menu-item>
+    <el-menu-item index="2" @click="Register()">{{ $t('register') }}</el-menu-item>
   </el-menu>
   <div class="container">
     <div class="left-part">

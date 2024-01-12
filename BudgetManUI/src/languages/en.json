@@ -8,11 +8,15 @@
   "delete": "Delete",
   "save": "Save",
   "cancel": "Cancel",
+  "chose": "Chose",
   "Auth": {
     "LoginView": {
       "hello": "Hello",
       "message": "Sign in to your account",
-      "signin": "Sign in"
+      "signin": "Sign in",
+      "sign-in": "Sign In",
+      "user-name": "User name",
+      "password": "Password"
     },
     "RegisterView": {
       "name": "Register page",
@@ -26,13 +30,21 @@
     "expense": "Expense"
   },
   "budget": {
-    "name": "Budget"
+    "name": "Budget",
+    "choose": "@:chose @.lower:budget.name",
+    "please-choise": "Please choise Budget"
   },
   "moneyHolder": {
-    "name": "Money holder"
+    "name": "Money holder",
+    "choose": "@:chose @.lower:moneyHolder.name",
+    "bankname": "bankName"
   },
   "moneySpend": {
-    "name": "Money spend"
+    "name": "Money spend",
+    "reason": "Reason",
+    "create": "@:create @:moneySpend.name",
+    "quantity": "Quantity",
+    "unit-price": "Unit Price"
   },
   "income": {
     "name": "Income"
@@ -59,5 +71,25 @@
     "message": "Our server is undergoing maintenance. Please try again later"
   },
   "page-title": "Budget Manager",
-  "currency-style": "Currency style"
+  "amount": "Amount",
+  "create": "Create",
+  "details": "Details",
+  "total": "Total",
+  "total-amount": "Total Amount",
+  "confirm": "Confirm",
+  "reset-default": "Reset default",
+  "search": "search",
+  "results": "results",
+  "page": "Page",
+  "name": "name",
+  "balance": "Balance",
+  "operations": "Operations",
+  "data-updated": "data Updated.",
+  "update-failed": "Update failed.",
+  "data-created": "data Created.",
+  "create-failed": "Create failed.",
+  "valid-failed": "valid failed.",
+  "field-valid-false": "The field: {val} is not allowed!",
+  "row-deleted": "Row deleted.",
+  "deleted-error": "Row not deleted."
 }
