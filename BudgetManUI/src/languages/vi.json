@@ -32,7 +32,10 @@
   "budget": {
     "name": "Ngân sách",
     "choose": "@:choose @.lower:budget.name",
-    "please-choise": "Vui lòng chọn @:budget.name"
+    "please-choise": "Vui lòng chọn @:budget.name",
+    "budgetCategoryId":"Loại",
+    "budgetCategoryName":"Loại",
+    "balance": "Số tiền"
   },
   "moneyHolder": {
     "name": "Nơi giữ tiền",
@@ -47,19 +50,54 @@
     "unit-price": "Đơn giá"
   },
   "income": {
-    "name": "Thu nhập"
+    "name": "Thu nhập",
+    "moneyHolderName" : " Nơi giữ tiền",
+    "moneyHolderId" : " Nơi giữ tiền",
+    "amount": "Số tiền",
+    "create": "@:create @.lower:income.name"
   },
   "loan": {
-    "name": "Vay mượn"
+    "name": "Vay mượn",
+    "totalAmount":"Tổng cộng",
+    "remainAmount":"Số tiền còn lại",
+    "totalInterest": "Tổng tiền lãi",
+    "interestRate":"Lãi suất",
+    "ratePeriod":"Tỷ lệ thời gian",
+    "Daily": "Hàng ngày",
+    "Weekly":"Hàng tuần",
+    "Monthly":"Hàng tháng",
+    "Quarterly":"Hàng quý",
+    "Annually":"Hàng năm",
+    "Irregular":"Không thường xuyên",
+    "moneyHolderName": "Nơi giữ tiền",
+    "moneyHolderId": "Nơi giữ tiền"
+    
   },
   "debt": {
-    "name": "Nợ"
+    "name": "Nợ",
+    "totalAmount":"Tổng cộng",
+    "remainAmount":"Số tiền còn lại",
+    "totalInterest": "Tổng tiền lãi",
+    "interestRate":"Lãi suất",
+    "ratePeriod":"Tỷ lệ thời gian",
+    "Daily": "Hàng ngày",
+    "Weekly":"Hàng tuần",
+    "Monthly":"Hàng tháng",
+    "Quarterly":"Hàng quý",
+    "Annually":"Hàng năm",
+    "Irregular":"Không thường xuyên",
+    "moneyHolderName": "Nơi giữ tiền",
+    "moneyHolderId": "Nơi giữ tiền"
   },
   "budgetCat": {
     "name": "Danh mục ngân sách"
   },
   "user": {
-    "name": "Người dùng"
+    "name": "Người dùng",
+    "Role":"Vai trò",
+    "Admin":"Quản trị viên",
+    "TenantAdmin":"Người dùng",
+    "Reset":"Đặt lại mật khẩu"
   },
   "setting": {
     "name": "Cài đặt",
