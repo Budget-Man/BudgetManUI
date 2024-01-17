@@ -32,7 +32,7 @@ import { useRoute } from 'vue-router';
 import { handleGetLoan } from '../../Services/Loan/GetById'
 import type { LoanDto } from '@/Models/Dtos/LoanDto';
 import { ref } from 'vue';
-import type { AppResponse } from '@/models/AppResponse';
+import type { AppResponse } from '@/Models/AppResponse';
 
 const Loan = ref<LoanDto|undefined>();
 const tableColumns: TableColumn[] = [
