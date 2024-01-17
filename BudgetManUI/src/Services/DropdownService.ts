@@ -1,6 +1,6 @@
 import  { DropdownDto } from "@/Models/Dtos/DropdownDto";
 import  { SearchDTOItem } from "@/components/maynghien/adminTable/Models/SearchDTOItem";
-import  { AppResponse } from "@/models/AppResponse";
+import  { AppResponse } from "@/Models/AppResponse";
 import { axiosInstance } from "./axiosConfig";
 
 export const handleGetDropdownList = async (apiurl: string): Promise<AppResponse<DropdownDto[] | undefined>> => {
