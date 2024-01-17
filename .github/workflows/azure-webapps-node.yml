@@ -59,3 +59,4 @@ jobs:
             docker network connect nginx-proxy budgetui;
              docker restart nginx-proxy;
           "
+ 
