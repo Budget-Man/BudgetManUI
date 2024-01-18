@@ -16,19 +16,19 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue'
-    import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 
-    const router = useRouter();
-    const handleSelect = (key: string, keyPath: string[]) => {
-        console.log(key, keyPath)
-    }
-    const Login = () => {
-        window.location.href = `/login`;
-    }
-    const Register = () => {
-        window.location.href = `/register`;
-    }
+const router = useRouter();
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const Login = () => {
+    window.location.href = `/login`;
+  }
+const Register = () => {
+    window.location.href = `/register`;
+  }
 </script>
 <style>
     div.el-row.login-container {
