@@ -57,10 +57,10 @@ const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 const Login = () => {
-    window.location.href = `/login`;
+    router.push(`/login`);
   }
 const Register = () => {
-    window.location.href = `/register`;
+    router.push(`/register`);
   }
 const _toast = useToast();
 const state = reactive<RegisterViewModel>({
@@ -103,26 +103,8 @@ html {
     justify-content: center;
     align-items: center;
 }
-
-.login-container {
-    width: 600px;
-    height: 400px;
-    background-color: var(--el-color-primary-light-7);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.login-col {
-    display: grid;
-    place-items: center;
-    margin-bottom: 80px;
-}
-
-.grid-content {
-    width: 400px;
-    text-align: center;
+.el-row.login-container {
+    margin: 0 !important;
 }
 </style>
   
