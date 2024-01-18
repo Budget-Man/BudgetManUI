@@ -84,7 +84,7 @@ const login = async () => {
 }
 
 const googleLogin = async () => {
-  googleAuthCodeLogin().then(async(response) => {
+  googleAuthCodeLogin().then(async(response: { code: string; }) => {
     // console.log("Handle the response", response);
     const loginResult = await handleLoginByGoogle(response.code);
     if (loginResult.isSuccess)
