@@ -2,6 +2,13 @@
 
 <template>
   <el-row class="login-container">
+    <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
+    @keyup.enter="handleSelect">
+    <el-menu-item index="0">LOGO</el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1" @click="Login()">Login</el-menu-item>
+    <el-menu-item index="2" @click="Register()">Register</el-menu-item>
+  </el-menu>
     <el-col :span="24" class="login-col">
       <div class="grid-content ep-bg-purple">
         <p>Hello!</p>
@@ -37,7 +44,18 @@ import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 // @ts-ignore
 import { handleLogin } from "../../Services/LoginService.ts"
 import { useToast } from "vue-toastification";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const Login = () => {
+    window.location.href = `/login`;
+  }
+const Register = () => {
+    window.location.href = `/register`;
+  }
 const _toast = useToast();
 const state = reactive<LoginViewModel>({
   userName: '',
@@ -93,10 +111,13 @@ div.el-row.login-container{
     padding: 0 0rem;
   }
 }
-.el-menu {
+.el-menu-demo {
     border-right: none;
-    color: var(--el-text-color-primary);
-    background:#b9ddfb;
+    color: white; /* Màu chữ là màu đen */
+    background:#d9ecff;
+    background-size: cover;
+    background-position: center;
     width: 100%;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Hiệu ứng đôi chút độ mờ cho chữ */
 }
 </style>

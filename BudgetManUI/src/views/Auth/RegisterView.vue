@@ -1,6 +1,13 @@
 
 <template>
     <el-row class="login-container">
+        <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
+        @keyup.enter="handleSelect">
+        <el-menu-item index="0">LOGO</el-menu-item>
+        <div class="flex-grow" />
+        <el-menu-item index="1" @click="Login()">Login</el-menu-item>
+        <el-menu-item index="2" @click="Register()">Register</el-menu-item>
+         </el-menu>
         <el-col :span="24" class="login-col">
             <div class="grid-content ep-bg-purple">
                 <p class="helloRegister">Hello, Friend!</p>
@@ -43,8 +50,18 @@ import { RegisterViewModel } from '../../Models/RegisterViewModel.ts'
 // @ts-ignore
 import { handleRegister } from "../../Services/RegisterService.ts"
 import { useToast } from "vue-toastification";
-import router from '@/router';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const Login = () => {
+    window.location.href = `/login`;
+  }
+const Register = () => {
+    window.location.href = `/register`;
+  }
 const _toast = useToast();
 const state = reactive<RegisterViewModel>({
     userName: '',
@@ -100,6 +117,7 @@ html {
 .login-col {
     display: grid;
     place-items: center;
+    margin-bottom: 80px;
 }
 
 .grid-content {
