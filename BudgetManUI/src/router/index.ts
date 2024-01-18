@@ -21,6 +21,9 @@ import DebtView from '../views/Debt/Index.vue'
 import LoanView from '../views/Loan/Index.vue'
 import LoanDeatailView from '../views/Loan/Deatail.vue'
 import MoneySpendView from '../views/MoneySpend/Index.vue'
+import MoneyOverView from '../views/Overview/Index.vue'
+import Setting from '../views/Setting/Index.vue'
+import ErrorPage from '../views/Error/Index.vue'
 
 // Create the router instance
 const router = createRouter({
@@ -70,6 +73,14 @@ const router = createRouter({
         {
           path: 'Loan/:Id',
           component: LoanDeatailView,
+        },
+        {
+          path: 'Overview',
+          component: MoneyOverView,
+        },
+        {
+          path: 'Setting',
+          component: Setting,
         }
         // Other routes using default layout...
       ],
@@ -80,20 +91,27 @@ const router = createRouter({
       children: [
         {
           path: '/login',
+          name: 'login',
           component: LoginView,
         },
         {
           path: '/register',
+          name: 'register',
           component: RegisterView,
         },
         // Other routes using alternative layout...
       ],
     },
+    {
+      path: '/error',
+      name: 'error',
+      component: ErrorPage,
+    },
   ],
 });
 router.beforeEach((to, from, next) => {
   const isAuthenticated = !!Cookies.get('accessToken');
-  
+  // console.log(isAuthenticated);
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login'); // Redirect to the login page
   } else {

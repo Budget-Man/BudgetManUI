@@ -10,7 +10,7 @@
          </el-menu>
         <el-col :span="24" class="login-col">
             <div class="grid-content ep-bg-purple">
-                <p class="helloRegister">Hello, Friend!</p>
+                <p class="helloRegister">{{$t("Auth.RegisterView.message")}}!</p>
                 <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
                     <el-form-item label="" prop="username">
                         <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
@@ -27,7 +27,7 @@
 
 
                     <el-form-item>
-                        <el-button type="primary" @click="register()">Creat Account</el-button>
+                        <el-button type="primary" @click="register()">{{ $t('Auth.RegisterView.create') }}</el-button>
                     </el-form-item>
 
                 </el-form>

@@ -13,49 +13,56 @@
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
+            <el-menu-item index="/Overview" >
+              <el-icon><PieChart /></el-icon>
+              <template #title>{{ $t('moneyOverview.name') }}</template>
+            </el-menu-item>
             <el-menu-item index="/MoneyHolder" >
               <el-icon><WalletFilled /></el-icon>
-              <template #title>Money Holder</template>
+              <template #title>{{ $t('moneyHolder.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/moneyspend" >
               <el-icon><Money /></el-icon>
-              <template #title>Money spend</template>
+              <template #title>{{ $t('moneySpend.name') }} </template>
             </el-menu-item>
             <el-menu-item index="/income" >
               <el-icon><Money /></el-icon>
-              <template #title>Income</template>
+              <template #title>{{ $t('income.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/loan" >
               <el-icon><Money /></el-icon>
-              <template #title>Loan</template>
+              <template #title>{{ $t('loan.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/debt" >
               <el-icon><Money /></el-icon>
-              <template #title>Debt</template>
+              <template #title>{{ $t('debt.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budget" >
               <el-icon><Money /></el-icon>
-              <template #title>Budget</template>
+              <template #title>{{ $t('budget.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
-              <template #title>Budget Category</template>
+              <template #title>{{ $t('budgetCat.name') }}</template>
             </el-menu-item>
            
             <el-menu-item index="/user" >
               <el-icon><Avatar /></el-icon>
-              <template #title>USER</template>
+              <template #title>{{ $t('user.name') }}</template>
             </el-menu-item>
-           
+            <el-menu-item index="/setting" >
+              <el-icon><Setting /></el-icon>
+              <template #title>{{ $t('setting.name') }}</template>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
           <router-view />
           <el-image
-  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
-  fit="cover"
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-</el-image>
+            src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+            fit="cover"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+          </el-image>
         </el-main>
       </el-container>
       <!-- <el-footer>
@@ -131,7 +138,6 @@
 .el-aside {
   color: #b9ddfb;
   background:#b9ddfb;
-  height: 580px;
 }
 .menu-aside{
   width: fit-content;
@@ -145,7 +151,6 @@
 .el-main {
   padding: 10px;
   width: 100%;
-  height: 580px;
 }
 
 .toolbar {
@@ -160,6 +165,7 @@
 }
 .el-pagination{
   background-color: #ffffff;
+  justify-content: center;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: fit-content;
@@ -168,6 +174,14 @@
 .el-menu-vertical-demo {
   width: 55px;
   min-height: 400px;
+}
+
+.table-container{
+  background-color: white; 
+  padding: 10px;
+  border-radius: var(--el-border-radius-base);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
 <script lang="ts" setup>
@@ -216,4 +230,5 @@ function logout() {
   }
   window.location.href = "/login";
 }
+
 </script>

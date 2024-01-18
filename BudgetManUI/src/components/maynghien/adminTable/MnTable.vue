@@ -3,16 +3,16 @@
 
 <template>
     <div>
-        <el-table class="admin-table" :data="datas" @sort-change="handleSortChange" border row-key="id" table-layout="auto"
-            @row-click="handleRowClick">
+        <el-table class="admin-table" :data="datas" @sort-change="handleSortChange" border row-key="id" table-layout="fixed"
+            @row-click="handleRowClick" >
             <el-table-column v-for="column in shownCol" :key="column.key" :prop="column.key" :label="column.label"
                 :sortable="column.sorable ? 'custom' : 'false'" :visible="column.hidden == false" />
-            <el-table-column label="Operations" v-if="enableDelete || enableEdit">
+            <el-table-column :label="$t('operations')" v-if="enableDelete || enableEdit">
                 <template #default="scope">
                     <el-button v-if="enableEdit" :icon="Edit" size="small"
-                        @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                        @click="handleEdit(scope.$index, scope.row)">{{ $t('edit') }}</el-button>
                     <el-button v-if="enableDelete" :icon="Delete" size="small" type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                        @click="handleDelete(scope.$index, scope.row)">{{ $t('delete') }}</el-button>
                     <el-button v-for="action in CustomActions" :icon="action.Icon" size="small"
                         @click="handleCustomAction(scope.$index, scope.row, action)">{{ action.ActionLabel }}</el-button>
                 </template>

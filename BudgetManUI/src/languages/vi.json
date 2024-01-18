@@ -1,0 +1,96 @@
+{
+  "home": "Trang chủ",
+  "login": "Đăng nhập",
+  "register": "Đăng ký",
+  "logout": "Đăng xuất",
+  "profile": "Hồ sơ",
+  "edit": "Chỉnh sửa",
+  "delete": "Xóa",
+  "save": "Lưu",
+  "cancel": "Hủy",
+  "chose": "Chọn",
+  "Auth": {
+    "LoginView": {
+      "hello": "Xin chào",
+      "message": "Đăng nhập vào tài khoản của bạn",
+      "signin": "Đăng nhập",
+      "sign-in": "Đăng nhập",
+      "user-name": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "loginByGG": "Đăng nhập bằng Google"
+    },
+    "RegisterView": {
+      "name": "Trang đăng ký",
+      "message": "Chào mừng bạn đến với chúng tôi!",
+      "create": "Tạo tài khoản"
+    }
+  },
+  "moneyOverview": {
+    "name": "Tổng quan tài chính",
+    "yourBalance": "Số dư của bạn",
+    "expense": "Chi tiêu"
+  },
+  "budget": {
+    "name": "Ngân sách",
+    "choose": "@:choose @.lower:budget.name",
+    "please-choise": "Vui lòng chọn @:budget.name"
+  },
+  "moneyHolder": {
+    "name": "Nơi giữ tiền",
+    "choose": "@:chose @.lower:moneyHolder.name\"",
+    "bankname": "Tên ngân hàng"
+  },
+  "moneySpend": {
+    "name": "Chi tiêu",
+    "reason": "Lý do",
+    "create": "@:create @.lower:moneySpend.name",
+    "quantity": "Số lượng",
+    "unit-price": "Đơn giá"
+  },
+  "income": {
+    "name": "Thu nhập"
+  },
+  "loan": {
+    "name": "Vay mượn"
+  },
+  "debt": {
+    "name": "Nợ"
+  },
+  "budgetCat": {
+    "name": "Danh mục ngân sách"
+  },
+  "user": {
+    "name": "Người dùng"
+  },
+  "setting": {
+    "name": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "currency-style": "Kiểu tiền tệ",
+    "defaultMoneyHolder": "@:moneyHolder.name mặc định"
+  },
+  "page-title": "Quản lý ngân sách",
+  "error": {
+    "message": "Máy chủ của chúng tôi đang được bảo trì. Vui lòng thử lại sau"
+  },
+  "amount": "Số tiền",
+  "create": "Thêm mới",
+  "details": "Chi tiết",
+  "total": "Tổng",
+  "total-amount": "Tổng cộng",
+  "confirm": "Xác nhận",
+  "reset-default": "Trờ về mặc định",
+  "search": "Tìm",
+  "results": "kết quả",
+  "page": "Trang",
+  "name": "Tên",
+  "balance": "Số tiền",
+  "operations": "Hành động",
+  "data-updated": "Dữ liệu đã được cập nhật.",
+  "update-failed": "Cập nhật thất bại",
+  "data-created": "Dữ liệu đã được thêm mới.",
+  "create-failed": "Thêm mới thất bại.",
+  "valid-failed": "Xác thực thất bại!",
+  "field-valid-false": "Vui lòng nhập trường dữ liệu: {val}",
+  "row-deleted": "Dữ liệu đã được xóa",
+  "deleted-error": "Đã xảy ra lỗi, dữ liệu không thể xóa"
+}

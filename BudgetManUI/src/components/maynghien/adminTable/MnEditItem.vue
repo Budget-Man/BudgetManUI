@@ -23,9 +23,9 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="emit('onCloseClicked')">Cancel</el-button>
+                <el-button @click="emit('onCloseClicked')">{{ $t('cancel') }}</el-button>
                 <el-button type="primary" @click="Save">
-                    Confirm
+                    {{ $t('confirm') }}
                 </el-button>
             </span>
         </template>
@@ -42,6 +42,8 @@ import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts';
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;
@@ -59,51 +61,46 @@ const props = defineProps<{
 }>();
 // Use computed to create a filtered model
 const model = ref<SearchDTOItem>(props.editItem);
-const Validate = (): boolean => {
-    let result=true;
-    if (model != undefined){
-
-        props.columns.forEach(column => {
+const Validate = (): any => {
+    if (model != undefined)
+        for (const column of props.columns) {
             if (column.enableEdit) {
                 const value = model.value[column.key];
                 if (column.key == "id" && props.isEdit) {
-                    if (value == undefined){
-                        result=false;
-                        return;
-                    }
-                        
+                    if (value == undefined)
+                        return column;
                 }
-                if (column.required && (value == undefined || value == "")) {
-                    
-                    console.log("validate false");
-                    result=false;
-                    return;
+                // console.log("Validate:");
+                // console.log(column);
+                // console.log(value);
+                if (column.required && (value == undefined || value == "" || (column.inputType=="number" && value == 0))) {
+                    console.log("false");
+                    return column;
                 }
-                
+                //console.log("true");
             }
 
-        });
-    }
+        }
     else return false;
 
     console.log("validate true");
-    return result;
+    return true;
 }
 const Save = async () => {
     const valid = Validate();
     console.log(valid);
-    if (valid) {
+    if (valid === true) {
         if (props.isEdit == true && props.editItem != undefined) {
             const editUrl = props.apiName + (props.editUrl != undefined ? "/" + props.editUrl : "");
             var editresult = await handleAPIUpdate(props.editItem, editUrl);
             if (editresult.isSuccess) {
                 ElMessage({
-                    message: 'data Updated.',
+                    message: t('data-updated'),
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Update failed.');
+                ElMessage.error(t('update-failed'));
                 return;
             }
         }
@@ -112,19 +109,22 @@ const Save = async () => {
             var createresult = await handleAPICreate(props.editItem, createUrl);
             if (createresult.isSuccess) {
                 ElMessage({
-                    message: 'data Created.',
+                    message: t('data-created'),
                     type: 'success',
                 });
             }
             else {
-                ElMessage.error('Create failed.');
+                ElMessage.error(t('create-failed'));
                 return;
             }
         }
         emit("onSaved");
     }
+    else if (valid !== false) {
+        ElMessage.error(t('field-valid-false',{val:valid.label}));
+    }
     else {
-        ElMessage.error('valid failed.');
+        ElMessage.error(t('valid-failed'));
     }
 }
 const handleUpdateValue = (key: string, value: string): void => {
