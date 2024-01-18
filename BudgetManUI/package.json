@@ -10,15 +10,15 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
   },
   "dependencies": {
-    "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
     "element-plus": "^2.3.7",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "vue": "^3.3.4",
     "vue-i18n": "^9.9.0",
     "vue-router": "^4.0.13",
     "vue-toastification": "^2.0.0-rc.5",
-    "vuex": "^4.1.0"
+    "vue3-google-login": "^2.0.25"
   },
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",

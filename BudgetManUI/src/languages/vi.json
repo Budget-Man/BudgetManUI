@@ -16,11 +16,12 @@
       "signin": "Đăng nhập",
       "sign-in": "Đăng nhập",
       "user-name": "Tên đăng nhập",
-      "password": "Mật khẩu"
+      "password": "Mật khẩu",
+      "loginByGG": "Đăng nhập bằng Google"
     },
     "RegisterView": {
       "name": "Trang đăng ký",
-      "message": "Chào bạn, bạn mới!",
+      "message": "Chào mừng bạn đến với chúng tôi!",
       "create": "Tạo tài khoản"
     }
   },
