@@ -4,4 +4,5 @@ export class RegisterViewModel {
     password: string | undefined;
     passwordRetype: string | undefined;
     email: string | undefined;
+    passwordConfirm: string | undefined;
 }

@@ -14,7 +14,7 @@
                     </el-form-item>
 
                     <el-form-item label="" prop="pass">
-                        <el-input v-model="state.password" type="password" width="300px" autocomplete="off"
+                        <el-input v-model="state.passwordConfirm" type="password" width="300px" autocomplete="off"
                             placeholder="Nhập lại password" :prefix-icon="Key" />
                     </el-form-item>
 
@@ -43,20 +43,27 @@ import { RegisterViewModel } from '../../Models/RegisterViewModel.ts'
 // @ts-ignore
 import { handleRegister } from "../../Services/RegisterService.ts"
 import { useToast } from "vue-toastification";
+import router from '@/router';
 
 const _toast = useToast();
 const state = reactive<RegisterViewModel>({
     userName: '',
     password: '',
     passwordRetype: '',
-    email: ''
+    email: '',
+    passwordConfirm: '',
 });
 const register = async () => {
     console.log(state);
+    if(state.password != state.passwordConfirm){
+        alert("Password and password confirm  not match!!");
+        return
+    }
+    state.email = state.userName;
     const loginResult = await handleRegister(state);
     console.log("logresult:" + loginResult);
     if (loginResult.isSuccess) {
-        window.location.href = '/';
+        router.push('/');
     }
     else
         _toast.success(loginResult.message);
