@@ -1,7 +1,7 @@
 
 
 <template>
-  <el-row class="login-container">
+  <!-- <el-row class="login-container"> -->
     <el-col :span="24" class="login-col">
       <div class="grid-content ep-bg-purple">
         <p>Hello!</p>
@@ -49,11 +49,11 @@
       </div>
     </el-col>
     <el-image
-  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
-  fit="cover"
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-</el-image>
-  </el-row>
+      src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+      fit="cover"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    </el-image>
+  <!-- </el-row> -->
 </template>
   
 <script setup lang="ts">
@@ -144,4 +144,6 @@ div.el-row.login-container{
 .fixed-button{
   line-height: 0px;
 }
+
+
 </style>

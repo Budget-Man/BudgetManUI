@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n';
+import { createI18n } from 'vue-i18n'; //document: https://vue-i18n.intlify.dev/guide/introduction.html
 // Import your language files
 import enLanguage from './en.json';
 import viLanguage from './vi.json';

@@ -201,7 +201,7 @@ import {
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 
 const getCookie = (name: string): string | null => {
@@ -213,7 +213,7 @@ const getCookie = (name: string): string | null => {
 
 const userName=getCookie('UserName');
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 const toggleMenu = () => {
   // Thay đổi giá trị của biến `isCollapse`
