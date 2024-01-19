@@ -66,6 +66,7 @@ import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 import { handleLogin, handleLoginByGoogle } from "../../Services/LoginService.ts"
 import { useToast } from "vue-toastification";
 import { googleAuthCodeLogin   } from 'vue3-google-login' //https://devbaji.github.io/vue3-google-login/#one-tap-prompt
+import router from '@/router';
 
 const _toast = useToast();
 const state = reactive<LoginViewModel>({
@@ -88,7 +89,7 @@ const googleLogin = async () => {
     // console.log("Handle the response", response);
     const loginResult = await handleLoginByGoogle(response.code);
     if (loginResult.isSuccess)
-      window.location.href = '/';
+     router.push('/');
     else
       _toast.error(loginResult.message);
   })
