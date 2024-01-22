@@ -1,28 +1,28 @@
 
 <template>
-    <el-row class="login-container">
+    <!-- <el-row class="login-container">
         <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false"
         @keyup.enter="handleSelect">
         <el-menu-item index="0">LOGO</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="1" @click="Login()">Login</el-menu-item>
         <el-menu-item index="2" @click="Register()">Register</el-menu-item>
-         </el-menu>
+         </el-menu> -->
         <el-col :span="24" class="login-col">
             <div class="grid-content ep-bg-purple">
                 <p class="helloRegister">{{$t("Auth.RegisterView.message")}}!</p>
                 <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
                     <el-form-item label="" prop="username">
-                        <el-input v-model="state.userName" placeholder="User name" :prefix-icon="User" />
+                        <el-input v-model="state.userName" :placeholder="$t('Auth.LoginView.user-name')" :prefix-icon="User" />
                     </el-form-item>
                     <el-form-item label="" prop="pass">
                         <el-input v-model="state.password" type="password" width="300px" autocomplete="off"
-                            placeholder="Password" :prefix-icon="Key" />
+                            :placeholder="$t('Auth.LoginView.password')" :prefix-icon="Key" />
                     </el-form-item>
 
                     <el-form-item label="" prop="pass">
                         <el-input v-model="state.passwordConfirm" type="password" width="300px" autocomplete="off"
-                            placeholder="Nhập lại password" :prefix-icon="Key" />
+                            :placeholder="$t('password-repeat')" :prefix-icon="Key" />
                     </el-form-item>
 
 
@@ -33,12 +33,12 @@
                 </el-form>
             </div>
         </el-col>
-        <el-image
+        <!-- <el-image
   src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
   fit="cover"
   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
 </el-image>
-    </el-row>
+    </el-row> -->
 </template>
     
 <script setup lang="ts">

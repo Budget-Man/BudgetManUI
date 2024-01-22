@@ -26,7 +26,7 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<string>> 
             
             if(result.data!=undefined){
                 
-                console.log(result.data);
+                // console.log(result.data);
                 setupLogin(model.userName, result.data);
                 // Cookies.set('accessToken', result.data, { expires: 1 });
                 // Cookies.set('UserName',model.userName, { expires: 1 });
@@ -70,15 +70,8 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
         result = responseObject;
         if (result.isSuccess) {
             if(result.data!=undefined){
-                console.log(result.data);
-                Cookies.set('accessToken', result.data.accessToken, { expires: 1 });
-                Cookies.set('UserName',result.data.userName, { expires: 1 });
-
-                //need to get value of user setting from bank-end
-                //set temporary language
-                Cookies.set('language', 'en', { expires: 30 });
-                //set temporary currency
-                Cookies.set('currency', 'VND', { expires: 30 });
+                // console.log(result.data);
+                setupLogin(result.data.userName, result.data.accessToken);
             }
             
         }
@@ -100,9 +93,9 @@ function setupLogin(username: string, accessToken:string )
 
         //need to get value of user setting from bank-end
         //set temporary language
-        Cookies.set('language', 'en', { expires: 30 });
+        // Cookies.set('language', 'en', { expires: 30 });
         //set temporary currency
-        Cookies.set('currency', 'VND', { expires: 30 });
+        // Cookies.set('currency', 'VND', { expires: 30 });
 }
 export { handleLogin, handleLoginByGoogle}
 

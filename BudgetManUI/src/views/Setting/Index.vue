@@ -92,6 +92,7 @@ const submitForm = () => {
   Cookies.set('defaultMoneyHolder', form.defaultMoneyHolder, { expires: 365 });
   // console.log(form.defaultMoneyHolder);
   //need to save to database
+  console.log(form.language);
 };
 
 

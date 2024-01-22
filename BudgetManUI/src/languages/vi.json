@@ -92,5 +92,6 @@
   "valid-failed": "Xác thực thất bại!",
   "field-valid-false": "Vui lòng nhập trường dữ liệu: {val}",
   "row-deleted": "Dữ liệu đã được xóa",
-  "deleted-error": "Đã xảy ra lỗi, dữ liệu không thể xóa"
+  "deleted-error": "Đã xảy ra lỗi, dữ liệu không thể xóa",
+  "password-repeat": "Nhập lại mật khẩu"
 }

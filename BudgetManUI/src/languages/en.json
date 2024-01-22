@@ -92,5 +92,6 @@
   "valid-failed": "valid failed.",
   "field-valid-false": "The field: {val} is not allowed!",
   "row-deleted": "Row deleted.",
-  "deleted-error": "Row not deleted."
+  "deleted-error": "Row not deleted.",
+  "password-repeat": "Repeat password"
 }

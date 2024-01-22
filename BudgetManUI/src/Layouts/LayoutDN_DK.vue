@@ -16,14 +16,14 @@
   </div> -->
   
   <div class="container">
-    <el-col :span="17"><el-image :src="bannerImg" class="container"></el-image></el-col>
-    <el-col :span="7" style="position: relative;">
+    <el-col :span="17"><el-image :src="bannerImg" class="container fade-in-image"></el-image></el-col>
+    <el-col :span="7" :style="{position: 'relative', background: `url(${background}) center/cover no-repeat`}" class="main-area" >
       <el-row class="first-page-menu">
         <el-menu  class="el-menu-demo" mode="horizontal" :ellipsis="false" @keyup.enter="handleSelect">
           <el-image :src="logo"></el-image>
           <div class="flex-grow" />
-          <el-link v-if="showLoginLink" href="/login">Login</el-link>
-          <el-link v-if="showRegisterLink" href="/register">Register</el-link>
+          <el-link v-if="showLoginLink" href="/login">{{ $t('login') }}</el-link>
+          <el-link v-if="showRegisterLink" href="/register">{{ $t('register') }}</el-link>
           <!-- <el-menu-item index=""><el-link v-if="showLoginLink" href="/login">Login</el-link></el-menu-item>
           <el-menu-item index=""> <el-link v-if="showRegisterLink" href="/register">Register</el-link></el-menu-item> -->
           
@@ -42,6 +42,7 @@ import { ref, computed  } from 'vue'
 import { useRouter } from 'vue-router';
 import bannerImg from '@/assets/images/banner-image-vi.jpg'
 import logo from '@/assets/budget-logo.png'
+import background from '@/assets/images/background.jpg'
 const router = useRouter();
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -97,6 +98,7 @@ div.el-row.login-container{
 }
 ul.el-menu.el-menu--horizontal.el-menu-demo {
     height: 60px;
+    padding-right: 5%;
 }
 .el-menu {
   border-right: none;
@@ -118,5 +120,31 @@ ul.el-menu.el-menu--horizontal.el-menu-demo {
 }
 .flex-grow {
   flex-grow: 1;
+}
+.fade-in-image {
+  opacity: 0;
+  animation: fadeInRight 2s forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.main-area{
+  animation: moveBackground 120s linear infinite alternate;
+}
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
 }
 </style>

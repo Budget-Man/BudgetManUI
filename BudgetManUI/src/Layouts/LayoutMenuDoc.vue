@@ -199,6 +199,8 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+import Cookies from 'js-cookie';
+
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {
   // console.log(key, keyPath)
@@ -220,14 +222,19 @@ const toggleMenu = () => {
   isCollapse.value = !isCollapse.value;
 };
 function logout() {
+  var backupLanguage = Cookies.get('language') || "";
   var cookies = document.cookie.split(";");
 
   for (var i = 0; i < cookies.length; i++) {
     var cookie = cookies[i];
+    
     var eqPos = cookie.indexOf("=");
     var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    // console.log(name);
+    // if (name === "language") continue;
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
   }
+  Cookies.set('language', backupLanguage, { expires: 365 });
   window.location.href = "/login";
 }
 
