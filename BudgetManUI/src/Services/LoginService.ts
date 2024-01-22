@@ -31,18 +31,7 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResu
         if (result.isSuccess) {
             
             if(result.data!=undefined){
-                
-                // console.log(result.data);
-                // setupLogin(model.userName, result.data);
-                Cookies.set('accessToken', result.data.token ?? "", { expires: 1 });
-                Cookies.set('UserName',result.data.userName ?? "", { expires: 1 });
-                Cookies.set('Roles', JSON.stringify(result.data.roles) ?? "", { expires: 1 });
-
-                // //need to get value of user setting from bank-end
-                // //set temporary language
-                Cookies.set('language', 'en', { expires: 30 });
-                // //set temporary currency
-                Cookies.set('currency', 'VND', { expires: 30 });
+                setupLogin(result.data);
             }
             router.push("/");
         }
@@ -78,7 +67,7 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
         if (result.isSuccess) {
             if(result.data!=undefined){
                 // console.log(result.data);
-                setupLogin(result.data.userName, result.data.accessToken);
+                setupLogin(result.data);
             }
             
         }
@@ -93,11 +82,11 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
     return result;
 
 }
-function setupLogin(username: string, accessToken:string )
+function setupLogin(resultData: any )
 {
-        Cookies.set('accessToken', accessToken, { expires: 1 });
-        Cookies.set('UserName',username, { expires: 1 });
-
+        Cookies.set('accessToken', resultData.accessToken, { expires: 1 });
+        Cookies.set('UserName',resultData.username, { expires: 1 });
+        Cookies.set('Roles', JSON.stringify(resultData.roles) ?? "", { expires: 1 });
         //need to get value of user setting from bank-end
         //set temporary language
         // Cookies.set('language', 'en', { expires: 30 });
