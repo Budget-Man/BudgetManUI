@@ -68,19 +68,20 @@ const showRegisterLink = computed(() => {
 
 </script>
 <style>
-div.el-row.login-container{
-  margin-left: 50px;
-}
-.container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+    div.el-row.login-container {
+        margin-left: 50px;
+    }
 
-.left-part {
-  width: 60%;
-}
+    .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left-part {
+        width: 60%;
+    }
 
 .right-part {
   width: 30%;
