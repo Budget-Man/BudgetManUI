@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
-
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n();
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
@@ -17,7 +18,7 @@ import {
 const tableColumns: TableColumn[] = [
     {
         key: "userName",
-        label: "User Name",
+        label: t('user.name'),
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -31,7 +32,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "role",
-        label: "Role",
+        label: t('user.Role'),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -46,12 +47,12 @@ const tableColumns: TableColumn[] = [
             data: [
                 {
                     role: "Admin",
-                    roleName: "Admin"
+                    roleName: t('user.Admin')
                 },
                 {
 
                     role: "TenantAdmin",
-                    roleName: "Personal"
+                    roleName: t('user.TenantAdmin')
                 }
             ]
 
@@ -63,7 +64,7 @@ const tableColumns: TableColumn[] = [
 const CustomActions: CustomAction[] = ([
     {
         ActionName: "Reset",
-        ActionLabel: "Reset",
+        ActionLabel:  t('user.Reset'),
         Icon: Unlock,
         ApiAction: "Reset",
         ApiActiontype:ApiActionType.PUT,

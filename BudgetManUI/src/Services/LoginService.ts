@@ -6,15 +6,21 @@ import { AppResponse } from '../Models/AppResponse.ts'
 import { axiosInstance } from "./axiosConfig.ts"
 
 import Cookies from 'js-cookie';
+import type { LoginResult } from '@/Models/LoginResult.js';
+import router from '@/router/index.js';
 
 const loginUrl = "account/login";
 const googleLoginUrl = "account/google";
-const handleLogin = async (model: LoginViewModel): Promise<AppResponse<string>> => {
+const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResult>> => {
 
-    let result: AppResponse<string>=({
+    let result: AppResponse<LoginResult>=({
         isSuccess: false,
         message: '',
-        data: ''
+        data: {
+            token: '',
+            userName: '',
+            roles: []
+        }
     });
 
     try {
@@ -27,17 +33,18 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<string>> 
             if(result.data!=undefined){
                 
                 // console.log(result.data);
-                setupLogin(model.userName, result.data);
-                // Cookies.set('accessToken', result.data, { expires: 1 });
-                // Cookies.set('UserName',model.userName, { expires: 1 });
+                // setupLogin(model.userName, result.data);
+                Cookies.set('accessToken', result.data.token ?? "", { expires: 1 });
+                Cookies.set('UserName',result.data.userName ?? "", { expires: 1 });
+                Cookies.set('Roles', JSON.stringify(result.data.roles) ?? "", { expires: 1 });
 
                 // //need to get value of user setting from bank-end
                 // //set temporary language
-                // Cookies.set('language', 'en', { expires: 30 });
+                Cookies.set('language', 'en', { expires: 30 });
                 // //set temporary currency
-                // Cookies.set('currency', 'VND', { expires: 30 });
+                Cookies.set('currency', 'VND', { expires: 30 });
             }
-            
+            router.push("/");
         }
         else {
             console.log(result.message);

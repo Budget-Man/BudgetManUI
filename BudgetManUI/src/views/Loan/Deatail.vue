@@ -128,7 +128,7 @@ const tableColumns: TableColumn[] = [
         dropdownData: {
             displayMember: "name",
             keyMember: "id",
-            apiUrl: "moneyHoler"
+            apiUrl: "MoneyHolder"
 
         },
 

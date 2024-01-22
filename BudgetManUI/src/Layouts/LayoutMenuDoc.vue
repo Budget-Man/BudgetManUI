@@ -46,7 +46,7 @@
               <template #title>{{ $t('budgetCat.name') }}</template>
             </el-menu-item>
            
-            <el-menu-item index="/user" >
+            <el-menu-item index="/user" v-if="hasAdminRole">
               <el-icon><Avatar /></el-icon>
               <template #title>{{ $t('user.name') }}</template>
             </el-menu-item>
@@ -199,9 +199,16 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+import type { LoginResult } from '@/Models/LoginResult';
 import Cookies from 'js-cookie';
-
 const isCollapse = ref(true)
+const hasAdminRole = ref<boolean>(false);
+const decodedToken = ref<LoginResult>({
+    userName: "",
+    roles: [],
+    token: "",
+});
+const userRoles = ref<string[]>();
 const handleOpen = (key: string, keyPath: string[]) => {
   // console.log(key, keyPath)
 }
@@ -238,4 +245,24 @@ function logout() {
   window.location.href = "/login";
 }
 
+function hasPermission(userRoles: string[], requiredRoles: string[]): boolean {
+  for (const requiredRole of requiredRoles) {
+    if (userRoles.includes(requiredRole)) {
+      return true;
+    }
+  }
+  return false;
+}
+function getCode(){
+    decodedToken.value.userName = Cookies.get('UserName')?.toString();
+
+    var jsonString = Cookies.get('Roles')?.toString() ?? '';
+    var jsonObject = JSON.parse(jsonString);
+    var arrayFromString = Object.values(jsonObject);
+    decodedToken.value.roles = arrayFromString as string[];
+    console.log(decodedToken.value);
+    userRoles.value = decodedToken.value?.roles ?? [];
+    hasAdminRole.value = hasPermission(userRoles.value as string[], ["Admin", "SuperAdmin"]);
+}
+getCode();
 </script>

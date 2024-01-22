@@ -11,7 +11,8 @@ import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n();
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -29,7 +30,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "name",
+        label: t("budget.name"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -43,7 +44,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetCategoryId",
-        label: "Category",
+        label:t("budget.budgetCategoryId"),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -62,7 +63,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetCategoryName",
-        label: "Category",
+        label: t("budget.budgetCategoryName"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -76,7 +77,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "balance",
-        label: "Balance",
+        label: t("budget.balance"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
