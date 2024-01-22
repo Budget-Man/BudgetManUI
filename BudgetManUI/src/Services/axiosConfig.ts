@@ -31,6 +31,7 @@ axiosInstance.interceptors.response.use(
       router.push({ name: 'error'});
     }
     if (error.code === 'ERR_BAD_REQUEST'){
+      console.log(axiosInstance.defaults.headers.common['Authorization']);
       console.log(error.message)
       // router.push({ name: 'login'});
     }
