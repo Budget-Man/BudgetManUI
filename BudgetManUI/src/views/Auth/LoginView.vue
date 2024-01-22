@@ -82,10 +82,10 @@ const login = async () => {
   console.log(fullscreenLoading);
   const loginResult = await handleLogin(state);
   // console.log("logresult:" + loginResult);
-  if (loginResult.isSuccess)
-    window.location.href = '/';
-  else
-    _toast.error(loginResult.message);
+  // if (loginResult.isSuccess)
+  //   window.location.href = '/';
+  // else
+  //   _toast.error(loginResult.message);
   fullscreenLoading.value = false;
 }
 

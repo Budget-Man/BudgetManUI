@@ -31,7 +31,8 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResu
         if (result.isSuccess) {
             
             if(result.data!=undefined){
-                setupLogin(result.data);
+                console.log(result.data);
+                setupLogin(result.data, model.userName);
             }
             router.push("/");
         }
@@ -82,16 +83,18 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
     return result;
 
 }
-function setupLogin(resultData: any )
+const setupLogin = (resultData: any , userName :string | undefined = undefined) =>
 {
-        Cookies.set('accessToken', resultData.accessToken, { expires: 1 });
-        Cookies.set('UserName',resultData.username, { expires: 1 });
-        Cookies.set('Roles', JSON.stringify(resultData.roles) ?? "", { expires: 1 });
-        //need to get value of user setting from bank-end
-        //set temporary language
-        // Cookies.set('language', 'en', { expires: 30 });
-        //set temporary currency
-        // Cookies.set('currency', 'VND', { expires: 30 });
+    // console.log(resultData);
+    // console.log(userName);
+    Cookies.set('accessToken', resultData.accessToken ?? resultData, { expires: 1 });
+    Cookies.set('UserName',resultData.username ?? userName?? "", { expires: 1 });
+    Cookies.set('Roles', resultData.roles ?? JSON.stringify(resultData.roles) ?? "", { expires: 1 });
+    //need to get value of user setting from bank-end
+    //set temporary language
+    // Cookies.set('language', 'en', { expires: 30 });
+    //set temporary currency
+    // Cookies.set('currency', 'VND', { expires: 30 });
 }
 export { handleLogin, handleLoginByGoogle}
 

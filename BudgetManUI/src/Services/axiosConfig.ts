@@ -31,7 +31,8 @@ axiosInstance.interceptors.response.use(
       router.push({ name: 'error'});
     }
     if (error.code === 'ERR_BAD_REQUEST'){
-      router.push({ name: 'login'});
+      console.log(error.message)
+      // router.push({ name: 'login'});
     }
     return Promise.reject(error);
   }

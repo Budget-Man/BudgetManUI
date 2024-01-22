@@ -255,14 +255,19 @@ function hasPermission(userRoles: string[], requiredRoles: string[]): boolean {
 }
 function getCode(){
     decodedToken.value.userName = Cookies.get('UserName')?.toString();
-
-    var jsonString = Cookies.get('Roles')?.toString() ?? '';
-    var jsonObject = JSON.parse(jsonString);
-    var arrayFromString = Object.values(jsonObject);
-    decodedToken.value.roles = arrayFromString as string[];
     console.log(decodedToken.value);
-    userRoles.value = decodedToken.value?.roles ?? [];
-    hasAdminRole.value = hasPermission(userRoles.value as string[], ["Admin", "SuperAdmin"]);
+    if (Cookies.get('Roles')){
+      var jsonString = Cookies.get('Roles')?.toString() ?? '';
+      var jsonObject = JSON.parse(jsonString);
+      var arrayFromString = Object.values(jsonObject);
+      decodedToken.value.roles = arrayFromString as string[];
+      console.log(decodedToken.value);
+      userRoles.value = decodedToken.value?.roles ?? [];
+      hasAdminRole.value = hasPermission(userRoles.value as string[], ["Admin", "SuperAdmin"]);
+    }
+    else {
+      hasAdminRole.value = false;
+    }
 }
 getCode();
 </script>
