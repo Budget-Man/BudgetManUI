@@ -123,10 +123,10 @@ const props = defineProps<{
 // Use computed to create a filtered model
 const model = ref<CreateMoneySpendRequest>({});
 const Validate = (): boolean => {
-    if (model.value.BudgetId == undefined) {
-        ElMessage.error(t("budget.please-choise"));
-        return false;
-    }
+    // if (model.value.BudgetId == undefined) {
+    //     ElMessage.error(t("budget.please-choise"));
+    //     return false;
+    // }
     if (model.value.MoneyHolderId == undefined) {
         ElMessage.error('Please choise Money holder.');
         return false;

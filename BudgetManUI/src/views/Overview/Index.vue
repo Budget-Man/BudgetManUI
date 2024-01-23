@@ -1,6 +1,6 @@
 <template>
 
-    <el-space class="moneyOverviewContainer" fill direction="vertical"  size="large">
+    <el-space class="moneyOverviewContainer" fill direction="vertical"  :size="30">
     <!-- <div class="moneyOverviewContainer"> -->
         <!-- title  -->
         <el-row>
