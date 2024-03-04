@@ -11,7 +11,8 @@ import BasicAdminFormVue from '../../components/maynghien/adminTable/BasicAdminF
 import { ApiActionType, CustomAction, CustomActionDataType } from '../../components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n();
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -29,12 +30,12 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "Name",
+        label: t("debt.name"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
         width: 500,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: true,
         inputType: "text",
@@ -42,7 +43,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "totalAmount",
-        label: "Total Amount",
+        label: t("debt.totalAmount"),
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -55,7 +56,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "remainAmount",
-        label: "Remain Amount",
+        label:  t("debt.remainAmount"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -69,7 +70,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "totalInterest",
-        label: "total Interest",
+        label:  t("debt.totalInterest"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -82,7 +83,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "Interest Rate",
+        label: t("debt.interestRate"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -95,12 +96,12 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "Rate Period",
+        label: t("debt.ratePeriod"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
         width: 500,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: false,
         inputType: "dropdown",
@@ -110,27 +111,27 @@ const tableColumns: TableColumn[] = [
             data: [
                 {
                     ratePeriod: 0,
-                    ratePeriodText: "Daily",
+                    ratePeriodText: t("debt.Daily"),
                 },
                 {
                     ratePeriod: 1,
-                    ratePeriodText: "Weekly",
+                    ratePeriodText: t("debt.Weekly"),
                 },
                 {
                     ratePeriod: 2,
-                    ratePeriodText: "Monthly",
+                    ratePeriodText:t("debt.Monthly"),
                 },
                 {
                     ratePeriod: 3,
-                    ratePeriodText: "Quarterly",
+                    ratePeriodText: t("debt.Quarterly"),
                 },
                 {
                     ratePeriod: 4,
-                    ratePeriodText: "Annually",
+                    ratePeriodText: t("debt.Annually"),
                 },
                 {
                     ratePeriod: 5,
-                    ratePeriodText: "Irregular",
+                    ratePeriodText: t("debt.Irregular"),
                 },
             ]
 
@@ -139,7 +140,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money holder",
+        label:  t("debt.moneyHolderId"),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -158,7 +159,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label:  t("debt.moneyHolderName"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,

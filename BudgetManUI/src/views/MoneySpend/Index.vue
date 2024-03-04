@@ -1,7 +1,7 @@
 <template>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneySpend'" :allowAdd="false" :allowDelete="false"
-            :is-edited-out-side="isEditedOutSide" title="Money spend" :CustomActions="CustomActions" :allowEdit="false"
+            :is-edited-out-side="isEditedOutSide" :title="$t('moneySpend.name')" :CustomActions="CustomActions" :allowEdit="false"
             @onCustomAction="handleCustomAction">
         </BasicAdminFormVue>
     </Suspense>
@@ -19,7 +19,11 @@ import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
+
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n();
+
 const isEditedOutSide = ref(false);
 const tableColumns: TableColumn[] = [
     {
@@ -38,7 +42,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "reason",
-        label: "Reason",
+        label: t("moneySpend.reason"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -52,7 +56,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money Holder",
+        label: t("moneyHolder.name"),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -71,7 +75,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label:  t("moneyHolder.name"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -85,7 +89,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetId",
-        label: "Budget",
+        label:  t("budget.name"),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -104,7 +108,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "budgetName",
-        label: "Budget",
+        label: t("budget.name"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -116,12 +120,25 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "amount",
+        label: t('amount'),
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 300,
+        required: false,
+        sortable: true,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
 
+    }
 ]
 const CustomActions: CustomAction[] = ([
     {
         ActionName: "Create",
-        ActionLabel: "Create",
+        ActionLabel: t('create'),
         ApiActiontype: ApiActionType.POST,
         IsRowAction: false,
         DataType: CustomActionDataType.null,

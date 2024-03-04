@@ -1,5 +1,5 @@
 // @ts-ignore
-import { AppResponse } from "@/models/AppResponse.js";
+import { AppResponse } from "@/Models/AppResponse.js";
 import  { CreateMoneySpendRequest } from "@/Models/Request/MoneySpend/CreateMoneySpendRequest.js";
 import { axiosInstance } from "../axiosConfig";
 const moneyspendUrl = "moneyspend";

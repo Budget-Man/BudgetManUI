@@ -14,6 +14,8 @@ import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColum
 import router from '@/router';
 import axios from 'axios';
 
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n();
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -31,7 +33,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "name",
-        label: "Name",
+        label: t("loan.name"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -44,7 +46,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "totalAmount",
-        label: "TotalAmount",
+        label: t("loan.totalAmount"),
         enableEdit: false,
         enableCreate: true,
         hidden: false,
@@ -57,7 +59,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "remainAmount",
-        label: "RemainAmount",
+        label:  t("loan.remainAmount"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -71,7 +73,7 @@ const tableColumns: TableColumn[] = [
     
     {
         key: "totalInterest",
-        label: "totalInterest",
+        label: t("loan.totalInterest"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -84,7 +86,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "interestRate",
-        label: "InterestRate",
+        label: t("loan.interestRate"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -97,7 +99,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "ratePeriod",
-        label: "RatePeriod",
+        label:  t("loan.ratePeriod"),
         enableEdit: true,
         enableCreate: true,
         hidden: false,
@@ -112,27 +114,27 @@ const tableColumns: TableColumn[] = [
             data: [
                 {
                     ratePeriod:0,
-                    ratePeriodText: "Daily",
+                    ratePeriodText: t("loan.Daily"),
                 },
                 {
                     ratePeriod:1,
-                    ratePeriodText: "Weekly",
+                    ratePeriodText:  t("loan.Weekly"),
                 },
                 {
                     ratePeriod:2,
-                    ratePeriodText: "Monthly",
+                    ratePeriodText: t("loan.Monthly"),
                 },
                 {
                     ratePeriod:3,
-                    ratePeriodText: "Quarterly",
+                    ratePeriodText: t("loan.Quarterly"),
                 },
                 {
                     ratePeriod:4,
-                    ratePeriodText: "Annually",
+                    ratePeriodText: t("loan.Annually"),
                 },
                 {
                     ratePeriod:5,
-                    ratePeriodText: "Irregular",
+                    ratePeriodText: t("loan.Irregular"),
                 },
             ]
 
@@ -140,7 +142,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderId",
-        label: "Money Holder",
+        label: t("loan.moneyHolderId"),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -159,7 +161,7 @@ const tableColumns: TableColumn[] = [
     },
     {
         key: "moneyHolderName",
-        label: "Money Holder",
+        label: t("loan.moneyHolderName"),
         enableEdit: false,
         enableCreate: false,
         hidden: false,
@@ -175,7 +177,7 @@ const tableColumns: TableColumn[] = [
 const CustomActions: CustomAction[] = ([
     {
         ActionName: "Deatail",
-        ActionLabel: "Deatail",
+        ActionLabel:t('details'),
         ApiActiontype:ApiActionType.PUT,
         IsRowAction: true,
         DataType: CustomActionDataType.RowId,

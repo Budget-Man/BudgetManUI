@@ -32,7 +32,6 @@ import { useRoute } from 'vue-router';
 import { handleGetLoan } from '../../Services/Loan/GetById'
 import type { LoanDto } from '@/Models/Dtos/LoanDto';
 import { ref } from 'vue';
-import type { AppResponse } from '@/models/AppResponse';
 
 const Loan = ref<LoanDto|undefined>();
 const tableColumns: TableColumn[] = [
@@ -129,7 +128,7 @@ const tableColumns: TableColumn[] = [
         dropdownData: {
             displayMember: "name",
             keyMember: "id",
-            apiUrl: "moneyHoler"
+            apiUrl: "MoneyHolder"
 
         },
 

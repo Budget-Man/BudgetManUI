@@ -13,49 +13,56 @@
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
+            <el-menu-item index="/Overview" >
+              <el-icon><PieChart /></el-icon>
+              <template #title>{{ $t('moneyOverview.name') }}</template>
+            </el-menu-item>
             <el-menu-item index="/MoneyHolder" >
               <el-icon><WalletFilled /></el-icon>
-              <template #title>Money Holder</template>
+              <template #title>{{ $t('moneyHolder.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/moneyspend" >
               <el-icon><Money /></el-icon>
-              <template #title>Money spend</template>
+              <template #title>{{ $t('moneySpend.name') }} </template>
             </el-menu-item>
             <el-menu-item index="/income" >
               <el-icon><Money /></el-icon>
-              <template #title>Income</template>
+              <template #title>{{ $t('income.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/loan" >
               <el-icon><Money /></el-icon>
-              <template #title>Loan</template>
+              <template #title>{{ $t('loan.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/debt" >
               <el-icon><Money /></el-icon>
-              <template #title>Debt</template>
+              <template #title>{{ $t('debt.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budget" >
               <el-icon><Money /></el-icon>
-              <template #title>Budget</template>
+              <template #title>{{ $t('budget.name') }}</template>
             </el-menu-item>
             <el-menu-item index="/budgetCate" >
               <el-icon><PriceTag /></el-icon>
-              <template #title>Budget Category</template>
+              <template #title>{{ $t('budgetCat.name') }}</template>
             </el-menu-item>
            
-            <el-menu-item index="/user" >
+            <el-menu-item index="/user" v-if="hasAdminRole">
               <el-icon><Avatar /></el-icon>
-              <template #title>USER</template>
+              <template #title>{{ $t('user.name') }}</template>
             </el-menu-item>
-           
+            <el-menu-item index="/setting" >
+              <el-icon><Setting /></el-icon>
+              <template #title>{{ $t('setting.name') }}</template>
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
           <router-view />
           <el-image
-  src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
-  fit="cover"
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-</el-image>
+            src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
+            fit="cover"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+          </el-image>
         </el-main>
       </el-container>
       <!-- <el-footer>
@@ -131,7 +138,6 @@
 .el-aside {
   color: #b9ddfb;
   background:#b9ddfb;
-  height: 580px;
 }
 .menu-aside{
   width: fit-content;
@@ -145,7 +151,6 @@
 .el-main {
   padding: 10px;
   width: 100%;
-  height: 580px;
 }
 
 .toolbar {
@@ -160,6 +165,7 @@
 }
 .el-pagination{
   background-color: #ffffff;
+  justify-content: center;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: fit-content;
@@ -168,6 +174,14 @@
 .el-menu-vertical-demo {
   width: 55px;
   min-height: 400px;
+}
+
+.table-container{
+  background-color: white; 
+  padding: 10px;
+  border-radius: var(--el-border-radius-base);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
 <script lang="ts" setup>
@@ -185,9 +199,18 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+import type { LoginResult } from '@/Models/LoginResult';
+import Cookies from 'js-cookie';
 const isCollapse = ref(true)
+const hasAdminRole = ref<boolean>(false);
+const decodedToken = ref<LoginResult>({
+    userName: "",
+    roles: [],
+    token: "",
+});
+const userRoles = ref<string[]>();
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 
 const getCookie = (name: string): string | null => {
@@ -199,21 +222,52 @@ const getCookie = (name: string): string | null => {
 
 const userName=getCookie('UserName');
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 const toggleMenu = () => {
   // Thay đổi giá trị của biến `isCollapse`
   isCollapse.value = !isCollapse.value;
 };
 function logout() {
+  var backupLanguage = Cookies.get('language') || "";
   var cookies = document.cookie.split(";");
 
   for (var i = 0; i < cookies.length; i++) {
     var cookie = cookies[i];
+    
     var eqPos = cookie.indexOf("=");
     var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    // console.log(name);
+    // if (name === "language") continue;
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
   }
+  Cookies.set('language', backupLanguage, { expires: 365 });
   window.location.href = "/login";
 }
+
+function hasPermission(userRoles: string[], requiredRoles: string[]): boolean {
+  for (const requiredRole of requiredRoles) {
+    if (userRoles.includes(requiredRole)) {
+      return true;
+    }
+  }
+  return false;
+}
+function getCode(){
+    decodedToken.value.userName = Cookies.get('UserName')?.toString();
+    console.log(decodedToken.value);
+    if (Cookies.get('Roles')){
+      var jsonString = Cookies.get('Roles')?.toString() ?? '';
+      var jsonObject = JSON.parse(jsonString);
+      var arrayFromString = Object.values(jsonObject);
+      decodedToken.value.roles = arrayFromString as string[];
+      console.log(decodedToken.value);
+      userRoles.value = decodedToken.value?.roles ?? [];
+      hasAdminRole.value = hasPermission(userRoles.value as string[], ["Admin", "SuperAdmin"]);
+    }
+    else {
+      hasAdminRole.value = false;
+    }
+}
+getCode();
 </script>

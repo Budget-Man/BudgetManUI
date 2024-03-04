@@ -21,6 +21,10 @@ import DebtView from '../views/Debt/Index.vue'
 import LoanView from '../views/Loan/Index.vue'
 import LoanDeatailView from '../views/Loan/Deatail.vue'
 import MoneySpendView from '../views/MoneySpend/Index.vue'
+import MoneyOverView from '../views/Overview/Index.vue'
+import Setting from '../views/Setting/Index.vue'
+import ErrorPage from '../views/Error/Index.vue'
+import { LoginResult } from '@/Models/LoginResult';
 
 // Create the router instance
 const router = createRouter({
@@ -54,6 +58,7 @@ const router = createRouter({
         {
           path: 'user',
           component: UserView,
+          meta: { requiresAuth: true, roles: ["Admin", "SuperAdmin"] },
         },
         {
           path: 'Loan',
@@ -70,6 +75,14 @@ const router = createRouter({
         {
           path: 'Loan/:Id',
           component: LoanDeatailView,
+        },
+        {
+          path: 'Overview',
+          component: MoneyOverView,
+        },
+        {
+          path: 'Setting',
+          component: Setting,
         }
         // Other routes using default layout...
       ],
@@ -80,24 +93,62 @@ const router = createRouter({
       children: [
         {
           path: '/login',
+          name: 'login',
           component: LoginView,
         },
         {
           path: '/register',
+          name: 'register',
           component: RegisterView,
         },
         // Other routes using alternative layout...
       ],
     },
+    {
+      path: '/error',
+      name: 'error',
+      component: ErrorPage,
+    },
   ],
 });
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!Cookies.get('accessToken');
-  
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login'); // Redirect to the login page
+  const isAuthenticated: boolean = !!Cookies.get('accessToken');
+  const userRoles: string[] = getRolesFromToken() ??[];
+
+  if (to.meta.requiresAuth && isAuthenticated == false) {
+    next('/login'); // Chuyển hướng đến trang đăng nhập
+  } else if (to.meta.roles && !hasPermission(userRoles, to.meta.roles as string[])) {
+    // Xử lý truy cập không được phép
+    next('/'); // Chuyển hướng đến trang 403 hoặc xử lý khác
   } else {
-    next(); // Continue to the requested route
+    next(); // Tiếp tục đến trang yêu cầu
   }
 });
+
+function hasPermission(userRoles: string[], requiredRoles: string[]): boolean {
+  for (const requiredRole of requiredRoles) {
+    if (userRoles.includes(requiredRole)) {
+      return true;
+    }
+  }
+  return false;
+}
+function getRolesFromToken(): string[] | null {
+  try {
+    // var token = Cookies.get('accessToken')?.toString() ?? "";
+    const decodedToken = new LoginResult();
+    var jsonString = Cookies.get('Roles')?.toString() ?? '';
+    var jsonObject = JSON.parse(jsonString);
+    var arrayFromString = Object.values(jsonObject);
+    decodedToken.roles = arrayFromString as string[];
+    console.log(decodedToken);
+    return decodedToken.roles || [];
+  } catch (error) {
+    // console.error(error);
+    return null;
+  }
+}
+interface TokenPayload {
+  [x: string]: never[];
+}
 export default router
