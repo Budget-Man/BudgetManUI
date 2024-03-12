@@ -57,6 +57,6 @@ jobs:
             docker pull maynghien/budgetui;
             docker run --name budgetui --expose=80 -d maynghien/budgetui;
             docker network connect nginx-proxy budgetui;
-             docker restart nginx-proxy;
+             
           "
  
