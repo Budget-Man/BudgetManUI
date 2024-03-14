@@ -94,7 +94,7 @@ const tableColumns: TableColumn[] = [
         enableCreate: true,
         hidden: true,
         width: 300,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: true,
         inputType: "dropdown",

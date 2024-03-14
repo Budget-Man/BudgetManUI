@@ -4,13 +4,17 @@
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
     :openDialog="openDialogCreate" @onCustomAction="handleCustomAction">
   </MnActionPane>
-  <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
-    :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
-    :CustomActions="CustomRowActions" @on-custom-action="handleCustomAction" @onSortChange="handleSortChange" />
-  <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
-    @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
-  Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages
-
+  <div class="table-container">
+    <MnTable :columns="tableColumns" :datas="datas" :onSaved="handleSaved" :enableEdit="allowEdit"
+      :enableDelete="allowDelete" :onCloseClicked="handleOnEditCloseClicked" @onEdit="handleEdit" @onDelete="handleDelete"
+      :CustomActions="CustomRowActions" @on-custom-action="handleCustomAction" @onSortChange="handleSortChange" />
+      <div v-if="datas.length>0">
+    <el-pagination small background layout="prev, pager, next" :total="totalItem" :page-size="10"
+      @current-change="handlePageChange" :current-page="searchRequest.PageIndex" class="mt-4" />
+    <!-- Found {{ totalItem }} results. Page {{ searchRequest.PageIndex }} of total {{ totalPages }} pages -->
+    <div class="el-pagination"> {{ totalItem }} {{ $t('results') }}. {{ $t('page') }} {{ searchRequest.PageIndex }} / {{ totalPages }}</div>
+    </div>
+  </div>
 
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
     :createUrl="createUrl" :editUrl="editUrl" :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved"
@@ -46,6 +50,8 @@ import { SearchRequest } from '../BaseModels/SearchRequest';
 import { ElMessage } from 'element-plus';
 import type { CustomAction, CustomActionResponse } from './Models/CustomAction';
 import { SortByInfo } from '../BaseModels/SortByInfo';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 //#region Method
 
 const Search = async () => {
@@ -60,7 +66,7 @@ const Search = async () => {
       else
         totalPages.value = 0;
       if (dataresponse.totalRows != undefined) {
-        totalItem.value = dataresponse.totalRows;
+        totalItem.value = Math.abs(dataresponse.totalRows);
       }
       else
         totalItem.value = 0;
@@ -69,6 +75,7 @@ const Search = async () => {
       datas.value = [];
     }
   }
+  // console.log(datas);
 }
 
 //#endregion
@@ -141,7 +148,7 @@ type ChildMethodType = () => void;
 // const OpenCreateDialog: OpenCreateDialogType = inject('OpenDialogEditItem', undefined);
 
 const handleOpenCreate = async () => {
-  console.log("open create");
+  // console.log("open create");
 
   EdittingItem.value = new SearchDTOItem(props.tableColumns);
 
@@ -153,14 +160,14 @@ const handleDelete = async (id: string) => {
   var deleteresult = await handleAPIDelete(id, props.apiName);
   if (deleteresult.isSuccess) {
     ElMessage({
-      message: 'row deleted.',
+      message: t('row-deleted'),
       type: 'success',
     });
     await Search();
   }
   else {
     ElMessage({
-      message: 'row not deleted.',
+      message: t('deleted-error'),
       type: 'error',
     });
   }
@@ -210,7 +217,7 @@ const handlePageChange = async (value: number) => {
 watch(() => props.CustomActions, () => {
   CustomButtons.value = props.CustomActions.filter(m => m.IsRowAction == false);
   CustomRowActions.value = props.CustomActions.filter(m => m.IsRowAction == true);
-  console.log(CustomRowActions);
+  // console.log(CustomRowActions);
 }, { immediate: true })
 
 watch(() => props.isEditedOutSide, () => {

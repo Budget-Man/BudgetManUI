@@ -39,12 +39,20 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResu
             // router.push("/");
         }
         else {
+            console.log('failed');
             console.log(result.message);
 
         }
     } catch (error) {
+        console.log('error');
         console.error(error);
-
+        console.log(result);
+        // if (axios.isAxiosError(error)) {
+        //     const axiosError = error as AxiosError;
+        //     if (axiosError.message.includes('timeout')){
+            
+        //     }
+        // }
     }
     return result;
 

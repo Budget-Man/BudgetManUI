@@ -82,10 +82,10 @@ const tableColumns: TableColumn[] = [
         enableCreate: true,
         hidden: false,
         width: 200,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: false,
-        inputType: "number",
+        inputType: "currency",
         dropdownData: null,
 
     },

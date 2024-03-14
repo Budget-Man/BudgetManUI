@@ -1,6 +1,6 @@
 <template>
 
-    <el-space class="moneyOverviewContainer" fill direction="vertical"  size="large">
+    <el-space class="moneyOverviewContainer" fill direction="vertical"  :size="30">
     <!-- <div class="moneyOverviewContainer"> -->
         <!-- title  -->
         <el-row>
@@ -36,14 +36,17 @@
         <el-col :span="11">
             <el-row justify="space-between">
                 <h2>{{ $t('income.name') }}:</h2>
-                <el-col :span="5" >
+                <el-col :span="7" >
                     <h1 Id="income-summary" class="summary">{{ formatCurrency(incomeSummary) }}</h1>
                 </el-col>
             </el-row>
-            <el-table  :data="incomeData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false">
+            <el-row>
+                <el-button @click="handleOpenCreateIncome">+</el-button>
+            </el-row>
+            <el-table  :data="incomeData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false" empty-text=" ">
                 
-                <el-table-column v-for="column in incomeCol" :key="column.key" :prop="column.key" :label="column.label"
-                    :sortable="false" :align="column.align"/>
+                <el-table-column v-for="column in incomeCol.filter(x=>!x.hidden)" :key="column.key" :prop="column.key" :label="column.label"
+                    :sortable="false" :align="column.align" :formatter="column.formatter"/>
                 
                 </el-table>
         </el-col>
@@ -51,20 +54,30 @@
         <el-col :span="11">
             <el-row justify="space-between">
                 <h2>{{ $t('moneyOverview.expense') }}:</h2>
-                <el-col :span="5">
+                <el-col :span="7">
                     <h1 Id="expense-summary" class="summary">{{ formatCurrency(expenseSummary) }}</h1>
                 </el-col>
             </el-row>
-            <el-table class="admin-table" :data="expenseData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false">
+            <el-row>
+                <el-button @click="handleOpenCreateMoneySpend">-</el-button>
+            </el-row>
+            <el-table class="admin-table" :data="expenseData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false" empty-text=" ">
                 
                 <el-table-column v-for="column in expenseCol" :key="column.key" :prop="column.key" :label="column.label"
-                    :sortable="false" :align="column.align"/>
+                    :sortable="false" :align="column.align" :formatter="column.formatter"/>
                 
                 </el-table>
         </el-col>
         </el-row>
     <!-- </div> -->
     </el-space>
+    
+    <MnEditItem ref="MnEdit" :columns="incomeCol" apiName="income" :openDialog="isOpenCreateIncomeDialog" :title="$t('income.name')"
+    createUrl="" editUrl="" :isEdit="false" :edit-item="newIncomeItem"
+      @onSaved="AddIncome" @onCloseClicked="CloseCreateIncome" />
+
+    <CreateMoneySpend :openDialog="isOpenCreateMoneySpendDialog" :item="newMoneySpendItem" @onSaved="AddMoneySpend" @onCloseClicked="CloseCreateMoneySpend">
+    </CreateMoneySpend>
 </template>
   
 <script setup lang="ts">
@@ -72,6 +85,7 @@
 import { ref, watch, onMounted, computed  } from 'vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts'
+import { CreateMoneySpendRequest } from '../../Models/Request/MoneySpend/CreateMoneySpendRequest';
 // @ts-ignore
 import { TableColumn } from './Models/TableColumn.ts'
 // @ts-ignore
@@ -81,8 +95,13 @@ import { SearchRequest, SearchResponse } from '@/components/maynghien/adminTable
 // @ts-ignore
 import { Filter } from '@/components/maynghien/BaseModels/Filter';
 // @ts-ignore
-import { formatCurrency } from "@/Services/Utilities";
+import { formatCurrency } from "@/Services/CurrencyUtilities";
+import { useToast } from "vue-toastification";
+import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
+import MnEditItem from '@/components/maynghien/adminTable/MnEditItem.vue'
+import languages from '@/languages'
 
+const _toast = useToast();
 const Search = async (apiName: any) => {
     if (moneyHolderValue.value)
     {
@@ -96,7 +115,7 @@ const Search = async (apiName: any) => {
         }];
         searchRequest.filters = filters
     }
-     console.log(searchRequest.filters);
+    //  console.log(searchRequest.filters);
     var searchApiResponse = await handleAPISearch(searchRequest, apiName);
     // console.log(searchApiResponse);
     if (searchApiResponse.isSuccess && searchApiResponse.data != undefined) {
@@ -105,20 +124,12 @@ const Search = async (apiName: any) => {
         // console.log(dataResponse);
         if (dataResponse != undefined && dataResponse.data != undefined && dataResponse.data.length > 0) {
         return dataResponse.data;
-        // if (dataresponse.totalPages != undefined)
-        //   totalPages.value = dataresponse.totalPages;
-        // else
-        //   totalPages.value = 0;
-        // if (dataresponse.totalRows != undefined) {
-        //   totalItem.value = dataresponse.totalRows;
-        // }
-        // else
-        //   totalItem.value = 0;
         }
         else {
         return [];
         }
     }
+    _toast.error(searchApiResponse.message);
 }
 // let budgetData = ref<SearchDTOItem[]>([]);
 let searchRequest: SearchRequest = {
@@ -127,38 +138,52 @@ let searchRequest: SearchRequest = {
 //   filters:  Filter[],
   SortBy: undefined
 }
-const budgetCol : TableColumn[] = [
-    // {
-    //     key: "id",
-    //     label: "id",
-    //     hidden: true,
-    // },
-    {
-        key: "budgetCategoryName",
-        label: "name",
 
-    },
-    {
-        key: "balance",
-        label: "balance",
-
-    },
-];
+const formatAmount = (row: any, column: any, cellValue: any)  => {
+    // console.log(cellValue);
+    return formatCurrency(cellValue);
+}
 const incomeCol : TableColumn[] = [
-    // {
-    //     key: "id",
-    //     label: "id",
+    {
+        key: "moneyHolderId",
+        label: languages.global.t('income.moneyHolderId'),
+        enableEdit: true,
+        enableCreate: true,
+        hidden: true,
+        width: 300,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHolder"
 
-    // },
+        },
+
+    },
     {
         key: "name",
         label: "name",
-        align: "left"
+        enableCreate: true,
+        enableEdit: true,
+        hidden: false,
+        width: 500,
+        required: true,
+        inputType: "text",
+        align: "left",
+        showInTable: true
     },
     {
         key: "amount",
         label: "Amount",
-        align: "right"
+        enableCreate: true,
+        enableEdit: true,
+        hidden: false,
+        width: 500,
+        required: true,
+        inputType: "currency",
+        align: "right",
+        formatter : formatAmount,
+        showInTable: true
     },
 ];
 const expenseCol : TableColumn[] = [
@@ -174,19 +199,8 @@ const expenseCol : TableColumn[] = [
     {
         key: "amount",
         label: "Amount",
-        align: "right"
-    },
-];
-const moneyHolderCol : TableColumn[] = [
-    {
-        key: "budgetCategoryName",
-        label: "name",
-
-    },
-    {
-        key: "balance",
-        label: "balance",
-
+        align: "right",
+        formatter : formatAmount
     },
 ];
 
@@ -205,16 +219,10 @@ const expenseData = ref<[] | null>(null)
 //   }] | null>(null)
 const moneyHolderData = ref<[SearchDTOItem]>();
 // const balance = ref<Number>(0);
-const balance = computed(() => {
-    if (moneyHolderData.value && moneyHolderData.value.length > 0){
-        const selectedMoneyHolder = moneyHolderData.value.find((item) => item.id === moneyHolderValue.value);
+const newIncomeItem = ref<SearchDTOItem>({});
+const newMoneySpendItem = ref<CreateMoneySpendRequest>({});
+const balance = ref(0);
 
-        // Assuming there is a 'balance' property in the selected item, adjust it accordingly
-
-        return selectedMoneyHolder ? selectedMoneyHolder.balance : 0;
-    }
-    return 0;
-})
 const incomeSummary = computed(() => {
     if (!incomeData.value) {
         return 0; // or any default value when there's no data
@@ -225,16 +233,20 @@ const incomeSummary = computed(() => {
         
 });
 const expenseSummary = computed(() => {
-    if (!expenseData.value) {
+    // console.log(expenseCol)
+    // console.log(expenseCol.length)
+    // console.log(expenseCol[incomeCol.length - 1])
+    if (!expenseData.value || expenseCol.length == 0) {
         return 0; // or any default value when there's no data
     }
 
-    const lastColumnKey = expenseCol[incomeCol.length - 1].key;
+    const lastColumnKey = expenseCol[expenseCol.length - 1].key;
     return expenseData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
         
 });
 onMounted(async () => {
   try {
+    
     // budgetData.value = await Search("budget");
     // balance = await Search("Income");
 
@@ -242,11 +254,21 @@ onMounted(async () => {
 
     //expenseData.value = await Search("MoneySpend");
     moneyHolderData.value = await Search("MoneyHolder");
+    // console.log(moneyHolderData.value);
+    
     // console.log(moneyHolderData);
     // Set default value to the id of the first row, if available
     if (moneyHolderData.value && moneyHolderData.value.length > 0) {
       moneyHolderValue.value = moneyHolderData.value[0].id;
+    //   if (moneyHolderData.value && moneyHolderData.value.length > 0){
+    //     const selectedMoneyHolder = moneyHolderData.value.find((item) => item.id === moneyHolderValue.value);
+    //     console.log(selectedMoneyHolder);
+    //     balance.value = selectedMoneyHolder ? selectedMoneyHolder.balance : 0;
+    //     }
+        balance.value = moneyHolderData.value[0].balance;
     }
+
+
   } catch (error) {
     console.error("Error fetching budget data:", error);
     // Handle the error accordingly
@@ -258,19 +280,80 @@ watch(moneyHolderValue, async (newValue) => {
         // console.log(newValue);
       //const additionalData = await Search("AdditionalData"); // Replace "AdditionalData" with the desired API name
       // Process the additional data as needed
-      incomeData.value = await Search("Income");
-
+        incomeData.value = await Search("Income");
+        // console.log(incomeData.value);
         expenseData.value = await Search("MoneySpend");
+
     } catch (error) {
       console.error("Error fetching additional data:", error);
       // Handle the error accordingly
     }
   }
 });
-const handleColumnVisibilityChange = (column : any) => {
-    console.log(`Column ${column.key} visibility changed to ${column.visible}`);
-  };
+// const handleColumnVisibilityChange = (column : any) => {
+//     console.log(`Column ${column.key} visibility changed to ${column.visible}`);
+//   };
 
+const isOpenCreateMoneySpendDialog = ref(false);
+const isOpenCreateIncomeDialog = ref(false);
+const AddIncome = async () => {
+    console.log('AddMoneySpend')
+    console.log(newIncomeItem.value)
+    incomeData.value = await Search("Income");
+    isOpenCreateIncomeDialog.value = false;
+    balance.value += Number(newIncomeItem.value.amount)
+    newIncomeItem.value = {}
+}
+const AddMoneySpend = async () => {
+    // console.log('AddMoneySpend')
+    // console.log(newMoneySpendItem.value)
+    expenseData.value = await Search("MoneySpend");
+    isOpenCreateMoneySpendDialog.value = false;
+    balance.value -= Number(newMoneySpendItem.value.Amount)
+    newMoneySpendItem.value = {}
+}
+const CloseCreateIncome = () => {
+    // console.log("close create ");
+    if (isOpenCreateIncomeDialog.value){
+        isOpenCreateIncomeDialog.value = false;
+    }
+}
+const CloseCreateMoneySpend = () => {
+    // console.log("close create ");
+    if (isOpenCreateMoneySpendDialog.value){
+        isOpenCreateMoneySpendDialog.value = false;
+    }
+    // isEditedOutSide.value = false;
+}
+const handleOpenCreateIncome = () => {
+    // console.log("open create Income");
+    newIncomeItem.value.moneyHolderId = moneyHolderValue.value
+    isOpenCreateIncomeDialog.value = true;
+}
+const handleOpenCreateMoneySpend = () => {
+    // console.log("open create");
+    newMoneySpendItem.value.MoneyHolderId = moneyHolderValue.value
+    isOpenCreateMoneySpendDialog.value = true;
+}
+
+onMounted(() => {
+      document.addEventListener( "keypress", handleKeypress );
+});
+const handleKeypress = (event : KeyboardEvent) => {
+//   console.log(event.key);
+  // Check if the key pressed is the Enter key (key code 13)
+  
+  if (isOpenCreateIncomeDialog.value === false && isOpenCreateMoneySpendDialog.value === false){
+    if (event.key === '+') {
+        CloseCreateMoneySpend()
+        handleOpenCreateIncome()
+    }
+    else if (event.key === '-') {
+        CloseCreateIncome()
+        handleOpenCreateMoneySpend()
+    }
+  }
+}
 </script>
 
 <style>
