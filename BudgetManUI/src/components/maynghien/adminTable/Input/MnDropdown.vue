@@ -28,12 +28,10 @@ const emit = defineEmits<{
 }>();
 
 const dropdownChange = (value: any): void => {
-
-
   emit('changed', props.column.key, value);
 }
 watch(() => props.modelValue, () => {
-  console.log(props.modelValue);
+  // console.log(props.modelValue);
   editItem.value = props.modelValue;
 
 }, { immediate: true })
@@ -42,6 +40,12 @@ watch(() => props.column, async () => {
     var data = await handleAPIGetDropdownList(props.column.dropdownData.apiUrl);
     if (data != undefined && data.data) {
       dropdownData.value = data.data;
+      if (dropdownData.value.length == 1){
+        // console.log(dropdownData.value[0])
+        dropdownChange(dropdownData.value[0].id)
+        // editItem.value = dropdownData.value[0];
+        // console.log(editItem.value)
+      }
     }
   }
   else {

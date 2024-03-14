@@ -109,7 +109,7 @@ watch(() => props.tableColumns, async () => {
     props.tableColumns.forEach(async tableCol => {
         if (tableCol.inputType == "dropdown" && tableCol.dropdownData.apiUrl != undefined) {
             var data = await handleAPIGetDropdownList(tableCol.dropdownData.apiUrl);
-            console.log(data);
+            // console.log(data);
 
             if (data != undefined && data.data) {
                 tableCol.dropdownData.data = data.data;
