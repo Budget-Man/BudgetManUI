@@ -132,10 +132,11 @@ const emit = defineEmits<{
 }>()
 const props = defineProps<{
     openDialog: boolean,
-    item: CreateMoneySpendRequest
+    item?: CreateMoneySpendRequest
 }>();
 // Use computed to create a filtered model
-const model = ref<CreateMoneySpendRequest>(props.item);
+const model = ref<CreateMoneySpendRequest>(props.item ?? {} as CreateMoneySpendRequest);
+
 const defaultModel = ref<CreateMoneySpendRequest>({});
 
 const isLoading = ref(false)
