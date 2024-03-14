@@ -89,14 +89,14 @@ export const handleAPIUpdate = async (model: SearchDTOItem, apiurl: string): Pro
 
     try {
         const postResult = await axiosInstance.put(apiurl, model);
-        console.log(postResult.data);
+        // console.log(postResult.data);
         const responseObject = postResult.data
         resust = responseObject;
         if (resust.isSuccess) {
             return resust;
         }
         else {
-            console.log(resust.message);
+            // console.log(resust.message);
             return resust;
         }
     } catch (error) {

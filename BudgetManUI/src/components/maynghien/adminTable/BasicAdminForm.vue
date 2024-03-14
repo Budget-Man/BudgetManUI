@@ -75,7 +75,7 @@ const Search = async () => {
       datas.value = [];
     }
   }
-  console.log(datas);
+  // console.log(datas);
 }
 
 //#endregion
@@ -217,7 +217,7 @@ const handlePageChange = async (value: number) => {
 watch(() => props.CustomActions, () => {
   CustomButtons.value = props.CustomActions.filter(m => m.IsRowAction == false);
   CustomRowActions.value = props.CustomActions.filter(m => m.IsRowAction == true);
-  console.log(CustomRowActions);
+  // console.log(CustomRowActions);
 }, { immediate: true })
 
 watch(() => props.isEditedOutSide, () => {
