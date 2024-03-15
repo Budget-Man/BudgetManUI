@@ -278,8 +278,12 @@ watch(moneyHolderValue, async (newValue) => {
   if (newValue !== null) {
     try {
         // console.log(newValue);
+        // console.log(moneyHolderData?.value?.find((item) => item.id === newValue));
+        balance.value = moneyHolderData?.value?.find((item) => item.id === newValue).balance;
       //const additionalData = await Search("AdditionalData"); // Replace "AdditionalData" with the desired API name
       // Process the additional data as needed
+        incomeData.value =[];
+        expenseData.value = [];
         incomeData.value = await Search("Income");
         // console.log(incomeData.value);
         expenseData.value = await Search("MoneySpend");
