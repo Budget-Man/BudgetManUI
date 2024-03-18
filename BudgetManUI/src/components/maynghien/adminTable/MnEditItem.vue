@@ -44,10 +44,12 @@ import { ElMessage, ElInput, ElLoading } from 'element-plus';
 // @ts-ignore
 import { handleAPICreate, handleAPIUpdate } from './Service/BasicAdminService.ts'
 import type { TableColumn } from './Models/TableColumn';
+// @ts-ignore
 import MnDropdown from './Input/MnDropdown.vue';
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts';
 import {useI18n} from 'vue-i18n';
+// @ts-ignore
 import elInputCurrency from '@/components/el-input-currency.vue'
 
 const {t} = useI18n();
