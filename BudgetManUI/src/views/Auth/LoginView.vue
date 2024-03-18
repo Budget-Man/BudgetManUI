@@ -68,6 +68,7 @@ import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 import { handleLogin, handleLoginByGoogle } from "../../Services/LoginService.ts"
 import { useToast } from "vue-toastification";
 import { googleAuthCodeLogin   } from 'vue3-google-login' //https://devbaji.github.io/vue3-google-login/#one-tap-prompt
+// @ts-ignore
 import router from '@/router';
 // @ts-ignore
 import type { FormInstance, FormRules } from 'element-plus'

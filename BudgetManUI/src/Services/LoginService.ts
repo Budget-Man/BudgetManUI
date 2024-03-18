@@ -33,7 +33,7 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResu
         if (result.isSuccess) {
             
             if(result.data!=undefined){
-                // console.log(result.data);
+                console.log(result.data);
                 await setupLogin(result.data, model.userName);
             }
             // router.push("/");
@@ -77,7 +77,7 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
         }
         // console.log(googleLogin);
         const postResult = await axiosInstance.post(googleLoginUrl, googleLogin );
-        console.log(postResult.data);
+        // console.log(postResult.data);
         const responseObject = postResult.data
         result = responseObject;
         if (result.isSuccess) {

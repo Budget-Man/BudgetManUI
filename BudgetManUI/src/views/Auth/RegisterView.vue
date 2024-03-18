@@ -27,7 +27,7 @@
 
 
                     <el-form-item>
-                        <el-button type="primary" @click="register()">{{ $t('Auth.RegisterView.create') }}</el-button>
+                        <el-button type="primary" @click="SubmitRegister()">{{ $t('Auth.RegisterView.create') }}</el-button>
                     </el-form-item>
 
                 </el-form>
@@ -70,15 +70,15 @@ const state = reactive<RegisterViewModel>({
     email: '',
     passwordConfirm: '',
 });
-const register = async () => {
-    console.log(state);
+const SubmitRegister = async () => {
+    // console.log(state);
     if(state.password != state.passwordConfirm){
         alert("Password and password confirm  not match!!");
         return
     }
     state.email = state.userName;
     const loginResult = await handleRegister(state);
-    console.log("logresult:" + loginResult);
+    // console.log("logresult:" + loginResult);
     if (loginResult.isSuccess) {
         router.push('/');
     }

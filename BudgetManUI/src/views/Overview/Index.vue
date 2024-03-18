@@ -97,8 +97,11 @@ import { Filter } from '@/components/maynghien/BaseModels/Filter';
 // @ts-ignore
 import { formatCurrency } from "@/Services/CurrencyUtilities";
 import { useToast } from "vue-toastification";
+// @ts-ignore
 import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
+// @ts-ignore
 import MnEditItem from '@/components/maynghien/adminTable/MnEditItem.vue'
+// @ts-ignore
 import languages from '@/languages'
 
 const _toast = useToast();
@@ -278,8 +281,12 @@ watch(moneyHolderValue, async (newValue) => {
   if (newValue !== null) {
     try {
         // console.log(newValue);
+        // console.log(moneyHolderData?.value?.find((item) => item.id === newValue));
+        balance.value = moneyHolderData?.value?.find((item) => item.id === newValue).balance;
       //const additionalData = await Search("AdditionalData"); // Replace "AdditionalData" with the desired API name
       // Process the additional data as needed
+        incomeData.value =[];
+        expenseData.value = [];
         incomeData.value = await Search("Income");
         // console.log(incomeData.value);
         expenseData.value = await Search("MoneySpend");
