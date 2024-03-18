@@ -33,13 +33,14 @@ export const handleAPISearch = async (model: SearchRequest, apiurl: string): Pro
 
     try {
         const postResult = await axiosInstance.post(apiurl + "/search", model);
-        console.log(postResult.data);
+        // console.log(postResult.data);
         const responseObject = postResult.data
         resust = responseObject;
         if (resust.isSuccess) {
             return resust;
         }
         else {
+            console.log(apiurl);
             console.log(resust.message);
             return resust;
         }

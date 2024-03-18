@@ -206,8 +206,10 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+// @ts-ignore
 import type { LoginResult } from '@/Models/LoginResult';
 import Cookies from 'js-cookie';
+// @ts-ignore
 import logo from '@/assets/budget-logo.png'
 
 const isCollapse = ref(true)
@@ -267,7 +269,13 @@ function getCode(){
     // console.log(decodedToken.value);
     if (Cookies.get('Roles')){
       var jsonString = Cookies.get('Roles')?.toString() ?? '';
-      var jsonObject = JSON.parse(jsonString);
+      console.log(jsonString);
+      var jsonObject;
+      try {
+        jsonObject = JSON.parse(jsonString);
+      } catch (e) {
+        jsonObject = jsonString
+      }
       var arrayFromString = Object.values(jsonObject);
       decodedToken.value.roles = arrayFromString as string[];
       // console.log(decodedToken.value);
