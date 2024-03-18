@@ -102,7 +102,7 @@ const setupLogin = async (resultData: any , userName :string | undefined = undef
 {
     // console.log(resultData);
     // console.log(userName);
-    Cookies.set('accessToken', resultData.accessToken ?? resultData, { expires: 1 });
+    Cookies.set('accessToken', resultData.token ?? resultData, { expires: 1 });
     Cookies.set('UserName',resultData.userName ?? userName?? "", { expires: 1 });
     Cookies.set('Roles', resultData.roles ?? JSON.stringify(resultData.roles) ?? "", { expires: 1 });
     //need to get value of user setting from bank-end

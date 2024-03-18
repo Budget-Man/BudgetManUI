@@ -206,8 +206,10 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+// @ts-ignore
 import type { LoginResult } from '@/Models/LoginResult';
 import Cookies from 'js-cookie';
+// @ts-ignore
 import logo from '@/assets/budget-logo.png'
 
 const isCollapse = ref(true)
