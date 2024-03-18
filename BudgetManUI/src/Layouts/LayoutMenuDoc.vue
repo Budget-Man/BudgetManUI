@@ -269,7 +269,13 @@ function getCode(){
     // console.log(decodedToken.value);
     if (Cookies.get('Roles')){
       var jsonString = Cookies.get('Roles')?.toString() ?? '';
-      var jsonObject = JSON.parse(jsonString);
+      console.log(jsonString);
+      var jsonObject;
+      try {
+        jsonObject = JSON.parse(jsonString);
+      } catch (e) {
+        jsonObject = jsonString
+      }
       var arrayFromString = Object.values(jsonObject);
       decodedToken.value.roles = arrayFromString as string[];
       // console.log(decodedToken.value);

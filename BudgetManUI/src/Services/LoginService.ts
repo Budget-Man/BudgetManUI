@@ -100,11 +100,15 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
 }
 const setupLogin = async (resultData: any , userName :string | undefined = undefined) =>
 {
-    // console.log(resultData);
+    // console.log('setup login:');
     // console.log(userName);
-    Cookies.set('accessToken', resultData.token ?? resultData, { expires: 1 });
-    Cookies.set('UserName',resultData.userName ?? userName?? "", { expires: 1 });
-    Cookies.set('Roles', resultData.roles ?? JSON.stringify(resultData.roles) ?? "", { expires: 1 });
+    Cookies.set('accessToken', resultData.token ?? resultData.accessToken ?? resultData, { expires: 1 });
+    Cookies.set('UserName',resultData.userName ?? userName ?? "", { expires: 1 });
+    // console.log(resultData.roles);
+    let roleJson = JSON.stringify(resultData.roles);
+    // console.log(roleJson);
+    Cookies.set('Roles', roleJson ?? "", { expires: 1 });
+    
     //need to get value of user setting from bank-end
     //set temporary language
     // Cookies.set('language', 'en', { expires: 30 });

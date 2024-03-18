@@ -40,6 +40,7 @@ export const handleAPISearch = async (model: SearchRequest, apiurl: string): Pro
             return resust;
         }
         else {
+            console.log(apiurl);
             console.log(resust.message);
             return resust;
         }
