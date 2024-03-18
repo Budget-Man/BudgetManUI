@@ -47,7 +47,8 @@
                         {{ $t('total') }}
                     </el-col>
                 </el-row>
-                <div v-for="detail in model.Details">
+                <!-- <div v-for="detail in model.Details"> -->
+                <div v-for="(detail, index) in model.Details" :key="index">
                     <el-row :gutter="18" class="mt-1">
                         <el-col :span="5">
                             <el-input v-model="detail.Reason" name="detailReason"></el-input>
@@ -108,19 +109,24 @@ import { handleAPIUpdateMoneySpend } from '../../Services/MoneySpend/MoneySpendS
 import { SearchDTOItem } from './Models/SearchDTOItem.ts';
 import { CreateMoneySpendRequest } from '../../Models/Request/MoneySpend/CreateMoneySpendRequest';
 // import type { Ref } from 'vue/dist/vue.js';
+// @ts-ignore
 import { handleGetDropdownList } from '@/Services/DropdownService';
 import {
     Delete,
     Plus,
 
 } from '@element-plus/icons-vue'
+// @ts-ignore
 import { MoneySpendDetailDto } from '@/Models/Dtos/MoneySpendDetail';
 
 import {useI18n} from 'vue-i18n'
+// @ts-ignore
 import { DropdownDto } from '@/Models/Dtos/DropdownDto';
 // @ts-ignore
 import  { AppResponse } from "@/Models/AppResponse";
+// @ts-ignore
 import elInputCurrency from '@/components/el-input-currency.vue'
+// @ts-ignore
 import { formatCurrency } from "@/Services/CurrencyUtilities";
 // import {  } from 'element-plus'
 

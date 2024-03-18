@@ -7,8 +7,9 @@
 </template>
 
 <script setup lang="ts">
-
+// @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
+// @ts-ignore
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';

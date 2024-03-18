@@ -112,7 +112,12 @@ let searchRequest: SearchRequest = {
 const CustomButtons = ref<CustomAction[]>([{}]);
 const CustomRowActions = ref<CustomAction[]>([{}]);
 
-await Search();
+const search = async () => {
+  await Search();
+};
+
+search();
+
 //#endregion
 //#region variable
 const SelectedRowId = ref<string | null>(null);

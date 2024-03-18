@@ -22,14 +22,17 @@
 </template>
 
 <script setup lang="ts">
-
+// @ts-ignore
 import type { Filter } from '@/components/maynghien/BaseModels/Filter';
+// @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
+// @ts-ignore
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useRoute } from 'vue-router';
 import { handleGetLoan } from '../../Services/Loan/GetById'
+// @ts-ignore
 import type { LoanDto } from '@/Models/Dtos/LoanDto';
 import { ref } from 'vue';
 

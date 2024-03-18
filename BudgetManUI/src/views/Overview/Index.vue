@@ -97,8 +97,11 @@ import { Filter } from '@/components/maynghien/BaseModels/Filter';
 // @ts-ignore
 import { formatCurrency } from "@/Services/CurrencyUtilities";
 import { useToast } from "vue-toastification";
+// @ts-ignore
 import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
+// @ts-ignore
 import MnEditItem from '@/components/maynghien/adminTable/MnEditItem.vue'
+// @ts-ignore
 import languages from '@/languages'
 
 const _toast = useToast();
