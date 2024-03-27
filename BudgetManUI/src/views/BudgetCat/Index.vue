@@ -52,7 +52,7 @@ const tableColumns: TableColumn[] = [
         required: true,
         sortable: true,
         showSearch: false,
-        inputType: "number",
+        inputType: "currency",
         dropdownData: null,
 
     },
