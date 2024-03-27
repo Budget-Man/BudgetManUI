@@ -160,7 +160,9 @@ export const handleAPICustom = async (model: SearchDTOItem, action: CustomAction
         if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.GET) {
             postResult = await axiosInstance.get(ActionUrl + "/" + model.id);
         }
-
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.PATCH) {
+            postResult = await axiosInstance.patch(ActionUrl, model);
+        }
         console.log(postResult.data);
         const responseObject = postResult.data
         resust = responseObject;

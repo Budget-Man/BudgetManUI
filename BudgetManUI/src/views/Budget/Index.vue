@@ -107,11 +107,12 @@ const tableColumns: TableColumn[] = [
 ]
 const CustomActions: CustomAction[] = ([
     {
-        ActionLabel:"Monthly Reset",
-        ActionName:"budget",
-        ApiAction:"",
-        ApiActiontype: ApiActionType.POST,
-        DataType: CustomActionDataType.null
+        ActionLabel:t("reset-monthly-budget"),
+        //ActionName:undefined,
+        ApiAction:"budget",
+        ApiActiontype: ApiActionType.PATCH,
+        DataType: CustomActionDataType.null,
+        IsRowAction:false
        
 
     }

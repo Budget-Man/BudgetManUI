@@ -93,7 +93,8 @@
     "moneyHolderId": "Nơi giữ tiền"
   },
   "budgetCat": {
-    "name": "Danh mục ngân sách"
+    "name": "Danh mục ngân sách",
+    "monthlyLimit": "Ngân quỹ hàng tháng"
   },
   "user": {
     "name": "Người dùng",
@@ -119,6 +120,7 @@
   "total-amount": "Tổng cộng",
   "confirm": "Xác nhận",
   "reset-default": "Trờ về mặc định",
+  "reset-monthly-budget": "Thêm Quỹ Tháng mới",
   "search": "Tìm",
   "results": "kết quả",
   "page": "Trang",

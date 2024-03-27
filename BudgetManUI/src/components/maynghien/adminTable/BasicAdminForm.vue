@@ -196,7 +196,7 @@ const handleEdit = async (item: SearchDTOItem) => {
 }
 const handleCustomAction = async (item: CustomActionResponse) => {
   if (item.Action.ApiAction != undefined) {
-    var url: string = props.apiName + "/" + item.Action.ActionName;
+    var url: string = props.apiName +( item.Action.ActionName!=undefined? + "/" + item.Action.ActionName:"");
     var apiResult = await handleAPICustom(item.Data, item.Action, url);
     console.log(apiResult);
 
