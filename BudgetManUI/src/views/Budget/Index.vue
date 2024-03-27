@@ -9,7 +9,7 @@
 // @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 // @ts-ignore
-import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
+import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import {useI18n} from 'vue-i18n'
@@ -106,6 +106,15 @@ const tableColumns: TableColumn[] = [
     },
 ]
 const CustomActions: CustomAction[] = ([
-    
+    {
+        ActionLabel:"Monthly Reset",
+        ActionName:"budget",
+        ApiAction:"",
+        ApiActiontype: ApiActionType.POST,
+        DataType: CustomActionDataType.null
+       
+
+    }
 ]);
+
 </script>
