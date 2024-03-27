@@ -90,7 +90,8 @@
     "moneyHolderId": "moneyHolder"
   },
   "budgetCat": {
-    "name": "Budget category"
+    "name": "Budget category",
+    "monthlyLimit": "Monthly Limit"
   },
   "user": {
     "name": "Users",
