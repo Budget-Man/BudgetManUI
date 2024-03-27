@@ -12,10 +12,11 @@
 </template>
 
 <script setup lang="ts">
-
+// @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
-
+// @ts-ignore
 import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
+// @ts-ignore
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
@@ -94,7 +95,7 @@ const tableColumns: TableColumn[] = [
         enableCreate: true,
         hidden: true,
         width: 300,
-        required: true,
+        required: false,
         sortable: true,
         showSearch: true,
         inputType: "dropdown",

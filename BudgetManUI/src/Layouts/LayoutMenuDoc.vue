@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <el-container>
-      <el-header>
+  <!-- <div> -->
+    <el-container style="height:100%">
+      <el-header style="padding-left: 0px;">
+        <a href="/" style="all:unset">
+          <el-image  :src="logo"  style="height: 60px;"  id="mask"></el-image>
+        </a>
         <button @click="logout()"><el-icon><SwitchButton /></el-icon> {{userName}}</button>
       </el-header>
       <el-container>
@@ -88,7 +91,7 @@
         </div>
       </el-footer> -->
     </el-container>
-  </div>
+  <!-- </div> -->
 </template>
 
 <style>
@@ -183,6 +186,10 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+#mask:hover {
+  filter: drop-shadow(0 0 0.75rem rgb(0, 255, 255));
+  cursor: pointer;
+}
 </style>
 <script lang="ts" setup>
 import { ref } from 'vue'
@@ -199,8 +206,12 @@ import {
   PriceTag,
   Money
 } from '@element-plus/icons-vue'
+// @ts-ignore
 import type { LoginResult } from '@/Models/LoginResult';
 import Cookies from 'js-cookie';
+// @ts-ignore
+import logo from '@/assets/budget-logo.png'
+
 const isCollapse = ref(true)
 const hasAdminRole = ref<boolean>(false);
 const decodedToken = ref<LoginResult>({
@@ -258,7 +269,13 @@ function getCode(){
     // console.log(decodedToken.value);
     if (Cookies.get('Roles')){
       var jsonString = Cookies.get('Roles')?.toString() ?? '';
-      var jsonObject = JSON.parse(jsonString);
+      console.log(jsonString);
+      var jsonObject;
+      try {
+        jsonObject = JSON.parse(jsonString);
+      } catch (e) {
+        jsonObject = jsonString
+      }
       var arrayFromString = Object.values(jsonObject);
       decodedToken.value.roles = arrayFromString as string[];
       // console.log(decodedToken.value);

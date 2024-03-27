@@ -6,17 +6,17 @@
       <div class="grid-content ep-bg-purple">
         <p>Hello!</p>
         <p class="hello">{{ $t('Auth.LoginView.message') }} </p>
-        <el-form ref="ruleFormRef" :model="state" status-icon label-width="px" class="demo-ruleForm">
-          <el-form-item label="" prop="username">
+        <el-form ref="formRef" :model="state" status-icon label-width="px" class="demo-ruleForm" :rules="rules">
+          <el-form-item label="" prop="userName">
             <el-input v-model="state.userName" :placeholder="$t('Auth.LoginView.user-name')" :prefix-icon="User" />
           </el-form-item>
-          <el-form-item label="" prop="pass">
+          <el-form-item label="" prop="password">
             <el-input v-model="state.password" type="password" width="300px" autocomplete="off" :placeholder="$t('Auth.LoginView.password')"
               :prefix-icon="Key" />
           </el-form-item>
           <el-form-item>
             <el-row justify="space-between" style="width:100%">
-            <el-button type="primary" @click="login()" v-loading.fullscreen.lock="fullscreenLoading">
+            <el-button type="primary" @click="login(formRef)" v-loading.fullscreen.lock="fullscreenLoading">
               <template #icon>
                 <el-icon>
                   <svg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#000000' opacity='0'/>
@@ -60,7 +60,7 @@
   
 <script setup lang="ts">
 import { Calendar, Search, User, Key } from '@element-plus/icons-vue'
-import { reactive, ref } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 // @ts-ignore
 import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 
@@ -68,7 +68,10 @@ import { LoginViewModel } from '../../Models/LoginViewModel.ts'
 import { handleLogin, handleLoginByGoogle } from "../../Services/LoginService.ts"
 import { useToast } from "vue-toastification";
 import { googleAuthCodeLogin   } from 'vue3-google-login' //https://devbaji.github.io/vue3-google-login/#one-tap-prompt
+// @ts-ignore
 import router from '@/router';
+// @ts-ignore
+import type { FormInstance, FormRules } from 'element-plus'
 
 const _toast = useToast();
 const state = reactive<LoginViewModel>({
@@ -77,18 +80,33 @@ const state = reactive<LoginViewModel>({
   email: ''
 });
 const fullscreenLoading = ref(false)
-const login = async () => {
-  fullscreenLoading.value = true;
-  console.log(fullscreenLoading);
-  const loginResult = await handleLogin(state);
-  console.log("logresult:" + loginResult);
-  if (loginResult.isSuccess)
-    //  router.push('/'); //router.push make axiosConfig not set up accessToken
-    window.location.href = '/';
-  else
-    _toast.error(loginResult.message);
-  fullscreenLoading.value = false;
+const loginValidate = async (formEl: FormInstance) => {
+  // console.log('Validate!')
+  
 }
+const login = async (formEl: FormInstance) => {
+  if (!formEl) return false;
+  await formEl.validate(async (valid: any, fields: any) => {
+    if (valid) {
+      fullscreenLoading.value = true;
+      // console.log(fullscreenLoading);
+      const loginResult = await handleLogin(state);
+      // console.log("logresult:" + loginResult);
+      if (loginResult.isSuccess)
+        // console.log('login success');
+        //  router.push('/'); //router.push make axiosConfig not set up accessToken
+        window.location.href = '/';
+      else
+        _toast.error(loginResult.message);
+      fullscreenLoading.value = false;
+    } else {
+      console.log('error submit!')
+      return false;
+    }
+  })
+
+}
+
 
 const googleLogin = async () => {
   googleAuthCodeLogin().then(async(response: { code: string; }) => {
@@ -103,7 +121,34 @@ const googleLogin = async () => {
       fullscreenLoading.value = false;
   })
 }
+const formRef = ref<FormInstance>()
 
+const rules = reactive<FormRules<LoginViewModel>>({
+  userName: [
+    {
+      required: true,
+      message: 'Please input your username',
+      trigger: 'change',
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: 'Please input your password',
+      trigger: 'change',
+    },
+  ]
+})
+onMounted(() => {
+      document.addEventListener( "keypress", handleKeypress );
+});
+const handleKeypress = (event : KeyboardEvent) => {
+  // console.log(event.key);
+  // Check if the key pressed is the Enter key (key code 13)
+  if (event.key === 'Enter') {
+    login(formRef.value);
+  }
+}
 </script>
   
 <style>

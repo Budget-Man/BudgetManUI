@@ -33,18 +33,26 @@ const handleLogin = async (model: LoginViewModel): Promise<AppResponse<LoginResu
         if (result.isSuccess) {
             
             if(result.data!=undefined){
-                // console.log(result.data);
+                console.log(result.data);
                 await setupLogin(result.data, model.userName);
             }
             // router.push("/");
         }
         else {
+            console.log('failed');
             console.log(result.message);
 
         }
     } catch (error) {
+        console.log('error');
         console.error(error);
-
+        console.log(result);
+        // if (axios.isAxiosError(error)) {
+        //     const axiosError = error as AxiosError;
+        //     if (axiosError.message.includes('timeout')){
+            
+        //     }
+        // }
     }
     return result;
 
@@ -69,7 +77,7 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
         }
         // console.log(googleLogin);
         const postResult = await axiosInstance.post(googleLoginUrl, googleLogin );
-        console.log(postResult.data);
+        // console.log(postResult.data);
         const responseObject = postResult.data
         result = responseObject;
         if (result.isSuccess) {
@@ -92,11 +100,15 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
 }
 const setupLogin = async (resultData: any , userName :string | undefined = undefined) =>
 {
-    // console.log(resultData);
+    // console.log('setup login:');
     // console.log(userName);
-    Cookies.set('accessToken', resultData.accessToken ?? resultData, { expires: 1 });
-    Cookies.set('UserName',resultData.userName ?? userName?? "", { expires: 1 });
-    Cookies.set('Roles', resultData.roles ?? JSON.stringify(resultData.roles) ?? "", { expires: 1 });
+    Cookies.set('accessToken', resultData.token ?? resultData.accessToken ?? resultData, { expires: 1 });
+    Cookies.set('UserName',resultData.userName ?? userName ?? "", { expires: 1 });
+    // console.log(resultData.roles);
+    let roleJson = JSON.stringify(resultData.roles);
+    // console.log(roleJson);
+    Cookies.set('Roles', roleJson ?? "", { expires: 1 });
+    
     //need to get value of user setting from bank-end
     //set temporary language
     // Cookies.set('language', 'en', { expires: 30 });

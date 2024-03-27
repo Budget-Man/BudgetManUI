@@ -33,59 +33,63 @@
   "budget": {
     "name": "Budget",
     "choose": "@:chose @.lower:budget.name",
-    "please-choise": "Please choise @:budget.name",
-    "budgetCategoryId":"Category",
-    "budgetCategoryName":"Category",
+    "please-choise": "@:please-choise @:budget.name",
+    "budgetCategoryId": "Category",
+    "budgetCategoryName": "Category",
     "balance": "Balance"
   },
   "moneyHolder": {
     "name": "Money holder",
     "choose": "@:chose @.lower:moneyHolder.name",
-    "bankname": "bankName"
+    "bankname": "bankName",
+    "please-choise": "@:please-choise @:moneyHolder.name."
   },
   "moneySpend": {
     "name": "Money spend",
     "reason": "Reason",
     "create": "@:create @:moneySpend.name",
     "quantity": "Quantity",
-    "unit-price": "Unit Price"
+    "unit-price": "Unit Price",
+    "please-input-reason": "@:please-input @:moneySpend.reason",
+    "amount": "Amount",
+    "please-input-amount": "@:please-input @:amount"
   },
   "income": {
     "name": "Income",
-    "moneyHolderName" : "Money Holder",
-    "moneyHolderId" : "Money Holder",
+    "moneyHolderName": "Money Holder",
+    "moneyHolderId": "Money Holder",
     "amount": "Amount",
     "create": "@:create @.lower:income.name"
   },
   "loan": {
     "name": "Loan",
-    "totalAmount":"TotalAmount",
-    "remainAmount":"RemainAmount",
+    "totalAmount": "TotalAmount",
+    "remainAmount": "RemainAmount",
     "totalInterest": "TotalInterest",
-    "interestRate":"InterestRate",
-    "ratePeriod":"RatePeriod",
+    "interestRate": "InterestRate",
+    "ratePeriod": "RatePeriod",
     "Daily": "Daily",
-    "Weekly":"Weekly",
-    "Monthly":"Monthly",
-    "Quarterly":"Quarterly",
-    "Annually":"Annually",
-    "Irregular":"Irregular",
+    "Weekly": "Weekly",
+    "Monthly": "Monthly",
+    "Quarterly": "Quarterly",
+    "Annually": "Annually",
+    "Irregular": "Irregular",
     "moneyHolderName": "moneyHolder",
     "moneyHolderId": "moneyHolder"
   },
   "debt": {
     "name": "Debt",
-    "totalAmount":"TotalAmount",
-    "remainAmount":"RemainAmount",
+    "totalAmount": "TotalAmount",
+    "remainAmount": "RemainAmount",
     "totalInterest": "TotalInterest",
-    "interestRate":"InterestRate",
-    "ratePeriod":"RatePeriod",
+    "interestRate": "InterestRate",
+    "ratePeriod": "RatePeriod",
     "Daily": "Daily",
-    "Weekly":"Weekly",
-    "Monthly":"Monthly",
-    "Quarterly":"Quarterly",
-    "Annually":"Annually",
-    "Irregular":"Irregular",
+    "Weekly": "Weekly",
+    "Monthly": "Monthly",
+    "Quarterly": "Quarterly",
+    "Annually": "Annually",
+    "Irregular": "Irregular",
     "moneyHolderName": "moneyHolder",
     "moneyHolderId": "moneyHolder"
   },
@@ -95,10 +99,10 @@
   },
   "user": {
     "name": "Users",
-    "Role":"Role",
-    "Admin":"Admin",
-    "TenantAdmin":"Personal",
-    "Reset":"Reset"
+    "Role": "Role",
+    "Admin": "Admin",
+    "TenantAdmin": "Personal",
+    "Reset": "Reset"
   },
   "setting": {
     "name": "Setting",
@@ -131,5 +135,8 @@
   "field-valid-false": "The field: {val} is not allowed!",
   "row-deleted": "Row deleted.",
   "deleted-error": "Row not deleted.",
-  "password-repeat": "Repeat password"
+  "password-repeat": "Repeat password",
+  "please-choise": "Please choise",
+  "please-input": "Please input",
+  "timeout-message": "The server is overloaded. Please refresh or try again later!"
 }

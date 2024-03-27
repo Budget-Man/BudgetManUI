@@ -13,8 +13,8 @@
         </el-form-item>
         <el-form-item :label="$t('setting.currency-style')">
             <el-select v-model="form.currency">
-                <el-option key="USD" label="USD" value="USD" />
-                <el-option key="VND" label="VND" value="VND" />
+                <el-option v-for="item in currencyList" :key="item" :label="item" :value="item" />
+                <!-- <el-option key="VND" label="VND" value="VND" /> -->
             </el-select>
         </el-form-item>
         <el-form-item :label="$t('setting.defaultMoneyHolder')">
@@ -47,6 +47,8 @@ import { SearchDTOItem } from './Models/SearchDTOItem.ts'
 import { handleAPICustom, handleAPIDelete, handleAPISearch } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts'
 // @ts-ignore
 import { SearchRequest, SearchResponse } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts';
+// @ts-ignore
+import { currencyList } from "@/Services/CurrencyUtilities";
 
 const form = reactive({
               language: '',

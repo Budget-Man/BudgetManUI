@@ -34,59 +34,61 @@
     "name": "Ngân sách",
     "choose": "@:choose @.lower:budget.name",
     "please-choise": "Vui lòng chọn @:budget.name",
-    "budgetCategoryId":"Loại",
-    "budgetCategoryName":"Loại",
+    "budgetCategoryId": "Loại",
+    "budgetCategoryName": "Loại",
     "balance": "Số tiền"
   },
   "moneyHolder": {
     "name": "Nơi giữ tiền",
     "choose": "@:chose @.lower:moneyHolder.name\"",
-    "bankname": "Tên ngân hàng"
+    "bankname": "Tên ngân hàng",
+    "please-choise": "@:please-choise @:moneyHolder.name."
   },
   "moneySpend": {
     "name": "Chi tiêu",
     "reason": "Lý do",
     "create": "@:create @.lower:moneySpend.name",
     "quantity": "Số lượng",
-    "unit-price": "Đơn giá"
+    "unit-price": "Đơn giá",
+    "please-input-reason": "@:please-input @:moneySpend.reason",
+    "please-input-amount": "@:please-input @:amount"
   },
   "income": {
     "name": "Thu nhập",
-    "moneyHolderName" : " Nơi giữ tiền",
-    "moneyHolderId" : " Nơi giữ tiền",
+    "moneyHolderName": " Nơi giữ tiền",
+    "moneyHolderId": " Nơi giữ tiền",
     "amount": "Số tiền",
     "create": "@:create @.lower:income.name"
   },
   "loan": {
     "name": "Vay mượn",
-    "totalAmount":"Tổng cộng",
-    "remainAmount":"Số tiền còn lại",
+    "totalAmount": "Tổng cộng",
+    "remainAmount": "Số tiền còn lại",
     "totalInterest": "Tổng tiền lãi",
-    "interestRate":"Lãi suất",
-    "ratePeriod":"Tỷ lệ thời gian",
+    "interestRate": "Lãi suất",
+    "ratePeriod": "Tỷ lệ thời gian",
     "Daily": "Hàng ngày",
-    "Weekly":"Hàng tuần",
-    "Monthly":"Hàng tháng",
-    "Quarterly":"Hàng quý",
-    "Annually":"Hàng năm",
-    "Irregular":"Không thường xuyên",
+    "Weekly": "Hàng tuần",
+    "Monthly": "Hàng tháng",
+    "Quarterly": "Hàng quý",
+    "Annually": "Hàng năm",
+    "Irregular": "Không thường xuyên",
     "moneyHolderName": "Nơi giữ tiền",
     "moneyHolderId": "Nơi giữ tiền"
-    
   },
   "debt": {
     "name": "Nợ",
-    "totalAmount":"Tổng cộng",
-    "remainAmount":"Số tiền còn lại",
+    "totalAmount": "Tổng cộng",
+    "remainAmount": "Số tiền còn lại",
     "totalInterest": "Tổng tiền lãi",
-    "interestRate":"Lãi suất",
-    "ratePeriod":"Tỷ lệ thời gian",
+    "interestRate": "Lãi suất",
+    "ratePeriod": "Tỷ lệ thời gian",
     "Daily": "Hàng ngày",
-    "Weekly":"Hàng tuần",
-    "Monthly":"Hàng tháng",
-    "Quarterly":"Hàng quý",
-    "Annually":"Hàng năm",
-    "Irregular":"Không thường xuyên",
+    "Weekly": "Hàng tuần",
+    "Monthly": "Hàng tháng",
+    "Quarterly": "Hàng quý",
+    "Annually": "Hàng năm",
+    "Irregular": "Không thường xuyên",
     "moneyHolderName": "Nơi giữ tiền",
     "moneyHolderId": "Nơi giữ tiền"
   },
@@ -95,10 +97,10 @@
   },
   "user": {
     "name": "Người dùng",
-    "Role":"Vai trò",
-    "Admin":"Quản trị viên",
-    "TenantAdmin":"Người dùng",
-    "Reset":"Đặt lại mật khẩu"
+    "Role": "Vai trò",
+    "Admin": "Quản trị viên",
+    "TenantAdmin": "Người dùng",
+    "Reset": "Đặt lại mật khẩu"
   },
   "setting": {
     "name": "Cài đặt",
@@ -131,5 +133,8 @@
   "field-valid-false": "Vui lòng nhập trường dữ liệu: {val}",
   "row-deleted": "Dữ liệu đã được xóa",
   "deleted-error": "Đã xảy ra lỗi, dữ liệu không thể xóa",
-  "password-repeat": "Nhập lại mật khẩu"
+  "password-repeat": "Nhập lại mật khẩu",
+  "please-choise": "Vui lòng chọn",
+  "please-input": "Vui lòng nhập",
+  "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!"
 }
