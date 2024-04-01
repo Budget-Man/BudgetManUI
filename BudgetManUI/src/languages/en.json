@@ -54,6 +54,15 @@
     "amount": "Amount",
     "please-input-amount": "@:please-input @:amount"
   },
+  "moneyTransfer": {
+    "From": "Transfer from",
+    "To": "Transfer to",
+    "please-input-amount": "@:please-input @:amount",
+    "please-choise-from": "@:please-choise @:moneyTransfer.from.",
+    "please-choise-to": "@:please-choise @:moneyTransfer.to."
+   
+  },
+  
   "income": {
     "name": "Income",
     "moneyHolderName": "Money Holder",

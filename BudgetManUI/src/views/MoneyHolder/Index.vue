@@ -1,7 +1,11 @@
 <template>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneyHolder'" :allowAdd="true" :allowDelete="true" :title="$t('moneyHolder.name')"
-           :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
+        :is-edited-out-side="isEditedOutSide"  :CustomActions="CustomActions" :allowEdit="true"  @onCustomAction="handleCustomAction"></BasicAdminFormVue>
+    </Suspense>
+    <Suspense>
+        <CreateMoneyTransfer :openDialog="isOpenCreateDialog" @onSaved="Reload" @onCloseClicked="CloseCreate">
+        </CreateMoneyTransfer>
     </Suspense>
 </template>
 
@@ -9,11 +13,16 @@
 
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 // @ts-ignore
-import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
+import CreateMoneyTransfer from '@/components/MoneyTransfer/CreateMoneyTransfer.vue';
+// @ts-ignore
+import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue/dist/vue.js';
 const {t} = useI18n();
+
+const isEditedOutSide = ref(false);
 const tableColumns: TableColumn[] = [
     {
         key: "id",
@@ -74,6 +83,27 @@ const tableColumns: TableColumn[] = [
 
 ]
 const CustomActions: CustomAction[] = ([
-    
+    {
+        ActionName: "transfer",
+        ActionLabel: t('transfer'),
+        ApiActiontype: ApiActionType.None,
+        IsRowAction: false,
+        DataType: CustomActionDataType.null,
+    }
 ]);
+const isOpenCreateDialog = ref(false);
+const handleCustomAction = async (item: CustomActionResponse) => {
+    if (item.Action.ActionName == "transfer") {
+        isOpenCreateDialog.value = true;
+        isEditedOutSide.value = false;
+    }
+}
+const Reload = async () => {
+    isOpenCreateDialog.value = false;
+    isEditedOutSide.value = true;
+}
+const CloseCreate = async () => {
+    isOpenCreateDialog.value = false;
+    isEditedOutSide.value = false;
+}
 </script>

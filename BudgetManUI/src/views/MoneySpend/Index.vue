@@ -140,7 +140,7 @@ const CustomActions: CustomAction[] = ([
     {
         ActionName: "Create",
         ActionLabel: t('create'),
-        ApiActiontype: ApiActionType.POST,
+        ApiActiontype: ApiActionType.None,
         IsRowAction: false,
         DataType: CustomActionDataType.null,
     }

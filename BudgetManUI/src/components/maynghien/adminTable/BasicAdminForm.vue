@@ -48,7 +48,9 @@ import { SearchRequest } from '../BaseModels/SearchRequest';
 // import type { AppResponse } from '@/Models/AppResponse';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
-import type { CustomAction, CustomActionResponse } from './Models/CustomAction';
+import type {  CustomAction, CustomActionResponse } from './Models/CustomAction';
+
+import  { ApiActionType } from './Models/CustomAction';
 import { SortByInfo } from '../BaseModels/SortByInfo';
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
@@ -195,7 +197,7 @@ const handleEdit = async (item: SearchDTOItem) => {
   openDialogCreate.value = true;
 }
 const handleCustomAction = async (item: CustomActionResponse) => {
-  if (item.Action.ApiAction != undefined) {
+  if (item.Action.ApiActiontype != ApiActionType.None ) {
     var url: string = props.apiName +( item.Action.ActionName!=undefined? + "/" + item.Action.ActionName:"");
     var apiResult = await handleAPICustom(item.Data, item.Action, url);
     console.log(apiResult);

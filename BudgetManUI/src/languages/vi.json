@@ -53,6 +53,14 @@
     "please-input-reason": "@:please-input @:moneySpend.reason",
     "please-input-amount": "@:please-input @:amount"
   },
+  "moneyTransfer": {
+    "from": "Chuyển từ",
+    "to": "Chuyển đến",
+    "please-input-amount": "@:please-input @:amount",
+    "please-choise-from": "@:please-choise @:moneyTransfer.from.",
+    "please-choise-to": "@:please-choise @:moneyTransfer.to."
+  },
+  
   "income": {
     "name": "Thu nhập",
     "moneyHolderName": " Nơi giữ tiền",
