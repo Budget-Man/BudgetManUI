@@ -19,7 +19,7 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useI18n } from 'vue-i18n';
-import { ref } from 'vue/dist/vue.js';
+import { ref } from 'vue';
 const {t} = useI18n();
 
 const isEditedOutSide = ref(false);
