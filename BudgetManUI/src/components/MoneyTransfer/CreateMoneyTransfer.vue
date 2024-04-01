@@ -6,14 +6,14 @@
             
             <div>
                 <label>{{ $t('moneyTransfer.from') }}</label>
-                <el-select v-model="model.FromMoneyHolderId" :placeholder="$t('moneyHolder.choose')" class="action-input" ref="moneyHolderFromRef">
+                <el-select v-model="model.FromMoneyHolderId" :placeholder="$t('moneyTransfer.please-choise-from')" class="action-input" ref="moneyHolderFromRef">
 
                     <el-option v-for="item in MoneyHolderList?.data" :key="item.id" :label="item.name" :value="item.id" />
                 </el-select>
             </div>
             <div>
-                <label>{{ $t('moneyTransfer.from') }}</label>
-                <el-select v-model="model.ToMoneyHolderId" :placeholder="$t('moneyHolder.choose')" class="action-input" ref="moneyHolderToRef">
+                <label>{{ $t('moneyTransfer.to') }}</label>
+                <el-select v-model="model.ToMoneyHolderId" :placeholder="$t('moneyTransfer.please-choise-to')" class="action-input" ref="moneyHolderToRef">
 
                     <el-option v-for="item in MoneyHolderList?.data" :key="item.id" :label="item.name" :value="item.id" />
                 </el-select>

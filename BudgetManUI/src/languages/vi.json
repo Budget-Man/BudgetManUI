@@ -146,5 +146,6 @@
   "password-repeat": "Nhập lại mật khẩu",
   "please-choise": "Vui lòng chọn",
   "please-input": "Vui lòng nhập",
-  "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!"
+  "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!",
+  "transfer":"Chuyển"
 }

@@ -148,5 +148,6 @@
   "password-repeat": "Repeat password",
   "please-choise": "Please choise",
   "please-input": "Please input",
-  "timeout-message": "The server is overloaded. Please refresh or try again later!"
+  "timeout-message": "The server is overloaded. Please refresh or try again later!",
+  "transfer":"Transfer"
 }
