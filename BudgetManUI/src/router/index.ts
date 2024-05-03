@@ -25,6 +25,8 @@ import MoneyOverView from '../views/Overview/Index.vue'
 import Setting from '../views/Setting/Index.vue'
 import ErrorPage from '../views/Error/Index.vue'
 import { LoginResult } from '@/Models/LoginResult'
+
+import  MoneyHolderDetailView  from '../views/MoneyHolder/Details.vue'
 // import pkiValidation from '../views/PkiValidation.vue'
 // import pkiValidation from  '@/pkiValidation/5DF14AC847D6C0417597A187ED0EAC38.txt'
 // Create the router instance
@@ -51,6 +53,10 @@ const router = createRouter({
         {
           path: 'MoneyHolder',
           component: MoneyHolderView,
+        },
+        {
+          path: 'MoneyHolder/:Id',
+          component: MoneyHolderDetailView,
         },
         {
           path: 'Income',

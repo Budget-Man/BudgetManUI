@@ -20,6 +20,7 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
+import router from '@/router';
 const {t} = useI18n();
 
 const isEditedOutSide = ref(false);
@@ -89,6 +90,13 @@ const CustomActions: CustomAction[] = ([
         ApiActiontype: ApiActionType.None,
         IsRowAction: false,
         DataType: CustomActionDataType.null,
+    },
+    {
+        ActionName: "Deatail",
+        ActionLabel:t('details'),
+        ApiActiontype:ApiActionType.PUT,
+        IsRowAction: true,
+        DataType: CustomActionDataType.RowId,
     }
 ]);
 const isOpenCreateDialog = ref(false);
@@ -97,6 +105,8 @@ const handleCustomAction = async (item: CustomActionResponse) => {
         isOpenCreateDialog.value = true;
         isEditedOutSide.value = false;
     }
+    else  if(item.Action.ActionName == "Deatail")
+            router.push("/moneyholder/" + item.Data.id);
 }
 const Reload = async () => {
     isOpenCreateDialog.value = false;
