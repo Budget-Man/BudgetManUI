@@ -92,6 +92,7 @@
       </el-footer> -->
     </el-container>
   <!-- </div> -->
+    <WelcomeDialog/>
 </template>
 
 <style>
@@ -211,6 +212,8 @@ import type { LoginResult } from '@/Models/LoginResult';
 import Cookies from 'js-cookie';
 // @ts-ignore
 import logo from '@/assets/budget-logo.png'
+// @ts-ignore
+import WelcomeDialog from '@/components/WelcomeDialog.vue'
 
 const isCollapse = ref(true)
 const hasAdminRole = ref<boolean>(false);
@@ -269,7 +272,7 @@ function getCode(){
     // console.log(decodedToken.value);
     if (Cookies.get('Roles')){
       var jsonString = Cookies.get('Roles')?.toString() ?? '';
-      console.log(jsonString);
+      // console.log(jsonString);
       var jsonObject;
       try {
         jsonObject = JSON.parse(jsonString);

@@ -36,8 +36,8 @@
         <el-col :span="11">
             <el-row justify="space-between">
                 <h2>{{ $t('income.name') }}:</h2>
-                <el-col :span="7" >
-                    <h1 Id="income-summary" class="summary">{{ formatCurrency(incomeSummary) }}</h1>
+                <el-col :span="7" style="margin-top: auto;">
+                        <h1 Id="income-summary" class="summary">{{ formatCurrency(incomeSummary) }}</h1>
                 </el-col>
             </el-row>
             <el-row>
@@ -54,7 +54,7 @@
         <el-col :span="11">
             <el-row justify="space-between">
                 <h2>{{ $t('moneyOverview.expense') }}:</h2>
-                <el-col :span="7">
+                <el-col :span="7" style="margin-top: auto;">
                     <h1 Id="expense-summary" class="summary">{{ formatCurrency(expenseSummary) }}</h1>
                 </el-col>
             </el-row>
@@ -102,7 +102,7 @@ import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
 // @ts-ignore
 import MnEditItem from '@/components/maynghien/adminTable/MnEditItem.vue'
 // @ts-ignore
-import languages from '@/languages'
+import { languages } from '@/languages'
 
 const _toast = useToast();
 const Search = async (apiName: any) => {
@@ -304,8 +304,8 @@ watch(moneyHolderValue, async (newValue) => {
 const isOpenCreateMoneySpendDialog = ref(false);
 const isOpenCreateIncomeDialog = ref(false);
 const AddIncome = async () => {
-    console.log('AddMoneySpend')
-    console.log(newIncomeItem.value)
+    // console.log('AddMoneySpend')
+    // console.log(newIncomeItem.value)
     incomeData.value = await Search("Income");
     isOpenCreateIncomeDialog.value = false;
     balance.value += Number(newIncomeItem.value.amount)
@@ -316,6 +316,9 @@ const AddMoneySpend = async () => {
     // console.log(newMoneySpendItem.value)
     expenseData.value = await Search("MoneySpend");
     isOpenCreateMoneySpendDialog.value = false;
+    // console.log('newMoneySpendItem:');
+    // console.log(newMoneySpendItem.value);
+    // console.log(newMoneySpendItem.value.Amount);
     balance.value -= Number(newMoneySpendItem.value.Amount)
     newMoneySpendItem.value = {}
 }

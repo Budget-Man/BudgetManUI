@@ -185,10 +185,10 @@ const Save = async () => {
     if (valid && model.value != undefined) {
 
         var apiResult = await handleAPIUpdateMoneySpend(model.value);
-        console.log(apiResult)
+        // console.log(apiResult)
         if (apiResult.isSuccess) {
             ElMessage({
-                message: 'data Updated.',
+                message: t('data-updated'),
                 type: 'success',
             });
             emit("onSaved");
@@ -198,6 +198,7 @@ const Save = async () => {
             ElMessage.error(apiResult.message);
             return;
         }
+        console.log(defaultModel.value);
         model.value=defaultModel.value;
     }
     else {
@@ -261,6 +262,11 @@ watch(model.value, (newArray, oldArray) => {
     // Perform your desired actions here
      updatePrice(newArray);
 });
+watch(() => props.item, () => {
+    if (props.item){
+        model.value = props.item;
+    }
+}, { immediate: true })
 const editFormRef = ref()
 const moneySpendDetailRef = ref()
 
