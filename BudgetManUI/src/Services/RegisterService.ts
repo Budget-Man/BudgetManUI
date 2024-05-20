@@ -16,7 +16,7 @@ export const handleRegister = async (model: RegisterViewModel): Promise<AppRespo
 
     try {
         const postResult = await axiosInstance.post(registerUrl, model);
-        console.log(postResult.data);
+        // console.log(postResult.data);
         const responseObject = postResult.data
         result = responseObject;
        return result;

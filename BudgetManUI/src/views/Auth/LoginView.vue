@@ -93,9 +93,11 @@ const login = async (formEl: FormInstance) => {
       const loginResult = await handleLogin(state);
       // console.log("logresult:" + loginResult);
       if (loginResult.isSuccess)
+      {
         // console.log('login success');
         //  router.push('/'); //router.push make axiosConfig not set up accessToken
         window.location.href = '/';
+      }
       else
         _toast.error(loginResult.message);
       fullscreenLoading.value = false;

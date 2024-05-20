@@ -8,7 +8,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 const {t} = useI18n();
+// @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
+// @ts-ignore
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
@@ -59,6 +61,20 @@ const tableColumns: TableColumn[] = [
         },
 
     },
+    {
+        key: "userName",
+        label: t('user.name'),
+        enableEdit: false,
+        enableCreate: true,
+        hidden: false,
+        width: 500,
+        required: true,
+        sortable: true,
+        showSearch: true,
+        inputType: "text",
+        dropdownData: null,
+
+    },
 
 ]
 const CustomActions: CustomAction[] = ([
@@ -67,6 +83,15 @@ const CustomActions: CustomAction[] = ([
         ActionLabel:  t('user.Reset'),
         Icon: Unlock,
         ApiAction: "Reset",
+        ApiActiontype:ApiActionType.PUT,
+        IsRowAction: true,
+        DataType: CustomActionDataType.RowId,
+    },
+    {
+        ActionName: "RunTest",
+        ActionLabel:  t('user.RunTest'),
+        Icon: Unlock,
+        ApiAction: "runtest",
         ApiActiontype:ApiActionType.PUT,
         IsRowAction: true,
         DataType: CustomActionDataType.RowId,

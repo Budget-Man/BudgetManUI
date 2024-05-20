@@ -40,8 +40,11 @@
 <script lang="ts" setup>
 import { ref, computed  } from 'vue'
 import { useRouter } from 'vue-router';
+// @ts-ignore
 import bannerImg from '@/assets/images/banner-image-vi.jpg'
+// @ts-ignore
 import logo from '@/assets/budget-logo.png'
+// @ts-ignore
 import background from '@/assets/images/background.jpg'
 const router = useRouter();
 const handleSelect = (key: string, keyPath: string[]) => {
