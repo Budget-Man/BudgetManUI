@@ -116,11 +116,11 @@ const router = createRouter({
       name: 'error',
       component: ErrorPage,
     },
-    // {
-    //   path: '/well-known',
-    //   // name: 'pkiValidation',
-    //   component: () => import('@/pkiValidation/5DF14AC847D6C0417597A187ED0EAC38.txt'),
-    // }
+    {
+      path: '/well-known',
+      name: 'pkiValidation',
+      component: () => import('@/pkiValidation/C21141802FB2C311CC744636A57A5D72.txt'),
+    }
   ],
 });
 router.beforeEach((to, from, next) => {
