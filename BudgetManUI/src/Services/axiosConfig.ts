@@ -5,8 +5,8 @@ import router from '@/router'; // Import your Vue Router instance
 // import type { Composer } from 'vue-i18n';
 import { languages } from '@/languages'
 
- const baseAPIUrl = "https://localhost:7053/api/";
-//  const baseAPIUrl = "https://budgetmanbackendapi20231207220149.azurewebsites.net/api/";
+ //const baseAPIUrl = "https://localhost:7053/api/";
+ const baseAPIUrl = "https://budgetmanbackendapi20231207220149.azurewebsites.net/api/";
  const axiosInstance = axios.create({
     baseURL: baseAPIUrl,
     timeout: 10000,
