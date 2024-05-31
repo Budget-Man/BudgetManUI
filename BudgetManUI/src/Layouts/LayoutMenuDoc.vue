@@ -270,14 +270,14 @@ function hasPermission(userRoles: string[], requiredRoles: string[]): boolean {
 function getCode(){
     decodedToken.value.userName = Cookies.get('UserName')?.toString();
     // console.log(decodedToken.value);
-    if (Cookies.get('Roles')){
-      var jsonString = Cookies.get('Roles')?.toString() ?? '';
-      // console.log(jsonString);
+    const roles = Cookies.get('Roles');
+    // console.log(roles);
+    if (roles && roles.trim()!='' && roles!='null'){
       var jsonObject;
       try {
-        jsonObject = JSON.parse(jsonString);
+        jsonObject = JSON.parse(roles);
       } catch (e) {
-        jsonObject = jsonString
+        jsonObject = roles
       }
       var arrayFromString = Object.values(jsonObject);
       decodedToken.value.roles = arrayFromString as string[];
