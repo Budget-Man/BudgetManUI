@@ -61,7 +61,6 @@
     "please-choise-from": "@:please-choise @:moneyTransfer.from.",
     "please-choise-to": "@:please-choise @:moneyTransfer.to."
   },
-  
   "income": {
     "name": "Thu nhập",
     "moneyHolderName": " Nơi giữ tiền",
@@ -150,8 +149,9 @@
   "please-choise": "Vui lòng chọn",
   "please-input": "Vui lòng nhập",
   "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!",
-  "transfer":"Chuyển",
+  "transfer": "Chuyển",
   "welcome-message": "Chào mừng bạn đến với trang web Quản lý ngân sách.",
   "first-suggest-message": "Vui lòng chọn cài đặt ban đầu",
-  "unknow-error-message": "Có lỗi xãy ra, vui lòng tải lại trang và thử lại nha!"
+  "unknow-error-message": "Có lỗi xãy ra, vui lòng tải lại trang và thử lại nha!",
+  "delete-confirm": "Bạn có chắc muốn xóa dòng này?"
 }

@@ -61,8 +61,8 @@
     const visible = ref(true);
     const showFirstTimeLogin =  computed(() : boolean => {
         // Replace with your logic to check first-time login
-        // console.log('is first login:')
-        // console.log(localStorage.getItem('isNewUser'))
+        console.log('is first login:')
+        console.log(localStorage.getItem('isNewUser'))
         return localStorage.getItem('isNewUser') === 'true';
     });
     const form = reactive({
