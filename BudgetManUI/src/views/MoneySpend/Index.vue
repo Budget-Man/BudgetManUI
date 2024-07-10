@@ -1,7 +1,7 @@
 <template>
     <Suspense>
-        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneySpend'" :allowAdd="false" :allowDelete="false"
-            :is-edited-out-side="isEditedOutSide" :title="$t('moneySpend.name')" :CustomActions="CustomActions" :allowEdit="false"
+        <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'MoneySpend'" :allowAdd="false" :allowDelete="true"
+            :is-edited-out-side="isEditedOutSide" :title="$t('moneySpend.name')" :CustomActions="CustomActions" :allowEdit="true"
             @onCustomAction="handleCustomAction">
         </BasicAdminFormVue>
     </Suspense>

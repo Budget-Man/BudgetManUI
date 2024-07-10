@@ -43,9 +43,9 @@
             <el-row>
                 <el-button @click="handleOpenCreateIncome">+</el-button>
             </el-row>
-            <el-table  :data="incomeData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false" empty-text=" ">
+            <el-table  :data="incomeData" row-key="id" table-layout="auto" @row-click="handleIncomeRowClick" :show-header="false" empty-text=" ">
                 
-                <el-table-column v-for="column in incomeCol.filter(x=>!x.hidden)" :key="column.key" :prop="column.key" :label="column.label"
+                <el-table-column v-for="column in incomeCol.filter(x=>x.showInTable)" :key="column.key" :prop="column.key" :label="column.label"
                     :sortable="false" :align="column.align" :formatter="column.formatter"/>
                 
                 </el-table>
@@ -61,9 +61,9 @@
             <el-row>
                 <el-button @click="handleOpenCreateMoneySpend">-</el-button>
             </el-row>
-            <el-table class="admin-table" :data="expenseData" row-key="id" table-layout="auto" @row-click="handleRowClick" :show-header="false" empty-text=" ">
+            <el-table class="admin-table" :data="moneySpendData" row-key="id" table-layout="auto" @row-click="handleMoneySpendRowClick" :show-header="false" empty-text=" ">
                 
-                <el-table-column v-for="column in expenseCol" :key="column.key" :prop="column.key" :label="column.label"
+                <el-table-column v-for="column in moneySpendCol.filter(x=>x.showInTable)" :key="column.key" :prop="column.key" :label="column.label"
                     :sortable="false" :align="column.align" :formatter="column.formatter"/>
                 
                 </el-table>
@@ -72,12 +72,16 @@
     <!-- </div> -->
     </el-space>
     
-    <MnEditItem ref="MnEdit" :columns="incomeCol" apiName="income" :openDialog="isOpenCreateIncomeDialog" :title="$t('income.name')"
-    createUrl="" editUrl="" :isEdit="false" :edit-item="newIncomeItem"
-      @onSaved="AddIncome" @onCloseClicked="CloseCreateIncome" />
+    <MnEditItem ref="Income" :columns="incomeCol" apiName="income" :openDialog="isOpenIncomeDialog" :title="$t('income.name')"
+    createUrl="" editUrl="" :isEdit="isEdittingIncome" :edit-item="incomeItem"
+      @onSaved="SaveIncome" @onCloseClicked="CloseIncomeDialog" :enable-delete="true" @onDeleted="handleDeletedIncome"/>
 
-    <CreateMoneySpend :openDialog="isOpenCreateMoneySpendDialog" :item="newMoneySpendItem" @onSaved="AddMoneySpend" @onCloseClicked="CloseCreateMoneySpend">
-    </CreateMoneySpend>
+    <!-- <CreateMoneySpend :openDialog="isOpenMoneySpendDialog" :item="moneySpendItem" @onSaved="AddMoneySpend" @onCloseClicked="CloseCreateMoneySpend"
+    :isEdit="isEdittingMoneySpend"></CreateMoneySpend> -->
+
+    <MnEditItem ref="MoneySpend" :columns="moneySpendCol" apiName="moneyspend" :openDialog="isOpenMoneySpendDialog" :title="$t('moneySpend.name')"
+    createUrl="" editUrl="" :isEdit="isEdittingMoneySpend" :edit-item="moneySpendItem"
+      @onSaved="SaveMoneySpend" @onCloseClicked="CloseMoneySpendDialog" :enable-delete="true" @onDeleted="handleDeletedMoneySpend"/>
 </template>
   
 <script setup lang="ts">
@@ -149,7 +153,7 @@ const formatAmount = (row: any, column: any, cellValue: any)  => {
 const incomeCol : TableColumn[] = [
     {
         key: "moneyHolderId",
-        label: languages.global.t('income.moneyHolderId'),
+        label: languages.global.t('moneyHolder.name'),
         enableEdit: true,
         enableCreate: true,
         hidden: true,
@@ -159,13 +163,13 @@ const incomeCol : TableColumn[] = [
             displayMember: "name",
             keyMember: "id",
             apiUrl: "moneyHolder"
-
         },
-
+        isReadonly: true,
+        showInTable: false
     },
     {
         key: "name",
-        label: "name",
+        label: languages.global.t('name'),
         enableCreate: true,
         enableEdit: true,
         hidden: false,
@@ -177,7 +181,7 @@ const incomeCol : TableColumn[] = [
     },
     {
         key: "amount",
-        label: "Amount",
+        label: languages.global.t('amount'),
         enableCreate: true,
         enableEdit: true,
         hidden: false,
@@ -189,62 +193,123 @@ const incomeCol : TableColumn[] = [
         showInTable: true
     },
 ];
-const expenseCol : TableColumn[] = [
+const moneySpendCol : TableColumn[] = [
     // {
     //     key: "id",
     //     label: "id",
     // },
     {
+        key: "moneyHolderId",
+        label: languages.global.t('moneyHolder.name'),
+        enableEdit: true,
+        enableCreate: true,
+        hidden: true,
+        width: 300,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "moneyHolder"
+        },
+        isReadonly: true,
+        showInTable: false
+    },
+    {
+        key: "budgetId",
+        label: languages.global.t('budget.name'),
+        enableEdit: true,
+        enableCreate: true,
+        hidden: false,
+        width: 300,
+        inputType: "dropdown",
+        dropdownData: {
+            displayMember: "name",
+            keyMember: "id",
+            apiUrl: "budget"
+        },
+        showInTable: false
+    },
+    {
         key: "reason",
-        label: "Reason",
-        align: "left"
+        label: languages.global.t('moneySpend.reason'),
+        enableCreate: true,
+        enableEdit: true,
+        hidden: false,
+        width: 500,
+        required: true,
+        inputType: "text",
+        align: "left",
+        showInTable: true
     },
     {
         key: "amount",
-        label: "Amount",
+        label: languages.global.t('amount'),
         align: "right",
-        formatter : formatAmount
+        enableCreate: true,
+        enableEdit: true,
+        inputType: "amount-detail",
+        // formatter : formatAmount,
+        showInTable: true
     },
+    {
+        key: "details",
+        label: languages.global.t('details'),
+        align: "right",
+        enableCreate: true,
+        enableEdit: true,
+        hidden: true,
+        showInTable: false,
+        inputType: "details"
+    }
 ];
-
-const handleRowClick = (row: any, column: any, event: any) => {
-
-// selectedId.value = row.id;
-
+const handleIncomeRowClick = (row: any, column: any, event: any) => {
+    // console.log(row)
+    // console.log(column)
+    // console.log(event)
+    incomeItem.value =  { ...row as SearchDTOItem}
+    oldItemAmount.value = incomeItem.value.amount
+    isEdittingIncome.value = true;
+    isOpenIncomeDialog.value = true;
+};
+const handleMoneySpendRowClick = (row: any, column: any, event: any) => {
+    //  console.log(moneySpendData.value)
+    // moneySpendItem.value =  { ...row as SearchDTOItem}
+    moneySpendItem.value = JSON.parse(JSON.stringify(row as SearchDTOItem)); //to prevent change the detail of the row when edit but not save
+    //  console.log(moneySpendItem.value)
+    oldItemAmount.value = moneySpendItem.value.amount!=undefined? moneySpendItem.value.amount :0
+    isEdittingMoneySpend.value = true;
+    isOpenMoneySpendDialog.value = true;
 };
 const moneyHolderValue = ref('')
 const budgetData = ref(null);
 const incomeData = ref<[] | null>(null)
-const expenseData = ref<[] | null>(null)
+const moneySpendData = ref<[] | null>(null)
 // const moneyHolderData = ref<[{
 //     value: 'Option1',
 //     label: 'Option1',
 //   }] | null>(null)
 const moneyHolderData = ref<[SearchDTOItem]>();
 // const balance = ref<Number>(0);
-const newIncomeItem = ref<SearchDTOItem>({});
-const newMoneySpendItem = ref<CreateMoneySpendRequest>({});
+const incomeItem = ref<SearchDTOItem>({});
+const moneySpendItem = ref<SearchDTOItem>({});
 const balance = ref(0);
-
+const oldItemAmount =  ref<number>(0);
 const incomeSummary = computed(() => {
     if (!incomeData.value) {
         return 0; // or any default value when there's no data
     }
 
-    const lastColumnKey = incomeCol[incomeCol.length - 1].key;
-    return incomeData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
+    // const lastColumnKey = incomeCol[incomeCol.length - 1].key;
+    return incomeData.value.reduce((sum : number, row : any) => sum + Number(row["amount"]), 0);
         
 });
 const expenseSummary = computed(() => {
-    // console.log(expenseCol)
-    // console.log(expenseCol.length)
-    // console.log(expenseCol[incomeCol.length - 1])
-    if (!expenseData.value || expenseCol.length == 0) {
+    if (!moneySpendData.value || moneySpendCol.length == 0) {
         return 0; // or any default value when there's no data
     }
 
-    const lastColumnKey = expenseCol[expenseCol.length - 1].key;
-    return expenseData.value.reduce((sum : number, row : any) => sum + Number(row[lastColumnKey]), 0);
+    // const lastColumnKey = moneySpendCol[moneySpendCol.length - 1].key;
+    return moneySpendData.value.reduce((sum : number, row : any) => sum + Number(row["amount"]), 0);
         
 });
 onMounted(async () => {
@@ -286,10 +351,11 @@ watch(moneyHolderValue, async (newValue) => {
       //const additionalData = await Search("AdditionalData"); // Replace "AdditionalData" with the desired API name
       // Process the additional data as needed
         incomeData.value =[];
-        expenseData.value = [];
+        moneySpendData.value = [];
         incomeData.value = await Search("Income");
         // console.log(incomeData.value);
-        expenseData.value = await Search("MoneySpend");
+        moneySpendData.value = await Search("MoneySpend");
+        //console.log(expenseData.value);
 
     } catch (error) {
       console.error("Error fetching additional data:", error);
@@ -300,50 +366,64 @@ watch(moneyHolderValue, async (newValue) => {
 // const handleColumnVisibilityChange = (column : any) => {
 //     console.log(`Column ${column.key} visibility changed to ${column.visible}`);
 //   };
+// const isOpenEditMoneySpendDialog = ref(false);
+const isOpenMoneySpendDialog = ref(false);
+const isOpenIncomeDialog = ref(false);
+const isEdittingIncome = ref(false);
+const isEdittingMoneySpend = ref(false);
+const SaveIncome = async () => {
+  incomeData.value = await Search("Income");
+  isOpenIncomeDialog.value = false;
+//   console.log(incomeItem.value.amount);
+  if (isEdittingIncome.value) {
+    balance.value -= oldItemAmount.value;
+  }
+  balance.value += Number(incomeItem.value.amount);
+  incomeItem.value = {};
+};
+const SaveMoneySpend = async () => {
+  moneySpendData.value = await Search("MoneySpend");
+  isOpenMoneySpendDialog.value = false;
+//   console.log(moneySpendItem.value);
+//   console.log(oldItemAmount.value)
+  if (isEdittingMoneySpend.value) {
+    balance.value += oldItemAmount.value;
+  }
+  balance.value -= Number(moneySpendItem.value.amount);
+  moneySpendItem.value = {};
+};
 
-const isOpenCreateMoneySpendDialog = ref(false);
-const isOpenCreateIncomeDialog = ref(false);
-const AddIncome = async () => {
-    // console.log('AddMoneySpend')
-    // console.log(newIncomeItem.value)
-    incomeData.value = await Search("Income");
-    isOpenCreateIncomeDialog.value = false;
-    balance.value += Number(newIncomeItem.value.amount)
-    newIncomeItem.value = {}
-}
-const AddMoneySpend = async () => {
-    // console.log('AddMoneySpend')
-    // console.log(newMoneySpendItem.value)
-    expenseData.value = await Search("MoneySpend");
-    isOpenCreateMoneySpendDialog.value = false;
-    // console.log('newMoneySpendItem:');
-    // console.log(newMoneySpendItem.value);
-    // console.log(newMoneySpendItem.value.Amount);
-    balance.value -= Number(newMoneySpendItem.value.Amount)
-    newMoneySpendItem.value = {}
-}
-const CloseCreateIncome = () => {
+const CloseIncomeDialog = () => {
     // console.log("close create ");
-    if (isOpenCreateIncomeDialog.value){
-        isOpenCreateIncomeDialog.value = false;
+    if (isOpenIncomeDialog.value){
+        isOpenIncomeDialog.value = false;
+    }
+    if (isEdittingIncome.value)
+    {
+        incomeItem.value = {}
     }
 }
-const CloseCreateMoneySpend = () => {
+const CloseMoneySpendDialog = () => {
     // console.log("close create ");
-    if (isOpenCreateMoneySpendDialog.value){
-        isOpenCreateMoneySpendDialog.value = false;
+    if (isOpenMoneySpendDialog.value){
+        isOpenMoneySpendDialog.value = false;
     }
-    // isEditedOutSide.value = false;
+    if (isEdittingMoneySpend.value)
+    {
+        moneySpendItem.value = {}
+    }
 }
 const handleOpenCreateIncome = () => {
     // console.log("open create Income");
-    newIncomeItem.value.moneyHolderId = moneyHolderValue.value
-    isOpenCreateIncomeDialog.value = true;
+    incomeItem.value.moneyHolderId = moneyHolderValue.value
+    isEdittingIncome.value = false
+    isOpenIncomeDialog.value = true
 }
 const handleOpenCreateMoneySpend = () => {
     // console.log("open create");
-    newMoneySpendItem.value.MoneyHolderId = moneyHolderValue.value
-    isOpenCreateMoneySpendDialog.value = true;
+    moneySpendItem.value.MoneyHolderId = moneyHolderValue.value
+    isEdittingMoneySpend.value = false
+    isOpenMoneySpendDialog.value = true
 }
 
 onMounted(() => {
@@ -353,17 +433,30 @@ const handleKeypress = (event : KeyboardEvent) => {
 //   console.log(event.key);
   // Check if the key pressed is the Enter key (key code 13)
   
-  if (isOpenCreateIncomeDialog.value === false && isOpenCreateMoneySpendDialog.value === false){
+  if (isOpenIncomeDialog.value === false && isOpenMoneySpendDialog.value === false){
     if (event.key === '+') {
-        CloseCreateMoneySpend()
+        CloseMoneySpendDialog()
         handleOpenCreateIncome()
     }
     else if (event.key === '-') {
-        CloseCreateIncome()
+        CloseIncomeDialog()
         handleOpenCreateMoneySpend()
     }
   }
 }
+
+const handleDeletedMoneySpend = async () => {
+    CloseMoneySpendDialog()
+    balance.value += oldItemAmount.value
+    moneySpendData.value = await Search("MoneySpend");
+}
+const handleDeletedIncome = async () => {
+    CloseIncomeDialog()
+    balance.value -= oldItemAmount.value
+    incomeData.value = await Search("Income");
+}
+
+
 </script>
 
 <style>
@@ -396,5 +489,11 @@ const handleKeypress = (event : KeyboardEvent) => {
     .absolute-left{
         position: absolute;
         left: 0px;
+    }
+    .el-table tr:hover{
+        cursor: pointer;
+    }
+    .el-table {
+        --el-table-row-hover-bg-color: var(--el-color-primary-light-9);
     }
 </style>
