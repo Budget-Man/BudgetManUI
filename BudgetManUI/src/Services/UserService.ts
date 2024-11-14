@@ -1,9 +1,7 @@
-// @ts-ignore
-import { AccountInfoDto } from '../models/Dtos/AccountInfoDto.ts'
-// @ts-ignore
-import { AppResponse } from '../models/AppResponse.ts'
-// @ts-ignore
-import { axiosInstance } from "./axiosConfig.ts"
+
+import { AccountInfoDto } from '../Models/Dtos/AccountInfoDto'
+import { AppResponse } from '../Models/AppResponse'
+import { axiosInstance } from "./axiosConfig"
 
 import Cookies from 'js-cookie';
 import { reactive } from 'vue';

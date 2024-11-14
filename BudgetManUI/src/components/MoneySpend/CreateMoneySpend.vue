@@ -92,13 +92,9 @@
   
 <script setup lang="ts">
 import { ref, toRefs, computed, watch, inject } from 'vue';
-// @ts-ignore
 import { ElMessage, ElInput } from 'element-plus';
-// @ts-ignore
-import { handleAPIUpdateMoneySpend } from '../../Services/MoneySpend/MoneySpendService.ts'
+import { handleAPIUpdateMoneySpend } from '../../Services/MoneySpend/MoneySpendService'
 
-// @ts-ignore
-import { SearchDTOItem } from './Models/SearchDTOItem.ts';
 import { CreateMoneySpendRequest } from '../../Models/Request/MoneySpend/CreateMoneySpendRequest';
 import type { Ref } from 'vue/dist/vue.js';
 import { handleGetDropdownList } from '@/Services/DropdownService';

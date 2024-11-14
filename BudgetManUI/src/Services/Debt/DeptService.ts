@@ -1,5 +1,5 @@
 import type { DebtDto } from "@/Models/Dtos/DebtDto";
-import { AppResponse } from "@/models/AppResponse";
+import { AppResponse } from "@/Models/AppResponse";
 import { axiosInstance } from "../axiosConfig";
 
 

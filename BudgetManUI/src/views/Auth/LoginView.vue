@@ -31,11 +31,8 @@
 <script setup lang="ts">
 import { Calendar, Search, User, Key } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue';
-// @ts-ignore
-import { LoginViewModel } from '../../Models/LoginViewModel.ts'
-
-// @ts-ignore
-import { handleLogin } from "../../Services/LoginService.ts"
+import { LoginViewModel } from '../../Models/LoginViewModel'
+import { handleLogin } from "../../Services/LoginService"
 import { useToast } from "vue-toastification";
 
 const _toast = useToast();

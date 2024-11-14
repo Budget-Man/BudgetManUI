@@ -37,11 +37,8 @@
 <script setup lang="ts">
 import { Calendar, Search, User, Key } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue';
-// @ts-ignore
-import { RegisterViewModel } from '../../Models/RegisterViewModel.ts'
-
-// @ts-ignore
-import { handleRegister } from "../../Services/RegisterService.ts"
+import { RegisterViewModel } from '../../Models/RegisterViewModel'
+import { handleRegister } from "../../Services/RegisterService"
 import { useToast } from "vue-toastification";
 
 const _toast = useToast();

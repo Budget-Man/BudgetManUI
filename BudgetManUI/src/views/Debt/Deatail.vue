@@ -8,15 +8,13 @@
 
 <script setup lang="ts">
 
-import type { Filter } from '@/components/maynghien/BaseModels/Filter';
+import type  Filter  from '@/components/maynghien/BaseModels/Filter';
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
-// @ts-ignore
-import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
+import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
-// @ts-ignore
-import { handleGetDebt } from '../../Services/Debt/DeptService.ts'
+import { handleGetDebt } from '../../Services/Debt/DeptService'
 import type { DebtDto } from '@/Models/Dtos/DebtDto';
 const Debt = ref<DebtDto|undefined>();
 const tableColumns: TableColumn[] = [

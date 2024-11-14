@@ -9,8 +9,7 @@
 
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
-// @ts-ignore
-import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
+import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn';
 import {
     Unlock
 } from '@element-plus/icons-vue';

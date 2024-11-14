@@ -18,8 +18,7 @@ import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.
 
 import CreateMoneySpend from '@/components/MoneySpend/CreateMoneySpend.vue';
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
-// @ts-ignore
-import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
+import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn';
 import { ref } from 'vue';
 import {axiosInstance} from '../../Services/axiosConfig';
 import {reactive} from 'vue';

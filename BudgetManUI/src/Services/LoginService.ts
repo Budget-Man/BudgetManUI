@@ -1,9 +1,7 @@
-// @ts-ignore
-import { LoginViewModel } from '../models/LoginViewModel.ts'
-// @ts-ignore
-import { AppResponse } from '../models/AppResponse.ts'
-// @ts-ignore
-import { axiosInstance } from "./axiosConfig.ts"
+
+import { LoginViewModel } from '../Models/LoginViewModel'
+import { AppResponse } from '../Models/AppResponse'
+import { axiosInstance } from "./axiosConfig"
 
 import Cookies from 'js-cookie';
 import { reactive } from 'vue';
@@ -25,7 +23,7 @@ export const handleLogin = async (model: LoginViewModel): Promise<AppResponse<st
         if (resust.isSuccess) {
             if(resust.data!=undefined){
                 Cookies.set('accessToken', resust.data, { expires: undefined });
-                Cookies.set('UserName',model.userName, { expires: undefined });
+                Cookies.set('UserName',model.userName ?? '', { expires: undefined });
             }
             
         }

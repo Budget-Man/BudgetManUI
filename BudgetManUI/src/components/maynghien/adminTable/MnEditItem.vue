@@ -34,14 +34,11 @@
   
 <script setup lang="ts">
 import { ref, toRefs, computed, watch, inject } from 'vue';
-// @ts-ignore
 import { ElMessage, ElInput } from 'element-plus';
-// @ts-ignore
-import { handleAPICreate, handleAPIUpdate } from './Service/BasicAdminService.ts'
+import { handleAPICreate, handleAPIUpdate } from './Service/BasicAdminService'
 import type { TableColumn } from './Models/TableColumn';
 import MnDropdown from './Input/MnDropdown.vue';
-// @ts-ignore
-import { SearchDTOItem } from './Models/SearchDTOItem.ts';
+import { SearchDTOItem } from './Models/SearchDTOItem';
 const emit = defineEmits<{
     (e: 'onSaved'): void;
     (e: 'onCloseClicked'): void;

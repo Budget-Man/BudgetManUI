@@ -1,6 +1,5 @@
-// @ts-ignore
+
 import Filter from '../BaseModels/Filter';
-// @ts-ignore
 import SortByInfo from "../BaseModels/SortByInfo";
 
 

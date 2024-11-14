@@ -1,24 +1,16 @@
 
-// @ts-ignore
-import { AppResponse } from '../../../../models/AppResponse.js'
+import { AppResponse } from '../../../../Models/AppResponse'
 
-// @ts-ignore
-import { SearchRequest } from '../../BaseModels/SearchRequest.js'
+import { SearchRequest } from '../../BaseModels/SearchRequest'
 
-// @ts-ignore
-import { SearchResponse } from '../../BaseModels/SearchResponse.js'
-// @ts-ignore
-import { axiosInstance } from "../../../../Services/axiosConfig.js"
-// @ts-ignore
+import { SearchResponse } from '../../BaseModels/SearchResponse'
+import { axiosInstance } from "../../../../Services/axiosConfig"
 import Filter from '../../BaseModels/Filter.js'
-// @ts-ignore
-import SortByInfo from '../../BaseModels/SortByInfo.js';
+import SortByInfo from '../../BaseModels/SortByInfo';
 
 
-// @ts-ignore
-import { TableColumn } from '../Models/TableColumn.ts'
-// @ts-ignore
-import { SearchDTOItem } from '../Models/SearchDTOItem.ts'
+import { TableColumn } from '../Models/TableColumn'
+import { SearchDTOItem } from '../Models/SearchDTOItem'
 import { ApiActionType, CustomAction, CustomActionResponse } from '../Models/CustomAction.js'
 import type { AxiosResponse } from 'axios'
 

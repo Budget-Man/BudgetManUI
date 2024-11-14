@@ -22,16 +22,15 @@
 
 <script setup lang="ts">
 
-import type { Filter } from '@/components/maynghien/BaseModels/Filter';
+import type  Filter  from '@/components/maynghien/BaseModels/Filter';
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
-// @ts-ignore
-import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
+import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn';
 import { useRoute } from 'vue-router';
 import { handleGetLoan } from '../../Services/Loan/GetById'
 import type { LoanDto } from '@/Models/Dtos/LoanDto';
 import { ref } from 'vue';
-import type { AppResponse } from '@/models/AppResponse';
+import type { AppResponse } from '@/Models/AppResponse';
 
 const Loan = ref<LoanDto|undefined>();
 const tableColumns: TableColumn[] = [

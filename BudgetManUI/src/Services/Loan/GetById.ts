@@ -1,6 +1,6 @@
 import type { LoanDto } from "@/Models/Dtos/LoanDto";
 import type { LoanPayDto } from "@/Models/Dtos/LoanPayDto";
-import { AppResponse } from "@/models/AppResponse";
+import { AppResponse } from "@/Models/AppResponse";
 import { axiosInstance } from "../axiosConfig";
 
 

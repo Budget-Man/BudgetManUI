@@ -1,7 +1,7 @@
 import axios from "axios";
 // const baseAPIUrl = "localhost:333/api/";
 export const axiosInstance = axios.create({
-    baseURL: "https://localhost:7053/api/",
+    baseURL: "http://103.209.34.217:50000/api/",
     timeout: 10000,
     headers: {'X-Custom-Header': 'foobar'}
   });
