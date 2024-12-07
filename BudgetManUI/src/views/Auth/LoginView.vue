@@ -16,6 +16,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="login()">Sign In</el-button>
+            <el-button type="primary" @click="() => {router.push('/register')}">Register</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -34,6 +35,7 @@ import { reactive, ref } from 'vue';
 import { LoginViewModel } from '../../Models/LoginViewModel'
 import { handleLogin } from "../../Services/LoginService"
 import { useToast } from "vue-toastification";
+import router from "@/router";
 
 const _toast = useToast();
 const state = reactive<LoginViewModel>({
@@ -49,6 +51,9 @@ const login = async () => {
     window.location.href = '/';
   else
     _toast.success(loginResult.message);
+}
+const register = () => {
+  
 }
 </script>
   

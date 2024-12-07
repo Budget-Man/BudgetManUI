@@ -3,7 +3,7 @@
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'Income'" :allowAdd="true" :allowDelete="true"
             title="Income" :CustomActions="CustomActions" :allowEdit="true"></BasicAdminFormVue>
     </Suspense>
-    <el-button @click="DownloadExcel()">In</el-button>
+    <!-- <el-button @click="DownloadExcel()">In</el-button> -->
 </template>
 
 <script setup lang="ts">

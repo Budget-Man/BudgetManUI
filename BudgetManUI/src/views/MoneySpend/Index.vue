@@ -9,7 +9,7 @@
         <CreateMoneySpend :openDialog="isOpenCreateDialog" @onSaved="Reload" @onCloseClicked="CloseCreate">
         </CreateMoneySpend>
     </Suspense>
-    <el-button @click="DownloadExcel()">In</el-button>
+    <!-- <el-button @click="DownloadExcel()">In</el-button> -->
 </template>
 
 <script setup lang="ts">

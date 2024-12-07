@@ -14,7 +14,7 @@
                     </el-form-item>
 
                     <el-form-item label="" prop="pass">
-                        <el-input v-model="state.password" type="password" width="300px" autocomplete="off"
+                        <el-input v-model="state.confirmPassword" type="password" width="300px" autocomplete="off"
                             placeholder="Nhập lại password" :prefix-icon="Key" />
                     </el-form-item>
 
@@ -42,13 +42,19 @@ import { handleRegister } from "../../Services/RegisterService"
 import { useToast } from "vue-toastification";
 
 const _toast = useToast();
-const state = reactive<RegisterViewModel>({
+const state = reactive({
     userName: '',
     password: '',
     passwordRetype: '',
-    email: ''
+    email: '',
+    confirmPassword: '' 
 });
 const register = async () => {
+    if(state.password != state.confirmPassword)
+    {
+        _toast.error("Password not match");
+        return;
+    }
     console.log(state);
     const loginResult = await handleRegister(state);
     console.log("logresult:" + loginResult);
