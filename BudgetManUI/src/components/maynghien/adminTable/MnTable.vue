@@ -12,8 +12,8 @@
                     <el-button v-if="enableEdit" :icon="Edit" size="small"
                         @click="handleEdit(scope.$index, scope.row)">{{ $t('edit') }}</el-button>
                     <el-button v-if="enableDelete" :icon="Delete" size="small" type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">{{ $t('delete') }}</el-button>
-                    <el-button v-for="action in CustomActions" :icon="action.Icon" size="small"
+                        @click="handleDelete(scope.$index, scope.row, $event)">{{ $t('delete') }}</el-button>
+                    <el-button v-for="action in CustomActions" :icon="action.Icon" size="small" :key="action.ActionName"
                         @click="handleCustomAction(scope.$index, scope.row, action)">{{ action.ActionLabel }}</el-button>
                 </template>
             </el-table-column>
@@ -50,7 +50,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits<{
     (e: 'onEdit', item: SearchDTOItem): void;
-    (e: 'onDelete', item: SearchDTOItem): void;
+    (e: 'onDelete', item: SearchDTOItem, target: EventTarget | null): void;
     (e: 'onCustomAction', item: CustomActionResponse): void;
     (e: 'onSortChange', event: any): void;
 }>()
@@ -91,9 +91,9 @@ const handleEdit = (index: number, row: SearchDTOItem) => {
 
     emit("onEdit", row)
 }
-const handleDelete = (index: number, row: SearchDTOItem) => {
-
-    emit("onDelete", row["id"])
+const handleDelete = (index: number, row: SearchDTOItem, event: Event) => {
+    // console.log(event)
+    emit("onDelete", row["id"], event.currentTarget)
 }
 
 const handleCustomAction = async (index: number, row: SearchDTOItem, action: CustomAction) => {

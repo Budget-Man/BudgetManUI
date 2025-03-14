@@ -1,4 +1,5 @@
 {
+  "label": "Tiếng Việt",
   "home": "Trang chủ",
   "login": "Đăng nhập",
   "register": "Đăng ký",
@@ -60,7 +61,6 @@
     "please-choise-from": "@:please-choise @:moneyTransfer.from.",
     "please-choise-to": "@:please-choise @:moneyTransfer.to."
   },
-  
   "income": {
     "name": "Thu nhập",
     "moneyHolderName": " Nơi giữ tiền",
@@ -109,13 +109,15 @@
     "Role": "Vai trò",
     "Admin": "Quản trị viên",
     "TenantAdmin": "Người dùng",
-    "Reset": "Đặt lại mật khẩu"
+    "Reset": "Đặt lại mật khẩu",
+    "RunTest": "test"
   },
   "setting": {
     "name": "Cài đặt",
     "language": "Ngôn ngữ",
     "currency-style": "Kiểu tiền tệ",
-    "defaultMoneyHolder": "@:moneyHolder.name mặc định"
+    "defaultMoneyHolder": "@:moneyHolder.name mặc định",
+    "create-base-data": "Tạo dữ liệu cơ bản"
   },
   "page-title": "Quản lý ngân sách",
   "error": {
@@ -147,5 +149,9 @@
   "please-choise": "Vui lòng chọn",
   "please-input": "Vui lòng nhập",
   "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!",
-  "transfer":"Chuyển"
+  "transfer": "Chuyển",
+  "welcome-message": "Chào mừng bạn đến với trang web Quản lý ngân sách.",
+  "first-suggest-message": "Vui lòng chọn cài đặt ban đầu",
+  "unknow-error-message": "Có lỗi xãy ra, vui lòng tải lại trang và thử lại nha!",
+  "delete-confirm": "Bạn có chắc muốn xóa dòng này?"
 }

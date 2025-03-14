@@ -15,23 +15,23 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-// import { defineProps, defineEmits } from 'vue';
 // @ts-ignore
 import { formatCurrency, getCurrentIsAddSuffix } from "@/Services/CurrencyUtilities";
 // import { ElMessage, ElInput } from 'element-plus';
 
 const props = defineProps<{
-    modelValue: string | number | undefined,
+    // modelValue: string | number | undefined,
 }>();
-watch(() => props.modelValue, (newValue) => {
-    // console.log('watch currency input value:');
-    // console.log(newValue);
-    inputValue.value = newValue;
-});
+// watch(() => props.modelValue, (newValue) => {
+//     // console.log('watch currency input value:');
+//     // console.log(newValue);
+//     inputValue.value = newValue;
+// });
 const emits = defineEmits(['update:modelValue', 'focus', 'blur']);
 const inputRef = ref();
 // Reactive properties
-const inputValue = ref(props.modelValue);
+// const inputValue = ref(props.modelValue);
+const inputValue = defineModel()
 const handleKeypress = (event:any) => {
     // console.log('handleKeypress');
     // console.log(event.key);
@@ -43,13 +43,16 @@ const handleKeypress = (event:any) => {
     if (event.key === 'k')
     {
         inputValue.value += "000";
+        // emits('update:modelValue', inputValue.value);
     }
     else if (event.key === 'm')
     {
         inputValue.value += "000000";
+        // emits('update:modelValue', inputValue.value);
     }
     else if (IsNotNumber(event.key))
     {
+        // console.log('prevent');
         event.preventDefault();
     }
 }
@@ -75,7 +78,7 @@ const handleBlur = () => {
 const handleInput = (event: Event) => {
     // console.log(inputValue.value)
     // console.log(props.modelValue)
-    emits('update:modelValue', inputValue.value);
+    // emits('update:modelValue', inputValue.value);
 }
 
 const formatter = (value: string) => {

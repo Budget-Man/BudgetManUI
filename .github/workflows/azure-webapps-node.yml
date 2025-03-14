@@ -30,6 +30,7 @@ jobs:
 
     - name: Build Vue app
       run: npm run build
+      
     - name: list 
       run: dir
     

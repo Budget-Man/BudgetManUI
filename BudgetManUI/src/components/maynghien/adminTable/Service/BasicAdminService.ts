@@ -41,7 +41,7 @@ export const handleAPISearch = async (model: SearchRequest, apiurl: string): Pro
         }
         else {
             console.log(apiurl);
-            console.log(resust.message);
+            console.log(resust);
             return resust;
         }
     } catch (error) {
@@ -89,6 +89,7 @@ export const handleAPIUpdate = async (model: SearchDTOItem, apiurl: string): Pro
     });
 
     try {
+        console.log(model)
         const postResult = await axiosInstance.put(apiurl, model);
         // console.log(postResult.data);
         const responseObject = postResult.data

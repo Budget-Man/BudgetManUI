@@ -27,7 +27,7 @@ import ErrorPage from '../views/Error/Index.vue'
 import { LoginResult } from '@/Models/LoginResult'
 
 import  MoneyHolderDetailView  from '../views/MoneyHolder/Details.vue'
-// import pkiValidation from '../views/PkiValidation.vue'
+
 // import pkiValidation from  '@/pkiValidation/5DF14AC847D6C0417597A187ED0EAC38.txt'
 // Create the router instance
 const router = createRouter({
@@ -115,12 +115,7 @@ const router = createRouter({
       path: '/error',
       name: 'error',
       component: ErrorPage,
-    },
-    // {
-    //   path: '/well-known',
-    //   // name: 'pkiValidation',
-    //   component: () => import('@/pkiValidation/5DF14AC847D6C0417597A187ED0EAC38.txt'),
-    // }
+    }
   ],
 });
 router.beforeEach((to, from, next) => {
