@@ -1,0 +1,12 @@
+.login_register{
+    .banner{
+        @include screenWidth($sm){
+           flex-basis: 0%;
+        }
+    }
+    .function{
+        @include screenWidth($sm){
+            flex-basis: 100%;
+         }
+    }
+}
