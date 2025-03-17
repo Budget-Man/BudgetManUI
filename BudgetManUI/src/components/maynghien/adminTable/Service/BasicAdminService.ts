@@ -9,6 +9,11 @@ import { SearchRequest } from '../../BaseModels/SearchRequest.js'
 import { SearchResponse } from '../../BaseModels/SearchResponse.js'
 // @ts-ignore
 import { axiosInstance } from "../../../../Services/axiosConfig.js"
+// @ts-ignore
+import Filter from '../../BaseModels/Filter.js'
+// @ts-ignore
+import SortByInfo from '../../BaseModels/SortByInfo.js';
+
 
 // @ts-ignore
 import { TableColumn } from '../Models/TableColumn.ts'
@@ -186,7 +191,7 @@ export const handleAPIGetDropdownList = async (apiurl: string): Promise<AppRespo
 
     try {
         const listResult = await axiosInstance.get(apiurl);
-
+        
         const responseObject = listResult.data
         resust = responseObject;
         if (resust.isSuccess) {

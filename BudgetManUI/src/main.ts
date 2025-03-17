@@ -34,7 +34,7 @@ app.use(router)
 app.use(ElementPlus)
 app.use(Toast)
 app.use(languages)
-app.use(vue3GoogleLogin, {
+app.use(vue3GoogleLogin,{
     clientId: '807507486424-ios762laefni6l7u7fgnl41a1fifgj4v.apps.googleusercontent.com'
 })
 app.use(store)
