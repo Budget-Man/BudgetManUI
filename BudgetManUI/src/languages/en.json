@@ -118,7 +118,10 @@
     "language": "Language",
     "currency-style": "Currency style",
     "defaultMoneyHolder": "Default @.lower:moneyHolder.name",
-    "create-base-data": "Create base data"
+    "create-base-data": "Create base data",
+    "skypeUserId": "Skype user ID",
+    "chatUserId": "Chat User ID",
+    "memberList": "Member List"
   },
   "error": {
     "message": "Our server is undergoing maintenance. Please try again later"
