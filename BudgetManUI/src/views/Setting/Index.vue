@@ -1,7 +1,7 @@
 <template>
 <!-- <div > -->
-    <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":">
-        <el-form-item :label="$t('setting.language')">
+    <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":" size="medium" :disabled="isFormDisabled">
+        <el-form-item :label="$t('setting.language')" >
           <el-select v-model="form.language" >
             <el-option
                 v-for="(value, key) in languageOptions"
@@ -26,6 +26,14 @@
                 :value="item.id"
                 />
           </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('setting.chatUserId')">
+          <el-input v-model="form.chatUserId">
+          </el-input>
+        </el-form-item>
+        <el-form-item :label="$t('setting.memberList')">
+          <el-input v-model="form.memberList">
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">{{ $t('save') }}</el-button>
@@ -57,7 +65,9 @@ import { SettingViewModel } from './Models/SettingViewModel';
 const form = reactive({
               language: '',
               currency: '',
-              defaultMoneyHolder: ''
+              defaultMoneyHolder: '',
+              chatUserId: '',
+              memberList: '',
             });
 // const LanguageOptions = [
 //   {
@@ -102,7 +112,9 @@ const submitForm = async () => {
   settingRequest.value.language = form.language;
   settingRequest.value.currency = form.currency;
   settingRequest.value.defaultMoneyHolder = form.defaultMoneyHolder;
-  console.log(settingRequest.value);
+  settingRequest.value.chatUserId = form.chatUserId;
+  settingRequest.value.memberList = form.memberList;
+  // console.log(settingRequest.value);
   await handleSaveSetting(settingRequest);
 };
 
