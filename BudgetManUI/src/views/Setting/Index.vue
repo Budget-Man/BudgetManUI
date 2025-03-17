@@ -1,13 +1,13 @@
 <template>
 <!-- <div > -->
-    <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":">
-        <el-form-item :label="$t('setting.language')">
+    <el-form :model="form" label-width="240px" class="mainContainer" label-position="left" label-suffix=":" size="medium" :disabled="isFormDisabled">
+        <el-form-item :label="$t('setting.language')" >
           <el-select v-model="form.language" >
             <el-option
-                v-for="item in LanguageOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                v-for="(value, key) in languageOptions"
+                :key="key"
+                :label="value.label"
+                :value="key"
                 />
           </el-select>
         </el-form-item>
@@ -27,6 +27,14 @@
                 />
           </el-select>
         </el-form-item>
+        <el-form-item :label="$t('setting.chatUserId')">
+          <el-input v-model="form.chatUserId">
+          </el-input>
+        </el-form-item>
+        <el-form-item :label="$t('setting.memberList')">
+          <el-input v-model="form.memberList">
+          </el-input>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">{{ $t('save') }}</el-button>
           <el-button @click="resetForm()">{{ $t('reset-default') }}</el-button>
@@ -40,7 +48,7 @@
 import { ref, watch, onMounted, computed, nextTick, reactive  } from 'vue'
 import Cookies from 'js-cookie';
 // @ts-ignore
-import languages from '@/languages'
+import {languages, languageOptions } from '@/languages'
 // @ts-ignore
 import { SearchDTOItem } from './Models/SearchDTOItem.ts'
 // @ts-ignore
@@ -49,21 +57,27 @@ import { handleAPICustom, handleAPIDelete, handleAPISearch } from '@/components/
 import { SearchRequest, SearchResponse } from '@/components/maynghien/adminTable/Service/BasicAdminService.ts';
 // @ts-ignore
 import { currencyList } from "@/Services/CurrencyUtilities";
+// @ts-ignore
+import { handleSaveSetting } from "@/Services/User/SaveSetting";
+// @ts-ignore
+import { SettingViewModel } from './Models/SettingViewModel';
 
 const form = reactive({
               language: '',
               currency: '',
-              defaultMoneyHolder: ''
+              defaultMoneyHolder: '',
+              chatUserId: '',
+              memberList: '',
             });
-const LanguageOptions = [
-  {
-    value: 'en',
-    label: 'English',
-  },
-  {
-    value: 'vi',
-    label: 'Tiếng Việt',
-  }];
+// const LanguageOptions = [
+//   {
+//     value: 'en',
+//     label: 'English',
+//   },
+//   {
+//     value: 'vi',
+//     label: 'Tiếng Việt',
+//   }];
 
 onMounted(async () => {
   try {
@@ -84,17 +98,24 @@ onMounted(async () => {
 });
 
 // const _i18n = i18n;
-
-const submitForm = () => {
+const settingRequest = ref<SettingViewModel>();
+const submitForm = async () => {
   // languages.global.legacy = false;
-   languages.global.locale.value = form.language as "en" | "vi";
+   languages.global.locale.value = form.language as keyof typeof languageOptions;
   //languages.global.locale = "vn";
   Cookies.set('language', form.language, { expires: 365 });
   Cookies.set('currency', form.currency, { expires: 365 });
   Cookies.set('defaultMoneyHolder', form.defaultMoneyHolder, { expires: 365 });
   // console.log(form.defaultMoneyHolder);
   //need to save to database
-  console.log(form.language);
+  // console.log(form.language);
+  settingRequest.value.language = form.language;
+  settingRequest.value.currency = form.currency;
+  settingRequest.value.defaultMoneyHolder = form.defaultMoneyHolder;
+  settingRequest.value.chatUserId = form.chatUserId;
+  settingRequest.value.memberList = form.memberList;
+  // console.log(settingRequest.value);
+  await handleSaveSetting(settingRequest);
 };
 
 

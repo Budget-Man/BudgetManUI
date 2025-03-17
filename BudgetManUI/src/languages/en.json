@@ -1,4 +1,5 @@
 {
+  "label": "English",
   "home": "Home",
   "login": "Login",
   "register": "Register",
@@ -54,6 +55,13 @@
     "amount": "Amount",
     "please-input-amount": "@:please-input @:amount"
   },
+  "moneyTransfer": {
+    "From": "Transfer from",
+    "To": "Transfer to",
+    "please-input-amount": "@:please-input @:amount",
+    "please-choise-from": "@:please-choise @:moneyTransfer.from.",
+    "please-choise-to": "@:please-choise @:moneyTransfer.to."
+  },
   "income": {
     "name": "Income",
     "moneyHolderName": "Money Holder",
@@ -94,20 +102,26 @@
     "moneyHolderId": "moneyHolder"
   },
   "budgetCat": {
-    "name": "Budget category"
+    "name": "Budget category",
+    "monthlyLimit": "Monthly Limit"
   },
   "user": {
     "name": "Users",
     "Role": "Role",
     "Admin": "Admin",
     "TenantAdmin": "Personal",
-    "Reset": "Reset"
+    "Reset": "Reset",
+    "RunTest": "test"
   },
   "setting": {
     "name": "Setting",
     "language": "Language",
     "currency-style": "Currency style",
-    "defaultMoneyHolder": "Default @.lower:moneyHolder.name"
+    "defaultMoneyHolder": "Default @.lower:moneyHolder.name",
+    "create-base-data": "Create base data",
+    "skypeUserId": "Skype user ID",
+    "chatUserId": "Chat User ID",
+    "memberList": "Member List"
   },
   "error": {
     "message": "Our server is undergoing maintenance. Please try again later"
@@ -120,13 +134,14 @@
   "total-amount": "Total Amount",
   "confirm": "Confirm",
   "reset-default": "Reset default",
+  "reset-monthly-budget": "New Budgets by Month",
   "search": "search",
   "results": "results",
   "page": "Page",
-  "name": "name",
+  "name": "Name",
   "balance": "Balance",
   "operations": "Operations",
-  "data-updated": "data Updated.",
+  "data-updated": "Data Updated.",
   "update-failed": "Update failed.",
   "data-created": "data Created.",
   "create-failed": "Create failed.",
@@ -137,5 +152,10 @@
   "password-repeat": "Repeat password",
   "please-choise": "Please choise",
   "please-input": "Please input",
-  "timeout-message": "The server is overloaded. Please refresh or try again later!"
+  "timeout-message": "The server is overloaded. Please refresh or try again later!",
+  "transfer": "Transfer",
+  "welcome-message": "Welcome to Budget Manager website",
+  "first-suggest-message": "Please select the initial settings",
+  "unknow-error-message": "Sorry, an error has occurred, please refresh and try again!",
+  "delete-confirm": "Do you want to delete this record?"
 }

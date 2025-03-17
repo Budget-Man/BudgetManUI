@@ -9,7 +9,7 @@
 // @ts-ignore
 import BasicAdminFormVue from '@/components/maynghien/adminTable/BasicAdminForm.vue';
 // @ts-ignore
-import { ApiActionType, CustomAction, CustomActionDataType } from '@/components/maynghien/adminTable/Models/CustomAction';
+import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse } from '@/components/maynghien/adminTable/Models/CustomAction';
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import {useI18n} from 'vue-i18n'
@@ -81,7 +81,7 @@ const tableColumns: TableColumn[] = [
         label: t("budget.balance"),
         enableEdit: true,
         enableCreate: true,
-        hidden: false,
+        hidden: true,
         width: 200,
         required: false,
         sortable: true,
@@ -90,8 +90,32 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "balanceInfo",
+        label: t("budget.balance"),
+        enableEdit: false,
+        enableCreate: false,
+        hidden: false,
+        width: 200,
+        required: false,
+        sortable: false,
+        showSearch: false,
+        inputType: "text",
+        dropdownData: null,
+
+    },
 ]
 const CustomActions: CustomAction[] = ([
-    
+    {
+        ActionLabel:t("reset-monthly-budget"),
+        //ActionName:undefined,
+        ApiAction:"budget",
+        ApiActiontype: ApiActionType.PATCH,
+        DataType: CustomActionDataType.null,
+        IsRowAction:false
+       
+
+    }
 ]);
+
 </script>

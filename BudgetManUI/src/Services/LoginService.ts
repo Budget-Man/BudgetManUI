@@ -10,6 +10,10 @@ import Cookies from 'js-cookie';
 import type { LoginResult } from '@/Models/LoginResult.ts';
 import router from '@/router/index.js';
 import  ElLoading  from 'element-plus'
+// @ts-ignore
+// import { useStore } from 'vuex';
+// const store = useStore();
+import store from '@/store/';
 
 const loginUrl = "account/login";
 const googleLoginUrl = "account/google";
@@ -101,7 +105,7 @@ const handleLoginByGoogle = async (code: string): Promise<AppResponse<string>> =
 const setupLogin = async (resultData: any , userName :string | undefined = undefined) =>
 {
     // console.log('setup login:');
-    // console.log(userName);
+    console.log(resultData);
     Cookies.set('accessToken', resultData.token ?? resultData.accessToken ?? resultData, { expires: 1 });
     Cookies.set('UserName',resultData.userName ?? userName ?? "", { expires: 1 });
     // console.log(resultData.roles);
@@ -114,6 +118,18 @@ const setupLogin = async (resultData: any , userName :string | undefined = undef
     // Cookies.set('language', 'en', { expires: 30 });
     //set temporary currency
     // Cookies.set('currency', 'VND', { expires: 30 });
+    // console.log(store);
+    // store.commit('setLogged');
+    localStorage.setItem('isNewUser', resultData.isNewUser);
+    // console.log(resultData.isNewUser);
+    // store.commit('setIsNewUser', resultData.isNewUser);
+    // store.state.isLoggedIn = true;
+    // if (resultData.IsNewUser){
+    //     // store.state.isLoggedIn = true;
+    //     store.commit('isNewUser', true);
+    //     console.log(store.state);
+    // }
+
 }
 export { handleLogin, handleLoginByGoogle}
 

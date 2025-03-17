@@ -42,6 +42,20 @@ const tableColumns: TableColumn[] = [
         dropdownData: null,
 
     },
+    {
+        key: "monthlyLimit",
+        label: t("budgetCat.monthlyLimit"),
+        enableEdit: true,
+        enableCreate: true,
+        hidden: false,
+        width: 500,
+        required: true,
+        sortable: true,
+        showSearch: false,
+        inputType: "currency",
+        dropdownData: null,
+
+    },
     
 
 ]

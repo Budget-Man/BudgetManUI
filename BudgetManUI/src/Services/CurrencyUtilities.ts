@@ -36,11 +36,14 @@ const currencyMap:CurrencyMap  = {
 const currencyList: string[] = Object.keys(currencyMap);
   
 const getCurrencyStyleFromCookie = (): string => {
-    return Cookies.get('currency') || 'USD';
+    return Cookies.get('currency') || getCurrencyStyleFromLanguage();
 };
 
-
-
+const getCurrencyStyleFromLanguage = (): string =>{
+  const language = Cookies.get('language') || navigator.language.substring(0,2);
+  const currencyStyle = Object.keys(currencyMap).find(currency => currencyMap[currency].locale.startsWith(language));
+  return currencyStyle || 'USD'; // Default to USD if no matching currency found}
+}
 const getLocaleFromCurrency = (currency: string): string => {
   // Return the associated locale or a default if not found
   return currencyMap[currency].locale || 'en-US';
@@ -78,4 +81,4 @@ const getCurrentIsAddSuffix = ():Boolean => {
   return currencyMap[currencyStyle].isAddSuffix;
 }
 
-export { formatCurrency, getCurrentIsAddSuffix, currencyList };
+export { formatCurrency, getCurrentIsAddSuffix, currencyList, getCurrencyStyleFromCookie };

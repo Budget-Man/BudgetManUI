@@ -41,7 +41,7 @@ export const handleAPISearch = async (model: SearchRequest, apiurl: string): Pro
         }
         else {
             console.log(apiurl);
-            console.log(resust.message);
+            console.log(resust);
             return resust;
         }
     } catch (error) {
@@ -89,6 +89,7 @@ export const handleAPIUpdate = async (model: SearchDTOItem, apiurl: string): Pro
     });
 
     try {
+        console.log(model)
         const postResult = await axiosInstance.put(apiurl, model);
         // console.log(postResult.data);
         const responseObject = postResult.data
@@ -160,7 +161,9 @@ export const handleAPICustom = async (model: SearchDTOItem, action: CustomAction
         if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.GET) {
             postResult = await axiosInstance.get(ActionUrl + "/" + model.id);
         }
-
+        if (action.ApiActiontype != undefined && action.ApiActiontype == ApiActionType.PATCH) {
+            postResult = await axiosInstance.patch(ActionUrl, model);
+        }
         console.log(postResult.data);
         const responseObject = postResult.data
         resust = responseObject;

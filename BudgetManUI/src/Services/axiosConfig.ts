@@ -3,7 +3,7 @@ import AxiosResponse from "axios";
 import router from '@/router'; // Import your Vue Router instance
 // import {useI18n} from 'vue-i18n';
 // import type { Composer } from 'vue-i18n';
-import languages from '@/languages'
+import { languages } from '@/languages'
 
 //  const baseAPIUrl = "https://localhost:7053/api/";
 const baseAPIUrl = "https://budgetmanbackendapi20231207220149.azurewebsites.net/api/";
@@ -12,7 +12,6 @@ const axiosInstance = axios.create({
   timeout: 10000,
   headers: { 'X-Custom-Header': 'foobar' }
 });
-
 
 // Get the token from the cookies
 const getCookie = (name: string): string | null => {

@@ -1,4 +1,5 @@
 {
+  "label": "Tiếng Việt",
   "home": "Trang chủ",
   "login": "Đăng nhập",
   "register": "Đăng ký",
@@ -53,6 +54,13 @@
     "please-input-reason": "@:please-input @:moneySpend.reason",
     "please-input-amount": "@:please-input @:amount"
   },
+  "moneyTransfer": {
+    "from": "Chuyển từ",
+    "to": "Chuyển đến",
+    "please-input-amount": "@:please-input @:amount",
+    "please-choise-from": "@:please-choise @:moneyTransfer.from.",
+    "please-choise-to": "@:please-choise @:moneyTransfer.to."
+  },
   "income": {
     "name": "Thu nhập",
     "moneyHolderName": " Nơi giữ tiền",
@@ -93,20 +101,26 @@
     "moneyHolderId": "Nơi giữ tiền"
   },
   "budgetCat": {
-    "name": "Danh mục ngân sách"
+    "name": "Danh mục ngân sách",
+    "monthlyLimit": "Ngân quỹ hàng tháng"
   },
   "user": {
     "name": "Người dùng",
     "Role": "Vai trò",
     "Admin": "Quản trị viên",
     "TenantAdmin": "Người dùng",
-    "Reset": "Đặt lại mật khẩu"
+    "Reset": "Đặt lại mật khẩu",
+    "RunTest": "test"
   },
   "setting": {
     "name": "Cài đặt",
     "language": "Ngôn ngữ",
     "currency-style": "Kiểu tiền tệ",
-    "defaultMoneyHolder": "@:moneyHolder.name mặc định"
+    "defaultMoneyHolder": "@:moneyHolder.name mặc định",
+    "create-base-data": "Tạo dữ liệu cơ bản",
+    "skypeUserId": "Mã người dùng Skype",
+    "chatUserId": "Mã người dùng chat",
+    "memberList": "Danh sách thành viên"
   },
   "page-title": "Quản lý ngân sách",
   "error": {
@@ -119,6 +133,7 @@
   "total-amount": "Tổng cộng",
   "confirm": "Xác nhận",
   "reset-default": "Trờ về mặc định",
+  "reset-monthly-budget": "Thêm Quỹ Tháng mới",
   "search": "Tìm",
   "results": "kết quả",
   "page": "Trang",
@@ -136,5 +151,10 @@
   "password-repeat": "Nhập lại mật khẩu",
   "please-choise": "Vui lòng chọn",
   "please-input": "Vui lòng nhập",
-  "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!"
+  "timeout-message": "Máy chủ đang bị quá tải. Vui lòng tải lại trang hoặc thử lại sau!",
+  "transfer": "Chuyển",
+  "welcome-message": "Chào mừng bạn đến với trang web Quản lý ngân sách.",
+  "first-suggest-message": "Vui lòng chọn cài đặt ban đầu",
+  "unknow-error-message": "Có lỗi xãy ra, vui lòng tải lại trang và thử lại nha!",
+  "delete-confirm": "Bạn có chắc muốn xóa dòng này?"
 }

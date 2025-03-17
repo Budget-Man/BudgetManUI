@@ -1,5 +1,7 @@
 
 <template>
+  <ConfirmPopup></ConfirmPopup>
+
   <MnActionPane :allowAdd="allowAdd" :tableColumns="tableColumns" :isEdit="isEditting"
     @onBtnSearchClicked="handleBtnSearchClicked" @onBtnAddClicked="handleOpenCreate" :CustomActions="CustomButtons"
     :openDialog="openDialogCreate" @onCustomAction="handleCustomAction">
@@ -19,6 +21,9 @@
   <MnEditItem ref="MnEdit" :columns="tableColumns" :apiName="apiName" :openDialog="openDialogCreate" :title="title"
     :createUrl="createUrl" :editUrl="editUrl" :editItem="EdittingItem" :isEdit="isEditting" @onSaved="handleSaved"
     @onCloseClicked="handleOnEditCloseClicked" />
+
+
+
 </template>
   
 <script setup lang="ts">
@@ -48,10 +53,17 @@ import { SearchRequest } from '../BaseModels/SearchRequest';
 // import type { AppResponse } from '@/Models/AppResponse';
 // @ts-ignore
 import { ElMessage } from 'element-plus';
-import type { CustomAction, CustomActionResponse } from './Models/CustomAction';
+import type {  CustomAction, CustomActionResponse } from './Models/CustomAction';
+
+import  { ApiActionType } from './Models/CustomAction';
 import { SortByInfo } from '../BaseModels/SortByInfo';
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
+// import ConfirmDialog from 'primevue/confirmdialog';
+import { useConfirm } from "primevue/useconfirm";
+import ConfirmPopup from 'primevue/confirmpopup';
+const confirm = useConfirm();
+
 //#region Method
 
 const Search = async () => {
@@ -160,23 +172,38 @@ const handleOpenCreate = async () => {
   isEditting.value = false;
   openDialogCreate.value = true;
 }
-
-const handleDelete = async (id: string) => {
-  var deleteresult = await handleAPIDelete(id, props.apiName);
-  if (deleteresult.isSuccess) {
-    ElMessage({
-      message: t('row-deleted'),
-      type: 'success',
-    });
-    await Search();
-  }
-  else {
-    ElMessage({
-      message: t('deleted-error'),
-      type: 'error',
-    });
-  }
-}
+const handleDelete = async (id: string, target: EventTarget | null) => {
+  // console.log('handle delete id: ' + id)
+  // console.log(target)
+  confirm.require({
+    target: target as HTMLElement | undefined,
+    message: t("delete-confirm"),
+    // header: "Danger Zone",
+    icon: "pi pi-info-circle",
+    rejectLabel: t("cancel"),
+    acceptLabel: t("delete"),
+    rejectClass: "p-button-secondary p-button-outlined",
+    acceptClass: "p-button-danger",
+    accept: async () => {
+      var deleteresult = await handleAPIDelete(id, props.apiName);
+      if (deleteresult.isSuccess) {
+        ElMessage({
+          message: t("row-deleted"),
+          type: "success",
+        });
+        await Search();
+      } else {
+        ElMessage({
+          message: t("deleted-error"),
+          type: "error",
+        });
+      }
+    },
+    reject: () => {
+      // toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    },
+  });
+};
 const handleSortChange = async (event: any) => {
   const sortByInfo: SortByInfo = {
     FieldName: event.column.property,
@@ -195,8 +222,10 @@ const handleEdit = async (item: SearchDTOItem) => {
   openDialogCreate.value = true;
 }
 const handleCustomAction = async (item: CustomActionResponse) => {
-  if (item.Action.ApiAction != undefined) {
-    var url: string = props.apiName + "/" + item.Action.ActionName;
+  if (item.Action.ApiActiontype != ApiActionType.None ) {
+    // console.log(item);
+    var url: string = props.apiName +( item.Action.ActionName!=undefined? ("/" + item.Action.ActionName):"");
+    // console.log(url)
     var apiResult = await handleAPICustom(item.Data, item.Action, url);
     console.log(apiResult);
 
