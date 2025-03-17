@@ -9,34 +9,32 @@
   .chat-user {
     height: 32px;
   }
-  .avatar{
-    background-color: white;
+  .avatar {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); /* Soft shadow below */
   }
 }
 .chat {
   aspect-ratio: 9/16;
   max-height: calc(100vh - 1em);
-  
- 
 
-  @include screenWidth($md){
+  @include screenWidth($md) {
     width: calc(100vw - 1em);
     max-height: calc(100vh - 1em);
   }
-  @include screenWidth($lg){
+  @include screenWidth($lg) {
     width: calc(30vw - 1em);
     max-height: calc(80vh - 1em);
   }
-  
+
   .send {
     width: 100%;
   }
-  &.scroll{
-   flex-direction: column-reverse;
+  &.scroll {
+    flex-direction: column-reverse;
     scroll-behavior: smooth;
     overflow-y: auto;
   }
-  .images{
+  .images {
     max-height: 10em;
   }
 }

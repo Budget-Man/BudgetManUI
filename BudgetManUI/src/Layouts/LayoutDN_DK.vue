@@ -103,6 +103,7 @@ const showRegisterLink = computed(() => {
 ul.el-menu.el-menu--horizontal.el-menu-demo {
     height: 60px;
     padding-right: 5%;
+    background-color: #b9ddfb
 }
 .el-menu {
   border-right: none;

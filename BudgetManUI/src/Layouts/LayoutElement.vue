@@ -8,13 +8,11 @@
         <el-main>
           <router-view />
         </el-main>
-
       </el-container>
       <el-footer>Footer</el-footer>
     </el-container>
   </div>
 </template>
-
 
 <style>
 .el-header {
@@ -33,7 +31,7 @@
 }
 
 .el-main {
-  padding: 10px;
+  padding: 0;
 }
 
 .toolbar {
@@ -42,4 +40,5 @@
   justify-content: center;
   height: 100%;
   right: 20px;
-}</style>
+}
+</style>

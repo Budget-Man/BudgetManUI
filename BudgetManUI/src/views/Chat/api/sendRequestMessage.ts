@@ -12,6 +12,6 @@ export const sendRequestMessage = async (model: ChatMessageModel): Promise<strin
         throw new Error()
     }
     catch {
-        return "Ops! Something went wrong. Try again please."
+        return "Opps! Something went wrong. Try again please."
     }
 }

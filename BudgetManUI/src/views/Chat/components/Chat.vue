@@ -1,11 +1,13 @@
 <template>
   <div class="box bg-light chat flex flex-col overflow-hidden">
-    <div class="box flex full row-reverse cursor-pointer" @click="closeChat">
-      <img :src="closeIcon" :style="{ width: '32px', aspectRatio: 1 }" />
-    </div>
-    <div class="avatar-chat box padding flex flex-col full">
-      <avatar-bot box-class="chat-assistant flex full"></avatar-bot>
-      <p class="text separate box full">Nice assistant</p>
+    <div class="box flex full items-start">
+      <div class="avatar-chat box padding flex flex-col full">
+        <avatar-bot box-class="chat-assistant flex full"></avatar-bot>
+        <p class="text separate box full">Nice assistant</p>
+      </div>
+      <div class="cursor-pointer" @click="closeChat">
+        <img :src="closeIcon" :style="{ width: '32px', aspectRatio: 1 }" />
+      </div>
     </div>
 
     <chat-list :messages="messages" />
@@ -31,8 +33,14 @@ const emit = defineEmits(["close-chat"]);
 const closeChat = () => {
   emit("close-chat");
 };
-
-const messages = ref<Messages>([]);
+const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
+const messages = ref<Messages>([
+  {
+    text: "What’s on your mind?",
+    time: timeOfMessage(),
+    sender: "other",
+  },
+]);
 
 const handleSend = async ({
   message,
@@ -41,7 +49,6 @@ const handleSend = async ({
   message: string;
   images: unknown[];
 }) => {
-  const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
   const list = [...messages.value];
 
   const messageFromUser = {
