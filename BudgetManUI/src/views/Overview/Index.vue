@@ -248,7 +248,7 @@ const moneySpendCol : TableColumn[] = [
         enableCreate: true,
         enableEdit: true,
         inputType: "amount-detail",
-        // formatter : formatAmount,
+        formatter : formatAmount,
         showInTable: true
     },
     {
@@ -355,7 +355,7 @@ watch(moneyHolderValue, async (newValue) => {
         incomeData.value = await Search("Income");
         // console.log(incomeData.value);
         moneySpendData.value = await Search("MoneySpend");
-        //console.log(expenseData.value);
+        // console.log(moneySpendData.value);
 
     } catch (error) {
       console.error("Error fetching additional data:", error);

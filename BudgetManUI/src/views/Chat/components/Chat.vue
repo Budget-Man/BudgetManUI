@@ -3,7 +3,7 @@
     <div class="box flex full items-start">
       <div class="avatar-chat box padding flex flex-col full">
         <avatar-bot box-class="chat-assistant flex full"></avatar-bot>
-        <p class="text separate box full">Nice assistant</p>
+        <p class="text separate box full">Budman</p>
       </div>
       <div class="cursor-pointer" @click="closeChat">
         <img :src="closeIcon" :style="{ width: '32px', aspectRatio: 1 }" />
@@ -27,6 +27,8 @@ import chatList from "./ChatList.vue";
 import { ref } from "vue";
 import { sendRequestMessage } from "../api/sendRequestMessage";
 import { dayjs } from "element-plus";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const emit = defineEmits(["close-chat"]);
 
@@ -36,7 +38,7 @@ const closeChat = () => {
 const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
 const messages = ref<Messages>([
   {
-    text: "What’s on your mind?",
+    text: t('message.greeting'),
     time: timeOfMessage(),
     sender: "other",
   },

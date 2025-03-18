@@ -17,7 +17,7 @@
         } `"
       >
         <img :src="waveHand" :style="{ width: '46px', height: '46px' }" />
-        <p>Hi there!</p>
+        <p>{{$t('message.hi-there')}}</p>
       </div>
     </div>
   </div>
