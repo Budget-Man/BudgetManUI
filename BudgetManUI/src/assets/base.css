@@ -77,11 +77,3 @@ body {
 .edge {
   overflow: hidden;
 }
-
-.el-menu-item:hover {
-  background: linear-gradient(to right, #F2E1C2 0%, rgba(242, 225, 194, 0.5) 60%, rgba(242, 225, 194, 0) 100%) !important;
-}
-.el-menu-item.is-active{
-  color: #B5523A !important;
-  background: linear-gradient(to right, #DFC4A1, rgba(242, 225, 194, 0)) !important;
-}

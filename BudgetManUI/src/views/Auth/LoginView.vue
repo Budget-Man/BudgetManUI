@@ -275,14 +275,9 @@ div.el-row.login-container {
 }
 .el-menu {
   border-right: none;
-  color: white;
-  width: 100%;
-  background: linear-gradient(to right, #F2E1C2, transparent);
-  backdrop-filter: blur(10px);
-  height: calc(100% - 2em);
-  margin-top: 1em;
+  width: 64px;
+  background-color: transparent;
 
-  border-radius: 0 5px 5px  0;
   
 }
 

@@ -1,8 +1,6 @@
 <template>
   <div
-    :class="`box cursor-pointer flex-col avatar-chat flex padding ${
-      hover ? 'bg-light' : 'bg-fade'
-    }`"
+    :class="`box cursor-pointer flex-col avatar-chat flex padding bg-fade`"
     @mouseover="hover = true"
     @mouseleave="hover = false"
     @click="openChat"

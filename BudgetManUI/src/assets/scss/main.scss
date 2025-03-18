@@ -40,11 +40,16 @@ $padding-y: 1em;
       color: black;
     }
   }
-
+&.no-rounded{
+  border-radius: 0;
+}
   &.flex {
     display: flex;
     gap: 12px;
     align-items: center;
+  }
+  &.no-wrap{
+    gap: 0 !important;
   }
   &.flex-col {
     flex-direction: column;
@@ -79,6 +84,9 @@ $padding-y: 1em;
   }
   &.justify-between{
     justify-content: space-between;
+  }
+  .screen-h{
+    height: 100vh;
   }
 }
 .float {
