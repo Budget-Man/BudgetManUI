@@ -30,10 +30,10 @@ axiosInstance.interceptors.response.use(
   error => {
     // console.log(error);
     //handle network error maybe mean there is a problem with back-end server or it's not started
-    if (error.code === 'ERR_NETWORK') {
-      // console.log(error.message);
-      router.push({ name: 'error' });
-    }
+    // if (error.code === 'ERR_NETWORK') {
+    //   // console.log(error.message);
+    //   router.push({ name: 'error' });
+    // }
     if (error.code === 'ERR_BAD_REQUEST') {
       // console.log(axiosInstance.defaults.headers.common['Authorization']);
       // console.log(error.message)
