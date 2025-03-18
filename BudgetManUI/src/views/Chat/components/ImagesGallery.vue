@@ -7,7 +7,7 @@
       v-show="visibleImages ? visibleImages.includes(index) : true"
     >
       <img :src="image" alt="Pasted Image" class="preview" />
-      <slot name="delete"></slot>
+      <slot name="delete" :index="index"></slot>
     </div>
   </div>
 </template>

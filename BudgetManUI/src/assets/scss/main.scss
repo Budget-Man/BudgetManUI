@@ -1,15 +1,5 @@
-@mixin screenWidth($minWidth) {
-  @media (min-width: $minWidth) {
-    @content;
-  }
-}
-
-$sm: 40rem;
-$md: 48rem;
-$lg: 64rem;
-$xl: 80rem;
-$padding-x: 1em;
-$padding-y: 1em;
+@import "./mixins.scss";
+@import "./chat.scss";
 
 .box-chat {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -145,4 +135,4 @@ $padding-y: 1em;
   }
 }
 
-@import "./chat.scss";
+
