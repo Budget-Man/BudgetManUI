@@ -7,9 +7,9 @@ import { languages } from '@/languages'
 
 const baseAPIUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const axiosInstance = axios.create({
-    baseURL: baseAPIUrl,
-    timeout: 10000,
-    headers: {'X-Custom-Header': 'foobar'}
+  baseURL: baseAPIUrl,
+  timeout: 10000,
+  headers: { 'X-Custom-Header': 'foobar' }
 });
 
 // Get the token from the cookies
@@ -37,8 +37,8 @@ axiosInstance.interceptors.response.use(
     if (error.code === 'ERR_BAD_REQUEST') {
       // console.log(axiosInstance.defaults.headers.common['Authorization']);
       // console.log(error.message)
-      if (error.response.status == 401){
-         router.push({ name: 'login'});
+      if (error.response.status == 401) {
+        router.push({ name: 'login' });
       }
     }
     if (error.code === 'ECONNABORTED') {
@@ -54,4 +54,5 @@ axiosInstance.interceptors.response.use(
   }
 )
 
-export {axiosInstance}
+export { axiosInstance }
+

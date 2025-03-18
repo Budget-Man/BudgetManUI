@@ -155,16 +155,13 @@ import { reactive, ref, onMounted } from "vue";
 import { LoginViewModel } from "../../Models/LoginViewModel.ts";
 
 // @ts-ignore
-import {
-  handleLogin,
-  handleLoginByGoogle,
-} from "../../Services/LoginService.ts";
 import { useToast } from "vue-toastification";
 import { googleAuthCodeLogin } from "vue3-google-login"; //https://devbaji.github.io/vue3-google-login/#one-tap-prompt
 // @ts-ignore
 import router from "@/router";
 // @ts-ignore
 import type { FormInstance, FormRules } from "element-plus";
+import { handleLogin, handleLoginByGoogle } from "@/Services/LoginService.js";
 
 const _toast = useToast();
 const state = reactive<LoginViewModel>({
@@ -283,6 +280,7 @@ div.el-row.login-container {
   background: rgba(255, 255, 255, 1);
   backdrop-filter: blur(10px);
   height: 100%;
+  padding-top: 1em;
 }
 
 .fixed-button {

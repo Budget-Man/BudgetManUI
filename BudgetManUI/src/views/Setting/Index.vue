@@ -7,7 +7,6 @@
     label-position="left"
     label-suffix=":"
     size="medium"
-    :disabled="isFormDisabled"
   >
     <el-form-item :label="$t('setting.language')">
       <el-select v-model="form.language">
@@ -68,18 +67,20 @@ import {
   handleAPICustom,
   handleAPIDelete,
   handleAPISearch,
-} from "@/components/maynghien/adminTable/Service/BasicAdminService.ts";
+} from "@/components/maynghien/adminTable/Service/BasicAdminService.js";
 // @ts-ignore
-import {
-  SearchRequest,
-  SearchResponse,
-} from "@/components/maynghien/adminTable/Service/BasicAdminService.ts";
+// import {
+//   SearchRequest,
+//   SearchResponse,
+// } from "@/components/maynghien/adminTable/Service/BasicAdminService.js";
 // @ts-ignore
 import { currencyList } from "@/Services/CurrencyUtilities";
 // @ts-ignore
 import { handleSaveSetting } from "@/Services/User/SaveSetting";
 // @ts-ignore
 import { SettingViewModel } from "./Models/SettingViewModel";
+import type { SearchRequest } from "@/components/maynghien/BaseModels/SearchRequest.js";
+import type { SearchResponse } from "@/components/maynghien/BaseModels/SearchResponse.js";
 
 const form = reactive({
   language: "",
@@ -141,7 +142,7 @@ const resetForm = () => {
   // this.$refs[formName].resetFields();
 };
 
-const moneyHolderData = ref<[SearchDTOItem]>();
+const moneyHolderData = ref<SearchDTOItem[]>();
 
 const getTableData = async (apiName: any) => {
   let searchRequest: SearchRequest = {
