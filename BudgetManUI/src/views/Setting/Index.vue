@@ -39,11 +39,11 @@
         />
       </el-select>
     </el-form-item>
-    <el-form-item :label="$t('setting.chatUserId')">
+    <el-form-item :label="$t('setting.chatUserId')" style="width: fit-content;">
       <el-input v-model="form.chatUserId"> </el-input>
     </el-form-item>
     <el-form-item :label="$t('setting.memberList')">
-      <el-input type="textarea" v-model="form.memberList"> </el-input>
+      <InputTag v-model="form.memberList" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm()">{{
@@ -81,13 +81,20 @@ import { handleSaveSetting } from "@/Services/User/SaveSetting";
 import { SettingViewModel } from "./Models/SettingViewModel";
 import type { SearchRequest } from "@/components/maynghien/BaseModels/SearchRequest.js";
 import type { SearchResponse } from "@/components/maynghien/BaseModels/SearchResponse.js";
+import InputTag from "./components/InputTag.vue";
 
-const form = reactive({
+const form = reactive<{
+  language: string,
+  currency: string,
+  defaultMoneyHolder: string,
+  chatUserId: string,
+  memberList: string[],
+}>({
   language: "",
   currency: "",
   defaultMoneyHolder: "",
   chatUserId: "",
-  memberList: "",
+  memberList: [],
 });
 // const LanguageOptions = [
 //   {
@@ -105,6 +112,8 @@ onMounted(async () => {
 
     form.language = Cookies.get("language") || "en"; //need to replace with user data from back-end
     form.currency = Cookies.get("currency") || "VND";
+    form.chatUserId = Cookies.get("chatUserId") || ''; 
+    form.memberList = JSON.parse(Cookies.get("memberList")||'[]') || [];
 
     moneyHolderData.value = await getTableData("MoneyHolder");
     if (moneyHolderData.value && moneyHolderData.value.length > 0) {
@@ -118,7 +127,7 @@ onMounted(async () => {
 });
 
 // const _i18n = i18n;
-const settingRequest = ref<SettingViewModel>();
+const settingRequest = ref<SettingViewModel>({});
 const submitForm = async () => {
   // languages.global.legacy = false;
   languages.global.locale.value = form.language as keyof typeof languageOptions;
@@ -126,6 +135,8 @@ const submitForm = async () => {
   Cookies.set("language", form.language, { expires: 365 });
   Cookies.set("currency", form.currency, { expires: 365 });
   Cookies.set("defaultMoneyHolder", form.defaultMoneyHolder, { expires: 365 });
+  Cookies.set("chatUserId", form.chatUserId, { expires: 365 });
+  Cookies.set("memberList", JSON.stringify(form.memberList), { expires: 365 });
   // console.log(form.defaultMoneyHolder);
   //need to save to database
   // console.log(form.language);
@@ -134,8 +145,8 @@ const submitForm = async () => {
   settingRequest.value.defaultMoneyHolder = form.defaultMoneyHolder;
   settingRequest.value.chatUserId = form.chatUserId;
   settingRequest.value.memberList = form.memberList;
-  // console.log(settingRequest.value);
-  await handleSaveSetting(settingRequest);
+  // console.log(settingRequest);
+  await handleSaveSetting(settingRequest.value);
 };
 
 const resetForm = () => {

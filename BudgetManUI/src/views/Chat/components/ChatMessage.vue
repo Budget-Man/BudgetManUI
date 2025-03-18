@@ -40,6 +40,7 @@ const { isMine, message } = defineProps<{
   border-radius: 12px;
   background: #f1f1f1;
   position: relative;
+  width: fit-content;
 }
 
 .mine .message-bubble {

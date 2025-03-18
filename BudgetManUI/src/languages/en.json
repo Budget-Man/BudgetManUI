@@ -121,7 +121,8 @@
     "create-base-data": "Create base data",
     "skypeUserId": "Skype user ID",
     "chatUserId": "Chat User ID",
-    "memberList": "Member List"
+    "memberList": "Member List",
+    "memberListPlaceholder": "Press Enter to add a member"
   },
   "error": {
     "message": "Our server is undergoing maintenance. Please try again later"

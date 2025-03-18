@@ -33,14 +33,18 @@ const emit = defineEmits(["close-chat"]);
 const closeChat = () => {
   emit("close-chat");
 };
-const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
-const messages = ref<Messages>([
+const getSaveMessage = ()=>{
+  const saved = getMessagesFromCookie()
+  return saved.length ?saved : [
   {
     text: "What’s on your mind?",
     time: timeOfMessage(),
     sender: "other",
   },
-]);
+]
+}
+const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
+const messages = ref<Messages>(getSaveMessage());
 
 const handleSend = async ({
   message,
@@ -105,6 +109,8 @@ const handleSend = async ({
     messageFromUser
   );
   messages.value = list;
+
+  saveMessagesToCookie(list)
 };
 
 export type Message = {
@@ -114,6 +120,27 @@ export type Message = {
   loading?: boolean;
   images?: string[];
 };
+
+function saveMessagesToCookie(messages: Message[], cookieName: string = "chatMessages") {
+    const jsonString = JSON.stringify(messages);
+    document.cookie = `${cookieName}=${encodeURIComponent(jsonString)}; path=/; max-age=86400`; // Expires in 1 day
+}
+
+function getMessagesFromCookie(cookieName: string = "chatMessages"): Message[] {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === cookieName) {
+            try {
+                return JSON.parse(decodeURIComponent(value));
+            } catch (error) {
+                console.error("Error parsing messages from cookie:", error);
+                return [];
+            }
+        }
+    }
+    return [];
+}
 
 export type Messages = Message[];
 </script>

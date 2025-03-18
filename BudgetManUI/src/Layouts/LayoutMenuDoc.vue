@@ -151,6 +151,7 @@
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
+
 }
 .el-header > button {
   height: 100%;

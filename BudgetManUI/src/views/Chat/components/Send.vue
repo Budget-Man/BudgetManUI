@@ -39,6 +39,9 @@ const imagesPasteEvent = ref<ClipboardEvent | null>(null);
 const sendImagesPasteEvent = (event:ClipboardEvent) => {
   imagesPasteEvent.value = event;
 };
+
+
+
 </script>
 
 <style scoped>
