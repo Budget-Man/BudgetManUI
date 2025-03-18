@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from "vue";
 import type { Message } from "./Chat.vue";
 import loading from "./Loading.vue";
 import imagesGallery from "./ImagesGallery.vue";
