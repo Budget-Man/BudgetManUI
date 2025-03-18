@@ -47,7 +47,7 @@ const handleSend = async ({
   images,
 }: {
   message: string;
-  images: unknown[];
+  images: string[];
 }) => {
   const list = [...messages.value];
 
