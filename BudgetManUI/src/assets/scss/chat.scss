@@ -1,23 +1,31 @@
 $margin-chat-modal: 3em;
 .avatar-chat {
+
   .button {
     font-size: 16px;
     height: 48px;
+    background-color: rgba(255, 255, 255, 1) !important;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+   
+   
   }
   .chat-assistant {
     height: 32px;
+    color: black;
   }
   .chat-user {
     height: 32px;
   }
   .avatar {
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); /* Soft shadow below */
+
   }
 }
 .chat {
   aspect-ratio: 9/16;
   max-height: calc(100vh - $margin-chat-modal);
-
+  background-color: white;
+color: black;
   @include screenWidth($md) {
     width: calc(100vw - $margin-chat-modal);
     max-height: calc(100vh - $margin-chat-modal);

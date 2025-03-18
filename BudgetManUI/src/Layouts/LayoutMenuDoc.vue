@@ -1,80 +1,96 @@
 <template>
-  <div class="box screen-h">
+  <div class="box screen-h no-rounded" style="overflow: hidden;">
     <el-container class="box flex flex-col full screen-h no-wrap">
-
       <el-header style="padding-left: 0px" class="box full no-rounded">
-      <a href="/" style="all: unset">
-        <el-image
-          :src="logo"
-          style="
-            height: 64px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
-          "
-          id="mask"
-        ></el-image>
-      </a>
-      <button @click="logout()">
-        <el-icon><SwitchButton /></el-icon> {{ userName }}
-      </button>
-    </el-header>
-      <el-container class="box full ">
+        <a href="/" style="all: unset">
+          <el-image
+            :src="logo"
+            style="
+              height: 64px;
+              filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+            "
+            id="mask"
+          ></el-image>
+        </a>
+        <button @click="logout()">
+          <el-icon><SwitchButton /></el-icon> {{ userName }}
+        </button>
+      </el-header>
+      <el-container style="overflow: hidden" class="box no-rounded full">
         <el-aside class="menu-aside" :collapse="isCollapse">
-          <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
-          router= true collapse-transition="false"
-            @close="handleClose">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo box no-rounded scroll"
+            :collapse="isCollapse"
+            @open="handleOpen"
+            router="true"
+            collapse-transition="false"
+            @close="handleClose"
+          >
             <el-menu-item @click="toggleMenu">
               <el-icon><Menu /></el-icon>
               <template></template>
             </el-menu-item>
-            <el-menu-item index="/Overview" >
+            <el-menu-item index="/Overview">
               <el-icon><PieChart /></el-icon>
-              <template #title>{{ $t('moneyOverview.name') }}</template>
+              <template #title>{{ $t("moneyOverview.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/MoneyHolder" >
+            <el-menu-item index="/MoneyHolder">
               <el-icon><WalletFilled /></el-icon>
-              <template #title>{{ $t('moneyHolder.name') }}</template>
+              <template #title>{{ $t("moneyHolder.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/moneyspend" >
+            <el-menu-item index="/moneyspend">
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('moneySpend.name') }} </template>
+              <template #title>{{ $t("moneySpend.name") }} </template>
             </el-menu-item>
-            <el-menu-item index="/income" >
+            <el-menu-item index="/income">
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('income.name') }}</template>
+              <template #title>{{ $t("income.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/loan" >
+            <el-menu-item index="/loan">
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('loan.name') }}</template>
+              <template #title>{{ $t("loan.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/debt" >
+            <el-menu-item index="/debt">
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('debt.name') }}</template>
+              <template #title>{{ $t("debt.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/budget" >
+            <el-menu-item index="/budget">
               <el-icon><Money /></el-icon>
-              <template #title>{{ $t('budget.name') }}</template>
+              <template #title>{{ $t("budget.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/budgetCate" >
+            <el-menu-item index="/budgetCate">
               <el-icon><PriceTag /></el-icon>
-              <template #title>{{ $t('budgetCat.name') }}</template>
+              <template #title>{{ $t("budgetCat.name") }}</template>
             </el-menu-item>
-           
-            <el-menu-item index="/user" >
+
+            <el-menu-item index="/user">
               <el-icon><Avatar /></el-icon>
-              <template #title>{{ $t('user.name') }}</template>
+              <template #title>{{ $t("user.name") }}</template>
             </el-menu-item>
-            <el-menu-item index="/setting" >
+            <el-menu-item index="/setting">
               <el-icon><Setting /></el-icon>
-              <template #title>{{ $t('setting.name') }}</template>
+              <template #title>{{ $t("setting.name") }}</template>
             </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main>
-          <router-view />
+        <el-main class="" style="overflow: hidden;">
+          <div  style="max-height: 100%;overflow: hidden;">
+            <router-view />
+
+          </div>
           <el-image
             src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
             fit="cover"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: -1;
+            "
+          >
           </el-image>
         </el-main>
       </el-container>
@@ -105,14 +121,12 @@
 </template>
 
 <style>
-.el-footer{
-  height:150px;
-}
+/* .el-footer {
+  height: 150px;
+} */
 .footer-container {
   display: flex;
   justify-content: space-between;
-
-
 }
 
 .footer-item {
@@ -144,21 +158,19 @@
   float: right;
   border: #b9ddfb;
 }
-.el-header>p {
+.el-header > p {
   margin-left: 90%;
 }
 
 .el-aside {
   color: #b9ddfb;
-  background:#b9ddfb;
+  background: #b9ddfb;
 }
-.menu-aside{
+.menu-aside {
   width: fit-content;
-  
 }
 .el-menu {
   border-right: none;
-  
 }
 
 .el-main {
@@ -173,7 +185,7 @@
   height: 100%;
   right: 20px;
 }
-.el-footer{
+.el-footer {
   background-color: #b9ddfb;
 }
 .el-pagination {
@@ -189,8 +201,8 @@
   width: 55px;
   min-height: 400px;
 }
-.table-container{
-  background-color: white; 
+.table-container {
+  background-color: white;
   padding: 10px;
   border-radius: var(--el-border-radius-base);
   margin-left: 10px;
@@ -202,7 +214,7 @@
 }
 </style>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 import logo from "@/assets/budget-logo.png";
 import {
   Menu as IconMenu,
@@ -215,24 +227,24 @@ import {
   Menu,
   WalletFilled,
   PriceTag,
-  Money
-} from '@element-plus/icons-vue'
-const isCollapse = ref(true)
+  Money,
+} from "@element-plus/icons-vue";
+const isCollapse = ref(true);
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+  console.log(key, keyPath);
+};
 
 const getCookie = (name: string): string | null => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
   return null;
 };
 
-const userName=getCookie('UserName');
+const userName = getCookie("UserName");
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+  console.log(key, keyPath);
+};
 const toggleMenu = () => {
   // Thay đổi giá trị của biến `isCollapse`
   isCollapse.value = !isCollapse.value;
@@ -248,5 +260,4 @@ function logout() {
   }
   window.location.href = "/login";
 }
-
 </script>

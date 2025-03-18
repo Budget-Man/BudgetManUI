@@ -1,26 +1,27 @@
 @import "./mixins.scss";
 @import "./chat.scss";
+
 @mixin screenWidth($minWidth) {
   @media (min-width: $minWidth) {
     @content;
   }
 }
+
 $sm: 40rem;
 $md: 48rem;
 $lg: 64rem;
 $xl: 80rem;
 $padding-x: 1em;
 $padding-y: 1em;
-
 .box-chat {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .avatar {
   max-height: 100%;
   aspect-ratio: 1/1;
   border-radius: 100%;
   overflow: hidden;
-
   img {
     object-fit: cover;
     width: 100%;
@@ -34,27 +35,28 @@ $padding-y: 1em;
   border-radius: 8px;
   position: relative;
   &.bg-fade {
-    background-color: rgba($color: white, $alpha: 1);
+   
     div,
     p {
-      color: black;
+      
     }
   }
-&.no-rounded{
-  border-radius: 0;
-}
+  &.no-rounded {
+    border-radius: 0;
+  }
   &.flex {
     display: flex;
     gap: 12px;
     align-items: center;
   }
-  &.no-wrap{
+  &.no-wrap {
     gap: 0 !important;
   }
   &.flex-col {
     flex-direction: column;
   }
   &.bg-light {
+
     background-color: white;
   }
   &.padding {
@@ -82,17 +84,17 @@ $padding-y: 1em;
   &.items-start {
     align-items: start;
   }
-  &.justify-between{
+  &.justify-between {
     justify-content: space-between;
   }
-  .screen-h{
+  .screen-h {
     height: 100vh;
   }
 }
 .float {
   position: fixed;
-  bottom: calc(2 * $padding-y);
-  right: calc(2 * $padding-x);
+  bottom: calc(1 * $padding-y);
+  right: calc(1 * $padding-x);
   z-index: 10;
 }
 .absolute {
@@ -156,3 +158,18 @@ $padding-y: 1em;
     transform: scale(1);
   }
 }
+
+.me{
+  width: 100% !important;
+  @include screenWidth($sm){
+
+    width: 100% !important;
+  }
+
+  @include screenWidth($md){
+
+    width: 40% !important;
+  }
+}
+
+

@@ -1,57 +1,61 @@
 <template>
   <!-- <div > -->
-  <el-form
-    :model="form"
-    label-width="240px"
-    class="mainContainer"
-    label-position="left"
-    label-suffix=":"
-    size="medium"
-  >
-    <el-form-item :label="$t('setting.language')">
-      <el-select v-model="form.language">
-        <el-option
-          v-for="(value, key) in languageOptions"
-          :key="key"
-          :label="value.label"
-          :value="key"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item :label="$t('setting.currency-style')">
-      <el-select v-model="form.currency">
-        <el-option
-          v-for="item in currencyList"
-          :key="item"
-          :label="item"
-          :value="item"
-        />
-        <!-- <el-option key="VND" label="VND" value="VND" /> -->
-      </el-select>
-    </el-form-item>
-    <el-form-item :label="$t('setting.defaultMoneyHolder')">
-      <el-select v-model="form.defaultMoneyHolder">
-        <el-option
-          v-for="item in moneyHolderData"
-          :key="item.id"
-          :label="item.name"
-          :value="item.id"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item :label="$t('setting.chatUserId')" style="width: fit-content;">
-      <el-input v-model="form.chatUserId"> </el-input>
-    </el-form-item>
-    <el-form-item :label="$t('setting.memberList')">
-      <InputTag v-model="form.memberList" />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm()">{{
-        $t("save")
-      }}</el-button>
-      <el-button @click="resetForm()">{{ $t("reset-default") }}</el-button>
-    </el-form-item>
-  </el-form>
+    <div style="overflow: auto;">
+
+      <el-form
+        :model="form"
+        label-width="240px"
+        class="mainContainer"
+        label-position="left"
+        label-suffix=":"
+        size="medium"
+        style="min-width: 600px"
+      >
+        <el-form-item :label="$t('setting.language')">
+          <el-select v-model="form.language">
+            <el-option
+              v-for="(value, key) in languageOptions"
+              :key="key"
+              :label="value.label"
+              :value="key"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('setting.currency-style')">
+          <el-select v-model="form.currency">
+            <el-option
+              v-for="item in currencyList"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+            <!-- <el-option key="VND" label="VND" value="VND" /> -->
+          </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('setting.defaultMoneyHolder')">
+          <el-select v-model="form.defaultMoneyHolder">
+            <el-option
+              v-for="item in moneyHolderData"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item :label="$t('setting.chatUserId')" style="width: fit-content;">
+          <el-input v-model="form.chatUserId"> </el-input>
+        </el-form-item>
+        <el-form-item :label="$t('setting.memberList')">
+          <InputTag v-model="form.memberList" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm()">{{
+            $t("save")
+          }}</el-button>
+          <el-button @click="resetForm()">{{ $t("reset-default") }}</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   <!-- </div> -->
 </template>
 

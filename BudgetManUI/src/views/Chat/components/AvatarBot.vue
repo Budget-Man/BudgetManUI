@@ -1,7 +1,7 @@
 <template>
   <avatar :image="budManLogo" :box-class="boxClass">
     <template #implement>
-      <p>{{ $t('message.start') }}</p>
+      <p style="padding-right: 1em;">{{ $t('message.start') }}</p>
     </template>
   </avatar>
 </template>
