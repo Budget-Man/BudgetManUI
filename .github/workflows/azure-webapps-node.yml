@@ -28,13 +28,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Download validation file
-      run: wget -O src/pkiValidation/C21141802FB2C311CC744636A57A5D72.txt https://example.com/path/to/C21141802FB2C311CC744636A57A5D72.txt
-
-    - name: List src/pkiValidation directory contents
-      run: ls -la src/pkiValidation
-
     - name: Build Vue app
+      env:
+        VITE_API_URL: ${{ secrets.API_URL }}
       run: npm run build
       
     - name: list 
