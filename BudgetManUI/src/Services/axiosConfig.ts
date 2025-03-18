@@ -12,7 +12,7 @@ const baseAPIUrl = apiUrl.endsWith('/api/') ? apiUrl : `${apiUrl}/api/`;
 const axiosInstance = axios.create({
   baseURL: baseAPIUrl,
   timeout: 10000,
-  headers: { 'X-Custom-Header': 'foobar' }
+  headers: { 'accept': '*/*' }
 });
 
 // Get the token from the cookies
