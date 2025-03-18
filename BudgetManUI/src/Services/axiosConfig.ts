@@ -5,7 +5,10 @@ import router from '@/router'; // Import your Vue Router instance
 // import type { Composer } from 'vue-i18n';
 import { languages } from '@/languages'
 
-const baseAPIUrl = import.meta.env.VITE_API_URL || 'https://budgetmanbackendapi20231207220149.azurewebsites.net/api/';
+const apiUrl = import.meta.env.VITE_API_URL || 'https://budgetmanbackendapi20231207220149.azurewebsites.net/api/';
+const baseAPIUrl = apiUrl.endsWith('/api/') ? apiUrl : `${apiUrl}/api/`;
+
+
 const axiosInstance = axios.create({
   baseURL: baseAPIUrl,
   timeout: 10000,
@@ -38,7 +41,7 @@ axiosInstance.interceptors.response.use(
       // console.log(axiosInstance.defaults.headers.common['Authorization']);
       // console.log(error.message)
       if (error.response.status == 401) {
-        router.push({ name: 'login' });
+        // router.push({ name: 'login' });
       }
     }
     if (error.code === 'ECONNABORTED') {
