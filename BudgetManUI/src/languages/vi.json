@@ -117,7 +117,10 @@
     "language": "Ngôn ngữ",
     "currency-style": "Kiểu tiền tệ",
     "defaultMoneyHolder": "@:moneyHolder.name mặc định",
-    "create-base-data": "Tạo dữ liệu cơ bản"
+    "create-base-data": "Tạo dữ liệu cơ bản",
+    "skypeUserId": "Mã người dùng Skype",
+    "chatUserId": "Mã người dùng chat",
+    "memberList": "Danh sách thành viên"
   },
   "page-title": "Quản lý ngân sách",
   "error": {
