@@ -1,3 +1,4 @@
+$margin-chat-modal: 3em;
 .avatar-chat {
   .button {
     font-size: 16px;
@@ -15,22 +16,22 @@
 }
 .chat {
   aspect-ratio: 9/16;
-  max-height: calc(100vh - 1em);
+  max-height: calc(100vh - $margin-chat-modal);
 
   @include screenWidth($md) {
-    width: calc(100vw - 1em);
-    max-height: calc(100vh - 1em);
+    width: calc(100vw - $margin-chat-modal);
+    max-height: calc(100vh - $margin-chat-modal);
   }
   @include screenWidth($lg) {
-    width: calc(30vw - 1em);
-    max-height: calc(80vh - 1em);
+    width: calc(30vw - $margin-chat-modal);
+    max-height: calc(80vh - $margin-chat-modal);
   }
 
   .send {
     width: 100%;
   }
   &.scroll {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse !important;
     scroll-behavior: smooth;
     overflow-y: auto;
   }
