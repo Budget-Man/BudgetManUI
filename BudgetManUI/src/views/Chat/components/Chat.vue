@@ -112,7 +112,7 @@ export type Message = {
   time: string;
   sender: string;
   loading?: boolean;
-  images?: unknown[];
+  images?: string[];
 };
 
 export type Messages = Message[];
