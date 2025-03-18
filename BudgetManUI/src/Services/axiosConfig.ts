@@ -5,7 +5,7 @@ import router from '@/router'; // Import your Vue Router instance
 // import type { Composer } from 'vue-i18n';
 import { languages } from '@/languages'
 
-const baseAPIUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const baseAPIUrl = import.meta.env.VITE_API_URL || 'https://budgetmanbackendapi20231207220149.azurewebsites.net/api/';
 const axiosInstance = axios.create({
   baseURL: baseAPIUrl,
   timeout: 10000,
@@ -30,10 +30,10 @@ axiosInstance.interceptors.response.use(
   error => {
     // console.log(error);
     //handle network error maybe mean there is a problem with back-end server or it's not started
-    if (error.code === 'ERR_NETWORK') {
-      // console.log(error.message);
-      router.push({ name: 'error' });
-    }
+    // if (error.code === 'ERR_NETWORK') {
+    //   // console.log(error.message);
+    //   router.push({ name: 'error' });
+    // }
     if (error.code === 'ERR_BAD_REQUEST') {
       // console.log(axiosInstance.defaults.headers.common['Authorization']);
       // console.log(error.message)
