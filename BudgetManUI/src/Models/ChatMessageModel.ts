@@ -1,4 +1,4 @@
 export type ChatMessageModel = {
     message: string
-    images?: null | unknown[]
+    images?: string[] | null // Mảng chuỗi base64
 }
