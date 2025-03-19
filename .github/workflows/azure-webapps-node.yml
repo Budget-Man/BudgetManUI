@@ -62,4 +62,4 @@ jobs:
             docker network connect nginx-proxy budgetui;
             
           "
- 
+

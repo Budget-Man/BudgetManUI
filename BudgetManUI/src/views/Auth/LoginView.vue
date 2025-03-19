@@ -275,12 +275,10 @@ div.el-row.login-container {
 }
 .el-menu {
   border-right: none;
-  color: var(--el-text-color-primary);
-  width: 100%;
-  background: rgba(255, 255, 255, 1);
-  backdrop-filter: blur(10px);
-  height: 100%;
-  padding-top: 1em;
+  width: 64px;
+  background-color: transparent;
+
+  
 }
 
 .fixed-button {

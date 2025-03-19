@@ -3,7 +3,7 @@
     <ImagesPaste :imagesPasteEvent="imagesPasteEvent" v-model:images="images" />
     <textarea
       v-model="message"
-      placeholder="Text or paste image(s)"
+      :placeholder="$t('message.textbox-placeholder')"
       @keydown.enter.exact.prevent="sendMessage"
       @keydown.shift.enter.prevent="newLine"
       @paste="sendImagesPasteEvent"
@@ -39,6 +39,9 @@ const imagesPasteEvent = ref<ClipboardEvent | null>(null);
 const sendImagesPasteEvent = (event:ClipboardEvent) => {
   imagesPasteEvent.value = event;
 };
+
+
+
 </script>
 
 <style scoped>
