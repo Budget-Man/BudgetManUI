@@ -98,7 +98,7 @@ onMounted(async () => {
 });
 
 // const _i18n = i18n;
-const settingRequest = ref<SettingViewModel>();
+const settingRequest = reactive<SettingViewModel>({});
 const submitForm = async () => {
   // languages.global.legacy = false;
    languages.global.locale.value = form.language as keyof typeof languageOptions;
@@ -108,12 +108,12 @@ const submitForm = async () => {
   Cookies.set('defaultMoneyHolder', form.defaultMoneyHolder, { expires: 365 });
   // console.log(form.defaultMoneyHolder);
   //need to save to database
-  // console.log(form.language);
-  settingRequest.value.language = form.language;
-  settingRequest.value.currency = form.currency;
-  settingRequest.value.defaultMoneyHolder = form.defaultMoneyHolder;
-  settingRequest.value.chatUserId = form.chatUserId;
-  settingRequest.value.memberList = form.memberList;
+  console.log(form);
+  // settingRequest.language = form.language;
+  settingRequest.currency = form.currency;
+  settingRequest.defaultMoneyHolder = form.defaultMoneyHolder;
+  settingRequest.chatUserId = form.chatUserId;
+  settingRequest.memberList = form.memberList;
   // console.log(settingRequest.value);
   await handleSaveSetting(settingRequest);
 };

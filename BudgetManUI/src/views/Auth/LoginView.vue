@@ -192,10 +192,13 @@ div.el-row.login-container{
   }
 }
 .el-menu {
-    border-right: none;
-    color: var(--el-text-color-primary);
-    background:#b9ddfb;
-    width: 100%;
+  border-right: none;
+  color: white;
+  width: 100%;
+  height: calc(100% - 2em);
+  margin-top: 1em;
+
+  border-radius: 0 5px 5px  0;
 }
 
 .fixed-button{
