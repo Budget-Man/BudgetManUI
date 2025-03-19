@@ -118,6 +118,7 @@
       </el-footer> -->
     </el-container>
   </div>
+  <WelcomeDialog />
 </template>
 
 <style>
@@ -229,6 +230,7 @@ import {
   PriceTag,
   Money,
 } from "@element-plus/icons-vue";
+import WelcomeDialog from "@/components/WelcomeDialog.vue";
 const isCollapse = ref(true);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
