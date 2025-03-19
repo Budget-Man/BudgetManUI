@@ -34,8 +34,8 @@ const handlePaste = (event: ClipboardEvent) => {
     const file = item.getAsFile();
     if (item.type.startsWith("image") && file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        images.value.push(e.target?.result);
+      reader.onload = () => {
+        images.value.push(reader.result);
         const index = images.value.length - 1;
         visibleImages.value.push(index);
       };

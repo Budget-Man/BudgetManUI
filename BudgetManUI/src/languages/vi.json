@@ -120,7 +120,8 @@
     "create-base-data": "Tạo dữ liệu cơ bản",
     "skypeUserId": "Mã người dùng Skype",
     "chatUserId": "Mã người dùng chat",
-    "memberList": "Danh sách thành viên"
+    "memberList": "Danh sách thành viên",
+        "memberListPlaceholder": "Nhấn enter để thêm thành viên"
   },
   "page-title": "Quản lý ngân sách",
   "error": {
@@ -156,5 +157,11 @@
   "welcome-message": "Chào mừng bạn đến với trang web Quản lý ngân sách.",
   "first-suggest-message": "Vui lòng chọn cài đặt ban đầu",
   "unknow-error-message": "Có lỗi xãy ra, vui lòng tải lại trang và thử lại nha!",
-  "delete-confirm": "Bạn có chắc muốn xóa dòng này?"
+  "delete-confirm": "Bạn có chắc muốn xóa dòng này?",
+  "message": {
+    "hi-there": "Xin chào",
+    "textbox-placeholder": "Nhập chữ hoặc gửi hình ở đây",
+    "greeting": "Xin chào! Tôi có thể giúp gì được cho bạn?",
+    "start": "Hỗ trợ AI nè"
+  }
 }

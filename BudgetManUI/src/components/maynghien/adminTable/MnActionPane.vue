@@ -1,8 +1,11 @@
 el-button
 <template>
-  <el-row class="action-pane box flex justify-between">
-    <el-row class="ep-bg-purple-dark">
-      <div v-for="filter in filters">
+  <el-row
+    class="action-pane flex justify-between"
+    style="flex-wrap: nowrap; gap: 2px; overflow: auto; justify-content: space-between;"
+  >
+    <div style="display: flex;gap:2px;flex-wrap: nowrap;flex-shrink: 0;">
+      <div v-for="filter in filters" style="flex-shrink: 0">
         <el-input
           v-model="filter.Value"
           :placeholder="filter.DisplayName"
@@ -34,8 +37,9 @@ el-button
       >
         {{ $t("search") }}</el-button
       >
-    </el-row>
-    <el-row>
+    </div>
+
+    <div style="flex-shrink: 0;">
       <el-button
         type="primary"
         :icon="Plus"
@@ -51,7 +55,7 @@ el-button
       >
         {{ customAction.ActionLabel }}
       </el-button>
-    </el-row>
+    </div>
   </el-row>
 </template>
 

@@ -7,14 +7,17 @@
             @row-click="handleRowClick" >
             <el-table-column v-for="column in shownCol" :key="column.key" :prop="column.key" :label="column.label"
                 :sortable="column.sorable ? 'custom' : 'false'" :visible="column.hidden == false" />
-            <el-table-column :label="$t('operations')" v-if="enableDelete || enableEdit">
-                <template #default="scope">
-                    <el-button v-if="enableEdit" :icon="Edit" size="small"
-                        @click="handleEdit(scope.$index, scope.row)">{{ $t('edit') }}</el-button>
-                    <el-button v-if="enableDelete" :icon="Delete" size="small" type="danger"
-                        @click="handleDelete(scope.$index, scope.row, $event)">{{ $t('delete') }}</el-button>
-                    <el-button v-for="action in CustomActions" :icon="action.Icon" size="small" :key="action.ActionName"
-                        @click="handleCustomAction(scope.$index, scope.row, action)">{{ action.ActionLabel }}</el-button>
+            <el-table-column width="248" :label="$t('operations')" v-if="enableDelete || enableEdit">
+                <template #default="scope" >
+                    <div style="display: flex; flex-wrap: wrap;gap:2px;justify-content: start;">
+
+                        <el-button style="margin: 0;" v-if="enableEdit" :icon="Edit" size="small"
+                            @click="handleEdit(scope.$index, scope.row)">{{ $t('edit') }}</el-button>
+                        <el-button style="margin: 0;" v-if="enableDelete" :icon="Delete" size="small" type="danger"
+                            @click="handleDelete(scope.$index, scope.row, $event)">{{ $t('delete') }}</el-button>
+                        <el-button style="margin: 0;" v-for="action in CustomActions" :icon="action.Icon" size="small" :key="action.ActionName"
+                            @click="handleCustomAction(scope.$index, scope.row, action)">{{ action.ActionLabel }}</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>

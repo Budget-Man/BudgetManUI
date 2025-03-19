@@ -1,23 +1,27 @@
 <template>
   <div
-    :class="`box cursor-pointer flex-col avatar-chat flex padding ${
-      hover ? 'bg-light' : 'bg-fade'
-    }`"
+    :class="`box cursor-pointer flex-col avatar-chat flex bg-fade`"
     @mouseover="hover = true"
     @mouseleave="hover = false"
     @click="openChat"
   >
     <avatarBot box-class="flex button" />
-    <div :class="`${hover ? 'display absolute box bg-fade' : 'hide'} `">
+    <div :class="`${hover ? 'display absolute box bg-light' : 'hide'} `">
       <div
         :class="`${
-          hover
-            ? 'popup-animation display padding box flex padding justify-center'
-            : 'hide'
+          hover ? 'popup-animation display box flex  justify-center' : 'hide'
         } `"
       >
-        <img :src="waveHand" :style="{ width: '46px', height: '46px' }" />
-        <p>Hi there!</p>
+        <img
+          :src="waveHand"
+          :style="{
+            width: '46px',
+            height: '46px',
+            display: 'flex',
+            marginTop: '6px',
+          }"
+        />
+        <p>{{ $t("message.hi-there") }}</p>
       </div>
     </div>
   </div>

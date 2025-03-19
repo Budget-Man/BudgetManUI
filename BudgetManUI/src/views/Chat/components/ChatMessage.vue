@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import type { Message } from "./Chat.vue";
 import loading from "./Loading.vue";
 import imagesGallery from "./ImagesGallery.vue";
@@ -41,6 +40,7 @@ const { isMine, message } = defineProps<{
   border-radius: 12px;
   background: #f1f1f1;
   position: relative;
+  width: fit-content;
 }
 
 .mine .message-bubble {
