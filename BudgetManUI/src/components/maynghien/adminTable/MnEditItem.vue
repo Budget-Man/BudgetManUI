@@ -1,5 +1,5 @@
 <template>
-    <el-dialog :model-value="openDialog" :title="(isEdit ?  $t('edit') :  $t('create') ) +' '+ title" class="form-dialog" width="40%"
+    <el-dialog :model-value="openDialog" :title="(isEdit ?  $t('edit') :  $t('create') ) +' '+ title" class="form-dialog me"
         @close="emit('onCloseClicked')" open-auto-focus	@opened="focusInput" ref="dialogRef">
 
         <div class="editform" v-if="model != undefined" ref="editFormRef">
@@ -31,10 +31,10 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="emit('onCloseClicked')" :icon="Close">{{ $t('cancel') }}</el-button>
-                <el-button v-if="enableDelete" :icon="Delete" type="danger"
+                <el-button style="margin: 0;"  @click="emit('onCloseClicked')" :icon="Close">{{ $t('cancel') }}</el-button>
+                <el-button style="margin: 0;"  v-if="enableDelete" :icon="Delete" type="danger"
                         @click="handleDelete($event)">{{ $t('delete') }}</el-button>
-                <el-button type="primary" @click="Save" :icon="Check">
+                <el-button style="margin: 0;"  type="primary" @click="Save" :icon="Check">
                     {{ $t('confirm') }}
                 </el-button>
             </span>
@@ -276,6 +276,9 @@ const handleDelete = async (event: Event) => {
 }
 .form-dialog .dialog-footer{
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap:6px;
+    
 }
 </style>

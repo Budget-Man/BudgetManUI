@@ -99,9 +99,10 @@ body,
 html {
     height: 100%;
     margin: 0;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    overflow: hidden;
 }
 .el-row.login-container {
     margin: 0 !important;

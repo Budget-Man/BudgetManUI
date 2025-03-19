@@ -1,18 +1,12 @@
 <template>
     <el-row :gutter="20">
         <el-col :span="5">
-            Loan Name: {{ Loan?.name }}
+            {{ $t('moneyHolder.name') }}: {{ MoneyHolder?.name }}
         </el-col>
         <el-col :span="5">
-            Loan Amount: {{ Loan?.totalAmount }}
+            {{ $t('moneyHolder.balance') }}: {{ MoneyHolder?.totalAmount }}
         </el-col>
-        <el-col :span="5">
-            Interest Rate: {{ Loan?.interestRate }}
-        </el-col>
-        <el-col :span="5">
-            Rate Period: 
-            
-        </el-col>
+        
     </el-row>
     <Suspense>
         <BasicAdminFormVue :tableColumns="tableColumns" :apiName="'moneyHolderTracking'" :allowAdd="true" :allowDelete="true"
@@ -31,12 +25,14 @@ import { ApiActionType, CustomAction, CustomActionDataType, CustomActionResponse
 // @ts-ignore
 import { TableColumn } from '@/components/maynghien/adminTable/Models/TableColumn.ts';
 import { useRoute } from 'vue-router';
-import { handleGetLoan } from '../../Services/Loan/GetById'
 // @ts-ignore
-import type { LoanDto } from '@/Models/Dtos/LoanDto';
+import { handleGetMoneyHolderDetails } from '@/Services/MoneyHolder/MoneyHolderService'
+// @ts-ignore
+import type { MoneyHolderDto } from '@/Models/Dtos/MoneyHolderDto';
 import { ref } from 'vue';
-
-const Loan = ref<LoanDto|undefined>();
+import type { AppResponse } from '@/Models/AppResponse';
+import { useI18n } from 'vue-i18n';
+const MoneyHolder = ref<MoneyHolderDto|undefined>();
 const tableColumns: TableColumn[] = [
     
     {
@@ -189,7 +185,7 @@ const CustomActions: CustomAction[] = ([
 ]);
 const CustomFilters: Filter[] = ([
     {
-        FieldName: "LoanId",
+        FieldName: "MoneyHolderId",
         Value: useRoute().params.Id.toString(),
         DisplayName: undefined,
         Operation:undefined,
@@ -198,33 +194,11 @@ const CustomFilters: Filter[] = ([
     }
 ])
 
-const RatePeriod =ref("");
-handleGetLoan(useRoute().params.Id.toString()).then(
-    (response) => {
+handleGetMoneyHolderDetails(useRoute().params.Id.toString()).then(
+    (response:  AppResponse<MoneyHolderDto>) => {
         if(response.isSuccess){
-            Loan.value = response.data;
-            switch (response.data?.ratePeriod) {
-                case 0:
-                    RatePeriod.value="Daily"
-                    break;
-                    case 1:
-                    RatePeriod.value="Weekly"
-                    break;
-                    case 2:
-                    RatePeriod.value="Monthly"
-                    break;
-                    case 3:
-                    RatePeriod.value="Quarterly"
-                    break;
-                    case 4:
-                    RatePeriod.value="Annually"
-                    break;
-                    case 5:
-                    RatePeriod.value="Irregular"
-                    break;
-                default:
-                    break;
-            }
+            MoneyHolder.value = response.data;
+            
         }
         
     }
