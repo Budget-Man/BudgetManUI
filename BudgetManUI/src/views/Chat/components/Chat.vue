@@ -1,11 +1,13 @@
 <template>
   <div class="box bg-light chat flex flex-col overflow-hidden">
-    <div class="box flex full row-reverse cursor-pointer" @click="closeChat">
-      <img :src="closeIcon" :style="{ width: '32px', aspectRatio: 1 }" />
-    </div>
-    <div class="avatar-chat box padding flex flex-col full">
-      <avatar-bot box-class="chat-assistant flex full"></avatar-bot>
-      <p class="text separate box full">Nice assistant</p>
+    <div class="box flex full items-start">
+      <div class="avatar-chat box padding flex flex-col full">
+        <avatar-bot box-class="chat-assistant flex full"></avatar-bot>
+        <p class="text separate box full">Budman</p>
+      </div>
+      <div class="cursor-pointer" @click="closeChat">
+        <img :src="closeIcon" :style="{ width: '32px', aspectRatio: 1 }" />
+      </div>
     </div>
 
     <chat-list :messages="messages" />
@@ -25,23 +27,34 @@ import chatList from "./ChatList.vue";
 import { ref } from "vue";
 import { sendRequestMessage } from "../api/sendRequestMessage";
 import { dayjs } from "element-plus";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const emit = defineEmits(["close-chat"]);
 
 const closeChat = () => {
   emit("close-chat");
 };
-
-const messages = ref<Messages>([]);
+const getSaveMessage = ()=>{
+  const saved = getMessagesFromCookie()
+  return saved.length ?saved : [
+  {
+    text: t('message.greeting'),
+    time: timeOfMessage(),
+    sender: "other",
+  },
+]
+}
+const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
+const messages = ref<Messages>(getSaveMessage());
 
 const handleSend = async ({
   message,
   images,
 }: {
   message: string;
-  images: unknown[];
+  images: string[];
 }) => {
-  const timeOfMessage = () => dayjs(new Date()).format("HH:mm A");
   const list = [...messages.value];
 
   const messageFromUser = {
@@ -98,6 +111,8 @@ const handleSend = async ({
     messageFromUser
   );
   messages.value = list;
+
+  saveMessagesToCookie(list)
 };
 
 export type Message = {
@@ -105,8 +120,29 @@ export type Message = {
   time: string;
   sender: string;
   loading?: boolean;
-  images?: unknown[];
+  images?: string[];
 };
+
+function saveMessagesToCookie(messages: Message[], cookieName: string = "chatMessages") {
+    const jsonString = JSON.stringify(messages);
+    document.cookie = `${cookieName}=${encodeURIComponent(jsonString)}; path=/; max-age=86400`; // Expires in 1 day
+}
+
+function getMessagesFromCookie(cookieName: string = "chatMessages"): Message[] {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === cookieName) {
+            try {
+                return JSON.parse(decodeURIComponent(value));
+            } catch (error) {
+                console.error("Error parsing messages from cookie:", error);
+                return [];
+            }
+        }
+    }
+    return [];
+}
 
 export type Messages = Message[];
 </script>

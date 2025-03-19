@@ -4,14 +4,16 @@ import { axiosInstance } from "@/Services/axiosConfig";
 
 export const sendRequestMessage = async (model: ChatMessageModel): Promise<string> => {
     try {
-        const response: AppResponse<string> = await axiosInstance.post('/message', model)
-
-        if (response.isSuccess) {
-            return response.data || 'I have no idea!'
-        }
+        console.log(model)
+        const response: AppResponse<any> = await axiosInstance.post('/message', {...model, images: model?.images?.map((item)=>item.split(",")[1])})
+        const responseObject = response.data;
+        console.log(response)
+        // if (responseObject.isSuccess) {
+            return responseObject.message || 'I have no idea!'
+        // }
         throw new Error()
     }
     catch {
-        return "Ops! Something went wrong. Try again please."
+        return "Opps! Something went wrong. Try again please."
     }
 }

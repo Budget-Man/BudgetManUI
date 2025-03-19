@@ -1,7 +1,7 @@
 <template>
   <div class="container box images scroll" v-if="images.length">
     <imagesGallery :visibleImages="visibleImages" :images="images">
-      <template #delete>
+      <template #delete="{ index }">
         <button class="delete-btn" @click="removeImage(index)">✖</button>
       </template>
     </imagesGallery>
@@ -12,8 +12,8 @@
 import { ref, watch } from "vue";
 import imagesGallery from "./ImagesGallery.vue";
 
-const images = ref([]); // Stores multiple images
-const visibleImages = ref([]); // Tracks which images are visible
+const images = ref<unknown[]>([]); // Stores multiple images
+const visibleImages = ref<number[]>([]); // Tracks which images are visible
 
 const props = defineProps(["imagesPasteEvent", "images"]);
 
@@ -26,16 +26,16 @@ watch(
   }
 );
 
-const handlePaste = (event) => {
+const handlePaste = (event: ClipboardEvent) => {
   const items = event.clipboardData?.items;
   if (!items) return;
 
   for (const item of items) {
-    if (item.type.startsWith("image")) {
-      const file = item.getAsFile();
+    const file = item.getAsFile();
+    if (item.type.startsWith("image") && file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        images.value.push(e.target.result);
+      reader.onload = () => {
+        images.value.push(reader.result);
         const index = images.value.length - 1;
         visibleImages.value.push(index);
       };
@@ -54,7 +54,7 @@ watch(
     images.value = newValue;
   }
 );
-const removeImage = (index) => {
+const removeImage = (index: number) => {
   images.value.splice(index, 1);
   visibleImages.value = visibleImages.value.filter((i) => i !== index);
 };
