@@ -1,5 +1,5 @@
 <template>
-  <div class="box screen-h no-rounded" style="overflow: hidden;">
+  <div class="box screen-h no-rounded" style="overflow: hidden">
     <el-container class="box flex flex-col full screen-h no-wrap">
       <el-header style="padding-left: 0px" class="box full no-rounded">
         <a href="/" style="all: unset">
@@ -74,10 +74,9 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main class="" style="overflow: hidden;">
-          <div  style="max-height: 100%;overflow: hidden;">
+        <el-main class="" style="overflow: hidden">
+          <div style="max-height: 100%; overflow: hidden">
             <router-view />
-
           </div>
           <el-image
             src="https://scr.vn/wp-content/uploads/2020/08/H%C3%ACnh-n%E1%BB%81n-c%C3%B4ng-ngh%E1%BB%87-cho-ppt-scaled.jpg"
@@ -118,6 +117,7 @@
       </el-footer> -->
     </el-container>
   </div>
+  <WelcomeDialog />
 </template>
 
 <style>
@@ -229,6 +229,7 @@ import {
   PriceTag,
   Money,
 } from "@element-plus/icons-vue";
+import WelcomeDialog from "@/components/WelcomeDialog.vue";
 const isCollapse = ref(true);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
