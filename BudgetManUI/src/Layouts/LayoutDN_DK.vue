@@ -16,7 +16,7 @@
   </div> -->
 
   <div class="container">
-    <el-col :span="17"
+    <el-col :span="17" class="banner-col"
       ><el-image :src="bannerImg" class="container fade-in-image"></el-image
     ></el-col>
     <el-col
@@ -165,6 +165,18 @@ ul.el-menu.el-menu--horizontal.el-menu-demo {
   }
   to {
     background-position: 100% 0;
+  }
+}
+  @media (max-width: 768px) {
+  .banner-col {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-area {
+    max-width: 100%;
+    width: 100%;
   }
 }
 </style>
