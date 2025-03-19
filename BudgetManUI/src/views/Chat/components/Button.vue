@@ -9,13 +9,19 @@
     <div :class="`${hover ? 'display absolute box bg-light' : 'hide'} `">
       <div
         :class="`${
-          hover
-            ? 'popup-animation display box flex  justify-center'
-            : 'hide'
+          hover ? 'popup-animation display box flex  justify-center' : 'hide'
         } `"
       >
-        <img :src="waveHand" :style="{ width: '46px', height: '46px',display:'flex', marginTop:'6px' }" />
-        <p>{{$t('message.hi-there')}}</p>
+        <img
+          :src="waveHand"
+          :style="{
+            width: '46px',
+            height: '46px',
+            display: 'flex',
+            marginTop: '6px',
+          }"
+        />
+        <p>{{ $t("message.hi-there") }}</p>
       </div>
     </div>
   </div>
@@ -25,7 +31,6 @@
 import { ref } from "vue";
 import waveHand from "@/assets/images/hand-wave.png";
 import avatarBot from "./AvatarBot.vue";
-import { fa } from "element-plus/es/locale/index.js";
 
 const emit = defineEmits(["open-chat"]);
 

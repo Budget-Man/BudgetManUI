@@ -1,5 +1,10 @@
 <template>
-  <el-space class="moneyOverviewContainer" fill :size="30" style="overflow: hidden;height: 100%;margin-bottom: 64px;">
+  <el-space
+    class="moneyOverviewContainer"
+    fill
+    :size="30"
+    style="overflow: hidden; height: 100%; margin-bottom: 64px"
+  >
     <!-- <div class="moneyOverviewContainer"> -->
     <!-- title  -->
     <el-row>
@@ -37,8 +42,16 @@
                     </el-table>
             </el-col> -->
     </el-row>
-    <el-row style="display: flex; gap: 12px; overflow: auto; flex-wrap: nowrap !important; max-height: 80vh">
-      <el-col style="flex:1;flex-shrink: 0;">
+    <el-row
+      style="
+        display: flex;
+        gap: 12px;
+        overflow: auto;
+        flex-wrap: nowrap !important;
+        max-height: 80vh;
+      "
+    >
+      <el-col style="flex: 1; flex-shrink: 0">
         <el-row justify="space-between">
           <h2>{{ $t("income.name") }}:</h2>
           <el-col :span="7" style="margin-top: auto">
@@ -70,7 +83,7 @@
         </el-table>
       </el-col>
 
-      <el-col  style="flex:1;flex-shrink: 0;">
+      <el-col style="flex: 1; flex-shrink: 0">
         <el-row justify="space-between">
           <h2>{{ $t("moneyOverview.expense") }}:</h2>
           <el-col :span="7" style="margin-top: auto">
@@ -150,16 +163,9 @@ import { CreateMoneySpendRequest } from "../../Models/Request/MoneySpend/CreateM
 // @ts-ignore
 import { TableColumn } from "./Models/TableColumn.ts";
 // @ts-ignore
-import {
-  handleAPICustom,
-  handleAPIDelete,
-  handleAPISearch,
-} from "@/components/maynghien/adminTable/Service/BasicAdminService.ts";
+
 // @ts-ignore
-import {
-  SearchRequest,
-  SearchResponse,
-} from "@/components/maynghien/adminTable/Service/BasicAdminService.ts";
+
 // @ts-ignore
 import { Filter } from "@/components/maynghien/BaseModels/Filter";
 // @ts-ignore
@@ -171,6 +177,9 @@ import CreateMoneySpend from "@/components/MoneySpend/CreateMoneySpend.vue";
 import MnEditItem from "@/components/maynghien/adminTable/MnEditItem.vue";
 // @ts-ignore
 import { languages } from "@/languages";
+import { handleAPISearch } from "@/components/maynghien/adminTable/Service/BasicAdminService.js";
+import type { SearchResponse } from "@/components/maynghien/BaseModels/SearchResponse.js";
+import type { SearchRequest } from "@/components/maynghien/BaseModels/SearchRequest.js";
 
 const _toast = useToast();
 const Search = async (apiName: any) => {
@@ -352,13 +361,13 @@ const handleMoneySpendRowClick = (row: any, column: any, event: any) => {
 };
 const moneyHolderValue = ref("");
 const budgetData = ref(null);
-const incomeData = ref<[] | null>(null);
-const moneySpendData = ref<[] | null>(null);
+const incomeData = ref<SearchDTOItem[] | undefined>([]);
+const moneySpendData = ref<SearchDTOItem[] | undefined>([]);
 // const moneyHolderData = ref<[{
 //     value: 'Option1',
 //     label: 'Option1',
 //   }] | null>(null)
-const moneyHolderData = ref<[SearchDTOItem]>();
+const moneyHolderData = ref<SearchDTOItem[]>();
 // const balance = ref<Number>(0);
 const incomeItem = ref<SearchDTOItem>({});
 const moneySpendItem = ref<SearchDTOItem>({});
